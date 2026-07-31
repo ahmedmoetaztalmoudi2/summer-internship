@@ -1,0 +1,12 @@
+{
+  "total": 1,
+  "passed": 0,
+  "failed": 1,
+  "details": [
+    {
+      "test": "Successful login",
+      "status": "failed",
+      "error": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+    }
+  ]
+}
