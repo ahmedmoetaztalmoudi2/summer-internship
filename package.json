@@ -1,0 +1,25 @@
+{
+  "name": "jira-ai-test-generator",
+  "version": "1.0.0",
+  "description": "Jira AI Gherkin Generator (Steps 1-3)",
+  "main": "pipeline.js",
+  "scripts": {
+    "fetch:jira": "node jira-fetcher.js",
+    "convert:adf": "node adf-to-text.js",
+    "generate:gherkin": "node gherkin-generator.js",
+    "generate:gherkin:mock": "node gherkin-generator.js --mock",
+    "generate:gherkin:groq": "node gherkin-generator.js --groq",
+    "pipeline": "node pipeline.js",
+    "pipeline:mock": "node pipeline.js --mock",
+    "pipeline:groq": "node pipeline.js --groq"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "node-fetch": "^2.7.0",
+    "openai": "^7.0.0"
+  }
+}
