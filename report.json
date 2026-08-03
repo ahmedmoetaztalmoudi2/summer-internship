@@ -6,7 +6,7 @@
     {
       "test": "Successful login",
       "status": "failed",
-      "error": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://teskerti.tn/\u001b[7mclient/home\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"https://teskerti.tn/\u001b[7muser/login\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"https://teskerti.tn/user/login\"\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://teskerti.tn/\u001b[7mclient/home\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"https://teskerti.tn/\u001b[7muser/login\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"https://teskerti.tn/user/login\"\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\successful-login.spec.ts:18:24"
     }
   ]
 }
