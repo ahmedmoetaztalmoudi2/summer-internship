@@ -36,7 +36,14 @@ npm run pipeline SCRUM-1        # Process single ticket
 npm run pipeline:mock SCRUM-1   # Process single ticket using mock mode
 ```
 
-### 2. Run Gherkin Generator Directly
+### 2. Run Full Pipeline (Steps 1–5: Jira → Gherkin → Playwright → Execute)
+```bash
+npm run pipeline:full                # All tickets: fetch, Gherkin, generate tests, run, report
+npm run pipeline:full SCRUM-1        # Single ticket
+npm run pipeline:full -- --mock SCRUM-1
+```
+
+### 3. Run Gherkin Generator Directly
 ```bash
 npm run generate:gherkin SCRUM-1
 ```

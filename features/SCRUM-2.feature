@@ -15,35 +15,26 @@ Fonctionnalite: Réinitialisation du mot de passe
     Then un message générique devrait être affiché sans confirmer ni infirmer l'existence de l'email
     And aucun email ne devrait être envoyé à l'utilisateur
 
-  Scenario Outline: Expiration du lien de réinitialisation
-    Given l'utilisateur reçoit un lien de réinitialisation
-    When l'utilisateur attend "<delai>" avant de cliquer sur le lien
-    Then le lien de réinitialisation devrait être "<etat>"
+  Scenario: Expiration du lien de réinitialisation
+    Given l'utilisateur a reçu un lien de réinitialisation il y a 24 heures
+    When l'utilisateur tente d'utiliser le lien de réinitialisation
+    Then le lien de réinitialisation devrait être expiré
+    And un message d'erreur "Lien de réinitialisation expiré" devrait être affiché
 
-    Examples:
-      | delai      | etat       |
-      | moins de 24 heures | valide     |
-      | plus de 24 heures  | expiré     |
-
-  Scenario: Réutilisation d'un lien de réinitialisation déjà utilisé
+  Scenario: Réutilisation d'un lien de réinitialisation
     Given l'utilisateur a déjà utilisé un lien de réinitialisation
-    When l'utilisateur tente de réutiliser le même lien
-    Then un message d'erreur devrait être affiché indiquant que le lien est déjà utilisé
-    And la réinitialisation du mot de passe devrait échouer
+    When l'utilisateur tente de réutiliser le même lien de réinitialisation
+    Then le lien de réinitialisation devrait être invalide
+    And un message d'erreur "Lien de réinitialisation déjà utilisé" devrait être affiché
 
-  Scenario Outline: Nouveau mot de passe avec une politique minimale
-    Given l'utilisateur clique sur le lien de réinitialisation
-    When l'utilisateur entre un nouveau mot de passe "<mot_de_passe>"
-    Then la réinitialisation du mot de passe devrait être "<resultat>"
+  Scenario Outline: Définition d'un nouveau mot de passe
+    Given l'utilisateur a reçu un lien de réinitialisation valide
+    When l'utilisateur entre un nouveau mot de passe "<password>"
+    Then le système devrait "<resultat>"
 
     Examples:
-      | mot_de_passe | resultat      |
-      | azerty      | échouer       |
-      | azerty1     | échouer       |
-      | azerty12    | échouer       |
-      | azerty123   | échouer       |
-      | azerty1234  | échouer       |
-      | azerty12345 | échouer       |
-      | azerty1234a | échouer       |
-      | azerty1234A | échouer       |
-      | azerty1A    | réussir       |
+      | password      | resultat                                    |
+      | azerty        | afficher un message d'erreur "Mot de passe trop court" |
+      | azerty123     | permettre la réinitialisation du mot de passe      |
+      | azerty123!a   | permettre la réinitialisation du mot de passe      |
+      | 12345678      | afficher un message d'erreur "Mot de passe doit contenir au moins une lettre" |

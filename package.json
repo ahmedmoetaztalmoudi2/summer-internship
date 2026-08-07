@@ -7,8 +7,10 @@
   "type": "commonjs",
   "scripts": {
     "start": "tsx src/index.ts",
+    "pipeline:full": "tsx src/full-pipeline.ts",
     "build": "tsc -p tsconfig.json",
     "test:generated": "playwright test tests/generated",
+    "analyze": "tsx src/cli.ts",
     "fetch:jira": "node jira-fetcher.js",
     "convert:adf": "node adf-to-text.js",
     "generate:gherkin": "node gherkin-generator.js",
@@ -16,7 +18,8 @@
     "generate:gherkin:groq": "node gherkin-generator.js --groq",
     "pipeline": "node pipeline.js",
     "pipeline:mock": "node pipeline.js --mock",
-    "pipeline:groq": "node pipeline.js --groq"
+    "pipeline:groq": "node pipeline.js --groq",
+    "extract:selectors": "playwright test --config=playwright.extract.config.ts"
   },
   "keywords": [],
   "author": "",

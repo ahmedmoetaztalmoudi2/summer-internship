@@ -1,39 +1,34 @@
-Fonctionnalite: Connexion à la plateforme
+Fonctionnalite: Connexion utilisateur
 
-  Background:
-    Given l'utilisateur est sur la page de connexion
+  Arrière-plan:
+    Étant donné que l'utilisateur est sur la page de connexion
 
-  Scenario: Connexion réussie avec des identifiants valides
-    Given l'utilisateur saisit un email valide "utilisateur@example.com"
-    And l'utilisateur saisit un mot de passe valide "Secret123!"
-    When l'utilisateur soumet le formulaire de connexion
-    Then l'utilisateur devrait être redirigé vers son tableau de bord
+  Scénario: Connexion avec des identifiants invalides
+    Étant donné que l'utilisateur entre une adresse email
+    Et que l'utilisateur entre un mot de passe
+    Lorsque l'utilisateur soumet le formulaire de connexion
+    Alors un message d'erreur devrait être affiché
 
-  Scenario Outline: Échec de connexion avec des identifiants invalides
-    Given l'utilisateur saisit "<email>"
-    And l'utilisateur saisit "<password>"
-    When l'utilisateur soumet le formulaire de connexion
-    Then un message d'erreur "<error_message>" devrait être affiché
+  Scénario: Connexion avec un email non enregistré
+    Étant donné que l'utilisateur entre un email non enregistré
+    Et que l'utilisateur entre un mot de passe
+    Lorsque l'utilisateur soumet le formulaire de connexion
+    Alors un message d'erreur devrait être affiché
 
-    Examples:
-      | email            | password   | error_message       |
-      | wrong@test.com   | Secret123! | Identifiants invalides |
-      | utilisateur@example.com | WrongPass  | Identifiants invalides |
+  Scénario: Connexion avec un mot de passe incorrect
+    Étant donné que l'utilisateur entre une adresse email
+    Et que l'utilisateur entre un mot de passe incorrect
+    Lorsque l'utilisateur soumet le formulaire de connexion
+    Alors un message d'erreur devrait être affiché
 
-  Scenario: Compte verrouillé après 5 tentatives échouées
-    Given l'utilisateur a déjà échoué 4 fois à se connecter
-    When l'utilisateur saisit un mot de passe incorrect pour la 5ème fois
-    Then le compte devrait être verrouillé temporairement
-    And un message d'erreur "Compte verrouillé pour 15 minutes" devrait être affiché
+  Scénario Outline: Connexion avec des identifiants invalides multiples fois
+    Étant donné que l'utilisateur entre "<email>"
+    Et que l'utilisateur entre "<password>"
+    Lorsque l'utilisateur soumet le formulaire de connexion
+    Et que l'utilisateur répète les étapes de connexion avec des identifiants incorrects "<nbTentatives>" fois
+    Alors un message d'erreur devrait être affiché
 
-  Scenario: Affichage du mot de passe
-    Given l'utilisateur est sur la page de connexion
-    When l'utilisateur clique sur l'option pour afficher le mot de passe
-    Then le mot de passe devrait être affiché
-    When l'utilisateur clique à nouveau sur l'option pour masquer le mot de passe
-    Then le mot de passe devrait être masqué à nouveau
-
-  Scenario: Verrouillage temporaire du compte
-    Given le compte a été verrouillé temporairement
-    When 15 minutes se sont écoulées
-    Then le compte devrait être déverrouillé automatiquement
+    Exemples:
+      | email          | password    | nbTentatives |
+      | wrong@test.com | Secret123!  | 5           |
+      | user@example.com | WrongPass | 3           |

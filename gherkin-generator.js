@@ -9,16 +9,19 @@ const DEFAULT_GROQ_MODEL = 'llama-3.3-70b-versatile';
 
 const SYSTEM_PROMPT = `
 You are an expert QA Automation Engineer and BDD (Behavior-Driven Development) specialist.
-Your goal is to extract business rules from a Jira user story and convert them into a clean Gherkin .feature file.
+Your goal is to extract business rules from a Jira user story and convert them into a clean, EXECUTABLE Gherkin .feature file grounded in the REAL page structure.
 
-Rules:
+STRICT RULES (VERY IMPORTANT):
 1. Match the input ticket language. If the ticket is French, use French Gherkin wording. If it is English, use English Gherkin wording.
 2. Start with "Feature:" or "Fonctionnalite:" followed by a short title.
-3. Cover every acceptance criterion with at least one scenario.
-4. Include happy path, edge cases, invalid inputs, and boundary cases when the ticket gives enough information.
-5. Use "Scenario Outline:" and "Examples:" when one behavior must be tested with multiple data rows.
-6. Write business behavior, not UI implementation. Do not invent selectors, screens, buttons, fields, roles, or APIs that are not present in the ticket.
-7. Output raw Gherkin only. Do not wrap the answer in markdown fences.
+3. GROUNDING: Only write scenarios whose steps can actually be executed against the page structure provided under "Known page structure". Use ONLY the real elements (inputs, buttons, links, etc.) listed there.
+4. NO HALLUCINATION: Do NOT invent user-visible messages (e.g. "Identifiants invalides"), success messages, account lock behavior, redirect targets, or any feature that is NOT present in the "Known page structure". When a scenario must assert an outcome, use generic wording such as "an error message should be displayed" or "the user should be redirected".
+5. SKIP WHAT CANNOT BE EXECUTED: If an acceptance criterion has no matching element or behavior in the "Known page structure", omit that scenario entirely. Never invent a UI to cover it.
+6. SUCCESSFUL LOGIN: only write a "successful login" scenario when test credentials are provided. Otherwise cover login failure only.
+7. Cover happy path, edge cases and invalid inputs ONLY when they map to real, present page elements.
+8. Use "Scenario Outline:" and "Examples:" only when one behavior must be tested with multiple data rows.
+9. Do not reference selectors, IDs, or implementation details in the Gherkin. Keep it business-level but grounded.
+10. Output raw Gherkin only. Do not wrap the answer in markdown fences.
 `.trim();
 
 const FEW_SHOT_FEATURE_EXAMPLE = `
@@ -32,39 +35,42 @@ Acceptance Criteria:
 - Display error "Invalid credentials" when email or password is wrong.
 - Lock account after 5 consecutive failed attempts.
 
-Example Output:
+Known page structure (real DOM):
+{ "login": { "email": "input[name='email']", "password": "input[name='password']", "submit": "button.btn_full" } }
+
+Test credentials:
+Not provided.
+
+Example Output (grounded in the page structure above; "successful login" and "account lockout" are OMITTED because no credentials were provided and no lockout element exists on the page):
 Feature: User Authentication
 
   Background:
     Given the user is on the login page
 
-  Scenario: Successful login with valid credentials
-    Given the user enters a valid email "user@example.com"
-    And the user enters a valid password "Secret123!"
-    When the user submits the login form
-    Then the user should be redirected to the dashboard
-    And a welcome message should be displayed
-
   Scenario Outline: Failed login with invalid credentials
     Given the user enters "<email>"
     And the user enters "<password>"
     When the user submits the login form
-    Then an error message "<error_message>" should be displayed
+    Then an error message should be displayed
 
     Examples:
-      | email            | password   | error_message       |
-      | wrong@test.com   | Secret123! | Invalid credentials |
-      | user@example.com | WrongPass  | Invalid credentials |
-
-  Scenario: Account lockout after 5 consecutive failed attempts
-    Given the user has failed 4 previous login attempts
-    When the user enters invalid password "WrongPass" for the 5th time
-    Then the account should be locked
-    And an error message "Account locked due to multiple failed attempts" should be displayed
+      | email          | password    |
+      | wrong@test.com | Secret123!  |
+      | user@example.com | WrongPass |
 `.trim();
 
-function buildGherkinMessages(ticket) {
+function buildGherkinMessages(ticket, options = {}) {
   validateTicket(ticket);
+
+  const selectorsContext =
+    options.selectors && Object.keys(options.selectors).length > 0
+      ? JSON.stringify(options.selectors, null, 2)
+      : 'Not provided.';
+
+  const credentialsContext =
+    options.credentials && Object.keys(options.credentials).length > 0
+      ? JSON.stringify(options.credentials, null, 2)
+      : 'Not provided.';
 
   const userPrompt = `
 Jira Ticket Key: ${ticket.key}
@@ -73,7 +79,13 @@ Summary: ${ticket.summary}
 Clean Description and Acceptance Criteria:
 ${ticket.description || 'No description provided.'}
 
-Extract all business rules and acceptance criteria, then produce the complete Gherkin .feature document.
+Known page structure (real DOM — ONLY write scenarios that can be executed against these elements):
+${selectorsContext}
+
+Test credentials (only include a successful-login scenario when provided):
+${credentialsContext}
+
+Extract all business rules and acceptance criteria, then produce the complete Gherkin .feature document following the strict rules.
 `.trim();
 
   return [
@@ -112,7 +124,7 @@ async function generateGherkinWithGroq(ticket, options = {}) {
 
   const baseUrl = (options.baseUrl || process.env.GROQ_BASE_URL || DEFAULT_GROQ_BASE_URL).replace(/\/+$/, '');
   const model = options.model || process.env.GROQ_MODEL || DEFAULT_GROQ_MODEL;
-  const messages = buildGherkinMessages(ticket);
+  const messages = buildGherkinMessages(ticket, options);
 
   const res = await fetch(`${baseUrl}/chat/completions`, {
     method: 'POST',

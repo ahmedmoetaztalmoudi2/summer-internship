@@ -4,7 +4,7 @@
       "C:\\Program Files\\nodejs\\node.exe",
       "C:\\Users\\melli\\QA_Testing\\node_modules\\@playwright\\test\\cli.js",
       "test",
-      "tests/generated/successful-login.spec.ts"
+      "tests/generated"
     ],
     "configFile": "C:\\Users\\melli\\QA_Testing\\playwright.config.ts",
     "rootDir": "C:/Users/melli/QA_Testing/tests/generated",
@@ -18,7 +18,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 4
     },
     "preserveOutput": "always",
     "projects": [
@@ -27,7 +27,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 4
         },
         "id": "chromium",
         "name": "chromium",
@@ -66,20 +66,20 @@
   },
   "suites": [
     {
-      "title": "successful-login.spec.ts",
-      "file": "successful-login.spec.ts",
+      "title": "champ-mot-de-passe-masqu-par-d-faut.spec.ts",
+      "file": "champ-mot-de-passe-masqu-par-d-faut.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "User login",
-          "file": "successful-login.spec.ts",
+          "title": "Connexion utilisateur",
+          "file": "champ-mot-de-passe-masqu-par-d-faut.spec.ts",
           "line": 3,
           "column": 6,
           "specs": [
             {
-              "title": "Successful login",
+              "title": "Champ mot de passe masqué par défaut",
               "ok": true,
               "tags": [],
               "tests": [
@@ -94,12 +94,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 10953,
+                      "duration": 8197,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-02T16:18:46.816Z",
+                      "startTime": "2026-08-04T08:26:06.536Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -107,10 +107,265 @@
                   "status": "expected"
                 }
               ],
-              "id": "6782074b5e04bd5be59d-67c606b570039e63577b",
-              "file": "successful-login.spec.ts",
+              "id": "969f8ea8d488173dc35b-da5a6bd19cc0aa449617",
+              "file": "champ-mot-de-passe-masqu-par-d-faut.spec.ts",
               "line": 4,
-              "column": 3
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "chec-de-connexion-avec-identifiants-invalides.spec.ts",
+      "file": "chec-de-connexion-avec-identifiants-invalides.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Connexion utilisateur",
+          "file": "chec-de-connexion-avec-identifiants-invalides.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Échec de connexion avec identifiants invalides",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 12120,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-04T08:26:06.504Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "04e421b8c830191fc643-88a4d10e0f47855087cb",
+              "file": "chec-de-connexion-avec-identifiants-invalides.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "connexion-avec-email-non-enregistr.spec.ts",
+      "file": "connexion-avec-email-non-enregistr.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Connexion utilisateur",
+          "file": "connexion-avec-email-non-enregistr.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Connexion avec email non enregistré",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 11376,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-04T08:26:06.611Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8715c0abdb3b8c9c582-a62379345880a19df812",
+              "file": "connexion-avec-email-non-enregistr.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "connexion-r-ussie.spec.ts",
+      "file": "connexion-r-ussie.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Connexion utilisateur",
+          "file": "connexion-r-ussie.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Connexion réussie",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 13237,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-04T08:26:06.547Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b2c287ca52e8dedabb7-7be49662b54ed04f428c",
+              "file": "connexion-r-ussie.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tentatives-chou-es-de-connexion-2.spec.ts",
+      "file": "tentatives-chou-es-de-connexion-2.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Connexion utilisateur",
+          "file": "tentatives-chou-es-de-connexion-2.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Tentatives échouées de connexion",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 22711,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-04T08:26:14.996Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "876061d52a47650e1a3b-b8911f649530f6397482",
+              "file": "tentatives-chou-es-de-connexion-2.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tentatives-chou-es-de-connexion.spec.ts",
+      "file": "tentatives-chou-es-de-connexion.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Connexion utilisateur",
+          "file": "tentatives-chou-es-de-connexion.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Tentatives échouées de connexion",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 26310,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-04T08:26:18.349Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "539c81c92c99d62ea573-6bdb3aeb13c378e00a89",
+              "file": "tentatives-chou-es-de-connexion.spec.ts",
+              "line": 4,
+              "column": 7
             }
           ]
         }
@@ -119,9 +374,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-08-02T16:18:46.346Z",
-    "duration": 12312.847,
-    "expected": 1,
+    "startTime": "2026-08-04T08:26:05.463Z",
+    "duration": 39299.299,
+    "expected": 6,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

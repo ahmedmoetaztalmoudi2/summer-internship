@@ -1,0 +1,20 @@
+{
+  "url": "https://teskerti.tn/user/login",
+  "domain": "teskerti.tn",
+  "analyzedAt": "2026-08-06T21:07:34.007Z",
+  "login": {
+    "email": "input[name=\"email\"]",
+    "password": "input[name=\"password\"]",
+    "submit": "button:has-text(\"Se connecter\")"
+  },
+  "forms": {
+    "form-1": {
+      "email": "input[name=\"email\"]",
+      "password": "input[name=\"password\"]",
+      "submit": "button:has-text(\"Se connecter\")"
+    },
+    "form-2": {
+      "submit": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(4) > form:nth-of-type(1) > button:nth-of-type(1)"
+    }
+  }
+}
