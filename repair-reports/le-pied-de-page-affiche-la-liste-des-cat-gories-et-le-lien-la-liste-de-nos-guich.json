@@ -1,0 +1,24 @@
+{
+  "scenario": "Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"",
+  "failureType": "strict_mode_violation",
+  "rootCause": "bad_selector",
+  "repairType": "disambiguate_selector",
+  "target": "Selector (line 7)",
+  "currentValue": "footer",
+  "replacementValue": "footer.first()",
+  "confidence": 0.85,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Disambiguate the ambiguous locator with .first() (or add a distinguishing attribute).",
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts",
+      "line": 7
+    }
+  ],
+  "explanation": [
+    "The locator resolved to multiple elements (strict mode violation).",
+    "No more specific verified selector exists, so disambiguation with .first() is the safe deterministic fix."
+  ],
+  "sourceFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts"
+}

@@ -1,0 +1,19 @@
+{
+  "scenario": "Connexion échouée avec des identifiants invalides",
+  "failureType": "strict_mode_violation",
+  "repairType": "disambiguate_selector",
+  "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec des identifiants invalides\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    await page.locator('input[name=\"email\"]').fill(\"unknown@test.com\");\n    await page.locator('input[name=\"password\"]').fill(\"WrongPass\");\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toHaveText(\"Identifiants invalides\");\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec des identifiants invalides\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    await page.locator('input[name=\"email\"]').fill(\"unknown@test.com\");\n    await page.locator('input[name=\"password\"]').fill(\"WrongPass\");\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toHaveText(\"Identifiants invalides\");\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides-2.spec.ts",
+  "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-des-identifiants-invalides\\original.spec.ts",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides-2.spec.ts",
+    "column": 82,
+    "line": 8
+  },
+  "appliedAt": "2026-08-18T16:27:34.898Z",
+  "durationMs": 8388,
+  "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: \u001b[32m\"Identifiants invalides\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: \u001b[32m\"Identifiants invalides\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides-2.spec.ts:9:99"
+}

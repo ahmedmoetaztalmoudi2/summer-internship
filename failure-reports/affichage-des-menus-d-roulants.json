@@ -1,0 +1,52 @@
+{
+  "scenario": "Affichage des menus déroulants",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #selectedSalle",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: #selectedSalle",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./category/spectacle.select_selectedSalle] appear in the failing locator.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('#selectedSalle') | 13 × locator resolved to <select hidden=\"\" tabindex=\"-1\" id=\"selectedSalle\" data-choice=\"active\" placeholder=\"Sélectionner une salle\" class=\"form-select choices-single choices__input\">…</select> | - unexpected value \"hidden\" | Error: expect(locator).toBeVisible() failed | Locator:  locator('#selectedSalle') | Expected: visible | Received: hidden | Timeout:  5000ms | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('#selectedSalle') | 13 × locator resolved to <select hidden=\"\" tabindex=\"-1\" id=\"selectedSalle\" data-choice=\"active\" placeholder=\"Sélectionner une salle\" class=\"form-select choices-single choices__input\">…</select> | - unexpected value \"hidden\" | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\affichage-des-menus-d-roulants.spec.ts:6:50 | Error: expect(locator).toBeVisible() failed | Locator:  locator('#selectedSalle') | Expected: visible | Received: hidden | Timeout:  5000ms | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('#selectedSalle') | 13 × locator resolved to <select hidden=\"\" tabindex=\"-1\" id=\"selectedSalle\" data-choice=\"active\" placeholder=\"Sélectionner une salle\" class=\"form-select choices-single choices__input\">…</select> | - unexpected value \"hidden\" | 4 |   test(\"Affichage des menus déroulants\", async ({ page }) => { | 5 |     await page.goto(\"https://teskerti.tn/category/spectacle\"); | > 6 |     await expect(page.locator(\"#selectedSalle\")).toBeVisible(); | |                                                  ^ | 7 |     await expect(page.locator(\"#selectedDate\")).toBeVisible(); | 8 |   }); | 9 | }); | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\affichage-des-menus-d-roulants.spec.ts:6:50",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #selectedSalle"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator:  locator('#selectedSalle')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('#selectedSalle')\n    13 × locator resolved to <select hidden=\"\" tabindex=\"-1\" id=\"selectedSalle\" data-choice=\"active\" placeholder=\"Sélectionner une salle\" class=\"form-select choices-single choices__input\">…</select>\n       - unexpected value \"hidden\"\n\nError: expect(locator).toBeVisible() failed\n\nLocator:  locator('#selectedSalle')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('#selectedSalle')\n    13 × locator resolved to <select hidden=\"\" tabindex=\"-1\" id=\"selectedSalle\" data-choice=\"active\" placeholder=\"Sélectionner une salle\" class=\"form-select choices-single choices__input\">…</select>\n       - unexpected value \"hidden\"\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\affichage-des-menus-d-roulants.spec.ts:6:50\nError: expect(locator).toBeVisible() failed\n\nLocator:  locator('#selectedSalle')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('#selectedSalle')\n    13 × locator resolved to <select hidden=\"\" tabindex=\"-1\" id=\"selectedSalle\" data-choice=\"active\" placeholder=\"Sélectionner une salle\" class=\"form-select choices-single choices__input\">…</select>\n       - unexpected value \"hidden\"\n\n\n  4 |   test(\"Affichage des menus déroulants\", async ({ page }) => {\n  5 |     await page.goto(\"https://teskerti.tn/category/spectacle\");\n> 6 |     await expect(page.locator(\"#selectedSalle\")).toBeVisible();\n    |                                                  ^\n  7 |     await expect(page.locator(\"#selectedDate\")).toBeVisible();\n  8 |   });\n  9 | });\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\affichage-des-menus-d-roulants.spec.ts:6:50"
+    },
+    {
+      "source": "test_source",
+      "content": "  test(\"Affichage des menus déroulants\", async ({ page }) => {\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Then un menu déroulant \"Sélectionner une salle\" devrait être visible"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\affichage-des-menus-d-roul-334fe-ichage-des-menus-déroulants-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\affichage-des-menus-d-roulants.spec.ts",
+    "column": 50,
+    "line": 6
+  },
+  "diagnostics": {
+    "failingLocator": "#selectedSalle",
+    "locatorLines": [
+      "waiting for locator('#selectedSalle')",
+      "Locator: locator('#selectedSalle')",
+      "locator('#selectedSalle')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./category/spectacle.select_selectedSalle"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-16T10:14:39.135Z"
+}

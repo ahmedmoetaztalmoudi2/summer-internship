@@ -1,0 +1,19 @@
+{
+  "scenario": "Connexion échouée avec email non enregistré",
+  "failureType": "timeout",
+  "repairType": "add_wait_strategy",
+  "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect(\n      page.locator(\n        \".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\"\n      ).first()\n    ).toBeVisible();\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect(\n      page.locator(\n        \".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\"\n      ).first()\n    ).toBeVisible();\n  });\n});\n",
+  "attempt": 2,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+  "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-email-non-enregistre\\original.spec.ts",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+    "column": 43,
+    "line": 8
+  },
+  "appliedAt": "2026-08-19T08:20:33.562Z",
+  "durationMs": 60107,
+  "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+}

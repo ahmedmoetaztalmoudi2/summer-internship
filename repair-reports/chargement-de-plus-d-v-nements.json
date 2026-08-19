@@ -1,0 +1,28 @@
+{
+  "scenario": "Chargement de plus d'événements",
+  "failureType": "visibility_issue",
+  "rootCause": "bad_selector",
+  "repairType": "add_visibility_guard",
+  "target": "Visibility (line 7)",
+  "currentValue": "#load_more",
+  "confidence": 0.85,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Guard the interaction: only click the button when it is visible (e.g. wrap in if (await locator.isVisible())).",
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chargement-de-plus-d-v-nements.spec.ts",
+      "line": 7
+    },
+    {
+      "action": "Assert on the resulting content (event cards) instead of forcing the click.",
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chargement-de-plus-d-v-nements.spec.ts",
+      "line": 7
+    }
+  ],
+  "explanation": [
+    "The button exists but is hidden — the application only shows it when there is more content.",
+    "Forcing a click on a hidden element is the defect; guarding visibility matches the generation guidance."
+  ],
+  "sourceFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chargement-de-plus-d-v-nements.spec.ts"
+}

@@ -1,0 +1,49 @@
+{
+  "scenario": "Connexion échouée avec email non enregistré",
+  "status": "failed",
+  "failureType": "timeout",
+  "confidence": 0.75,
+  "rootCause": "timing_issue",
+  "repairRecommendation": "A wait timed out while the failure gives no proof the element is missing — the element likely appears later than the default wait allows. Increase the wait/action timeout or replace a bare click with expect(locator).toBeVisible() first; also consider response-driven waits (waitForResponse) for AJAX content. Failing locator: getByLabel(\"Mot de passe\").fill(\"123456789\")",
+  "reasoning": [
+    "Failure classified as \"timeout\" with confidence 0.75.",
+    "Root cause dimension: timing_issue — the element or application state appears later than the wait strategy allows.",
+    "Matched error signature: /test timeout of \\d+ms exceeded/i.",
+    "Failing locator: getByLabel(\"Mot de passe\").fill(\"123456789\")",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - waiting for getByLabel('Mot de passe') | 6 | | 7 |     // TODO: enter unregistered email | >  8 |     await page.getByLabel(\"Mot de passe\").fill(\"123456789\"); | |                                           ^ | 9 |     await page.getByRole(\"button\", { name: \"Se connecter\" }).click(); | 10 |     await expect( | 11 |       page.locator( | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts:8:43",
+    "Recommended action: A wait timed out while the failure gives no proof the element is missing — the element likely appears later than the default wait allows. Increase the wait/action timeout or replace a bare click with expect(locator).toBeVisible() first; also consider response-driven waits (waitForResponse) for AJAX content. Failing locator: getByLabel(\"Mot de passe\").fill(\"123456789\")"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n  - waiting for getByLabel('Mot de passe')\n\n\n   6 |\n   7 |     // TODO: enter unregistered email\n>  8 |     await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n     |                                           ^\n   9 |     await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n  10 |     await expect(\n  11 |       page.locator(\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts:8:43"
+    },
+    {
+      "source": "test_source",
+      "content": "\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect("
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\connexion-chou-e-avec-emai-5865c-e-avec-email-non-enregistré-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+    "column": 43,
+    "line": 8
+  },
+  "diagnostics": {
+    "failingLocator": "getByLabel(\"Mot de passe\").fill(\"123456789\")",
+    "locatorLines": [
+      "getByRole(\"button\", { name: \"Se connecter\" }).click()",
+      "getByLabel('Mot de passe')",
+      "getByLabel(\"Mot de passe\").fill(\"123456789\")"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-19T08:18:26.716Z"
+}

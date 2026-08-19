@@ -1,0 +1,51 @@
+{
+  "scenario": "Chargement de plus d'événements",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #load_more",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /element is not visible/i.",
+    "Failing locator: #load_more",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./category/spectacle.button_loadMore] appear in the failing locator.",
+    "Playwright call log: - waiting for locator('#load_more') | - locator resolved to <button type=\"button\" id=\"load_more\" class=\"btn_search\">…</button> | - attempting click action | 2 × waiting for element to be visible, enabled and stable | - element is not visible | - retrying click action | - waiting 20ms | 2 × waiting for element to be visible, enabled and stable | - element is not visible | - retrying click action | - waiting 100ms | 47 × waiting for element to be visible, enabled and stable | - element is not visible | - retrying click action | - waiting 500ms | 5 |     await page.goto(\"https://teskerti.tn/category/spectacle\"); | 6 | | >  7 |     await page.locator(\"#load_more\").click(); | |                                      ^ | 8 | | 9 |     await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible(); | 10 |   }); | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\chargement-de-plus-d-v-nements.spec.ts:7:38",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #load_more"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n  - waiting for locator('#load_more')\n    - locator resolved to <button type=\"button\" id=\"load_more\" class=\"btn_search\">…</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    47 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n\n\n   5 |     await page.goto(\"https://teskerti.tn/category/spectacle\");\n   6 |\n>  7 |     await page.locator(\"#load_more\").click();\n     |                                      ^\n   8 |\n   9 |     await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  10 |   });\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\chargement-de-plus-d-v-nements.spec.ts:7:38"
+    },
+    {
+      "source": "test_source",
+      "content": "    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // When l'utilisateur clique sur \"Voir Plus\"\n    const loadMoreButton = page.locator(\"#load_more\");"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\chargement-de-plus-d-v-nem-45508-gement-de-plus-d-événements-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chargement-de-plus-d-v-nements.spec.ts",
+    "column": 38,
+    "line": 7
+  },
+  "diagnostics": {
+    "failingLocator": "#load_more",
+    "locatorLines": [
+      "waiting for locator('#load_more')",
+      "locator('#load_more')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./category/spectacle.button_loadMore"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-16T10:14:39.136Z"
+}

@@ -1,0 +1,63 @@
+{
+  "scenario": "Connexion réussie avec des identifiants valides",
+  "status": "failed",
+  "failureType": "strict_mode_violation",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+  "reasoning": [
+    "Failure classified as \"strict_mode_violation\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /strict mode violation/i.",
+    "Failing locator: button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [login.email, login.password, login.submit, forms.form-1.email, forms.form-1.password, forms.form-1.submit, pages./user/login.input_email, pages./user/login.input_password, pages./user/login.button_submit] appear in the failing locator.",
+    "Playwright call log: - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') | Error: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements: | 1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' }) | 2) <button type=\"submit\">…</button> aka locator('#searchform button') | Call log: | - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts:8:82 | Error: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements: | 1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' }) | 2) <button type=\"submit\">…</button> aka locator('#searchform button') | Call log: | - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') | 6 |     await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com'); | 7 |     await page.locator('input[name=\"password\"]').fill('123456789'); | >  8 |     await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click(); | |                                                                                  ^ | 9 |     await expect(page).toHaveURL('https://teskerti.tn/category/spectacle'); | 10 |   }); | 11 | }); | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts:8:82",
+    "Recommended action: The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: button:has-text(\"Se connecter\"), button[type=\"submit\"]"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements:\n    1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' })\n    2) <button type=\"submit\">…</button> aka locator('#searchform button')\n\nCall log:\n  - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')\n\nError: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements:\n    1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' })\n    2) <button type=\"submit\">…</button> aka locator('#searchform button')\n\nCall log:\n  - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts:8:82\nError: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements:\n    1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' })\n    2) <button type=\"submit\">…</button> aka locator('#searchform button')\n\nCall log:\n  - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')\n\n\n   6 |     await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n   7 |     await page.locator('input[name=\"password\"]').fill('123456789');\n>  8 |     await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n     |                                                                                  ^\n   9 |     await expect(page).toHaveURL('https://teskerti.tn/category/spectacle');\n  10 |   });\n  11 | });\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts:8:82"
+    },
+    {
+      "source": "test_source",
+      "content": "    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    await page.locator('input[name=\"password\"]').fill('123456789');\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page).toHaveURL('https://teskerti.tn/category/spectacle');\n  });"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\connexion-r-ussie-avec-des-cad6d-ec-des-identifiants-valides-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements:",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
+    "column": 82,
+    "line": 8
+  },
+  "diagnostics": {
+    "failingLocator": "button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+    "locatorLines": [
+      "waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')",
+      "locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')",
+      "locator('#searchform button')",
+      "locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com')",
+      "locator('input[name=\"password\"]').fill('123456789')",
+      "getByRole('button', { name: 'Se connecter' })"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "login.email",
+      "login.password",
+      "login.submit",
+      "forms.form-1.email",
+      "forms.form-1.password",
+      "forms.form-1.submit",
+      "pages./user/login.input_email",
+      "pages./user/login.input_password",
+      "pages./user/login.button_submit"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-19T08:11:27.297Z"
+}

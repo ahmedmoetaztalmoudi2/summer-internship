@@ -1,45 +1,24 @@
-Fonctionnalite: Recherche de produits
+Fonctionnalite: Filtrage des événements par salle et date sur la page de catégorie
 
-  Background:
-    Given l'utilisateur est sur la page d'accueil
+Background:
+    Given the user is on the category page "Spectacle"
 
-  Scenario: Recherche d'un mot-clé existant
-    Given l'utilisateur saisit un mot-clé "Chaussure" dans la barre de recherche
-    When l'utilisateur valide la recherche
-    Then seuls les produits correspondants au mot-clé "Chaussure" sont affichés
+Scenario: La page affiche le menu déroulant "Sélectionner une salle" listant les salles disponibles
+    Then the dropdown "Sélectionner une salle" should be displayed
+    And the dropdown should list the available rooms such as "Théâtre de plein air de Hammamet" and "Amphithéâtre plein air Boukornine"
 
-  Scenario Outline: Recherche insensible à la casse
-    Given l'utilisateur saisit un mot-clé "<mot_clé>" dans la barre de recherche
-    When l'utilisateur valide la recherche
-    Then les résultats de la recherche correspondent aux produits contenant "<mot_clé>" ou "<mot_clé_minuscule>"
+Scenario: La page affiche le menu déroulant "Sélectionner une Date" listant les dates des événements
+    Then the dropdown "Sélectionner une Date" should be displayed
+    And the dropdown should list the available dates such as "19 Août 2026"
 
-    Examples:
-      | mot_clé    | mot_clé_minuscule |
-      | Chaussure | chaussure         |
-      | CHAUSSURE | chaussure         |
+Scenario: Sélectionner une salle et une date puis cliquer sur "Recherche" affiche uniquement les événements correspondants
+    Given the user selects "Théâtre de plein air de Hammamet" in the "Sélectionner une salle" dropdown
+    And the user selects "19 Août 2026" in the "Sélectionner une Date" dropdown
+    When the user clicks the "Recherche" button
+    Then only events matching the selected room and date should be displayed
 
-  Scenario: Recherche sans résultat
-    Given l'utilisateur saisit un mot-clé "ProduitInexistant" dans la barre de recherche
-    When l'utilisateur valide la recherche
-    Then un message "Aucun résultat trouvé" est affiché
-    And une suggestion est proposée à l'utilisateur
-
-  Scenario: Temps de chargement des résultats
-    Given l'utilisateur saisit un mot-clé "Chaussure" dans la barre de recherche
-    When l'utilisateur valide la recherche
-    Then les résultats de la recherche sont affichés en moins de 2 secondes
-
-  Scenario: Champ de recherche vide
-    Given l'utilisateur laisse le champ de recherche vide
-    When l'utilisateur valide la recherche
-    Then l'ensemble du catalogue est affiché par défaut
-
-  Scenario Outline: Recherche avec fautes mineures
-    Given l'utilisateur saisit un mot-clé "<mot_clé>" avec une faute mineure "<faute_minure>" dans la barre de recherche
-    When l'utilisateur valide la recherche
-    Then les résultats de la recherche correspondent aux produits contenant "<mot_clé>"
-
-    Examples:
-      | mot_clé    | faute_minure |
-      | Chaussure | Chausure     |
-      | Chaussure | Chaussur     |
+Scenario: Si aucun événement ne correspond aux critères, aucun résultat ne s'affiche
+    Given the user selects a room that has no events on the selected date
+    And the user selects a date that has no events for the selected room
+    When the user clicks the "Recherche" button
+    Then no results should be displayed

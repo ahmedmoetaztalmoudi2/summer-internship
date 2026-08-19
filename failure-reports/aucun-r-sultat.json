@@ -1,0 +1,54 @@
+{
+  "scenario": "Aucun résultat",
+  "status": "failed",
+  "failureType": "data_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_test_data",
+  "repairRecommendation": "The scenario selects option value \"Salle sans événements\" that is not among the verified options of the dropdown in the knowledge base. The test data does not exist in the application — pick a real option value.",
+  "reasoning": [
+    "Failure classified as \"data_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_test_data — the scenario data (Examples table / placeholder values / selected options) is invalid for this flow.",
+    "Failing locator: #selectedSalle",
+    "Requested dropdown option text \"Salle sans événements\" is NOT among the verified options of the matched widget in the knowledge base — the scenario data does not exist in the application.",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./category/spectacle.select_selectedSalle] appear in the failing locator.",
+    "Playwright call log: - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\\' \\',normalize-space(@class),\\' \\'),\\' choices \\')][1]').locator('.choices__list--dropdown').getByText('Salle sans événements', { exact: true }) | 8 |     // Given l'utilisateur sélectionne une salle qui n'a pas d'événements | 9 |     await page.locator(\"#selectedSalle >> xpath=ancestor::div[contains(concat(' ',normalize-space(@class),' '),' choices ')][1] >> css=.choices__inner\").click(); | > 10 |     await page.locator(\"#selectedSalle >> xpath=ancestor::div[contains(concat(' ',normalize-space(@class),' '),' choices ')][1] >> css=.choices__list--dropdown\").getByText(\"Salle sans événements\", { exact: true }).click(); | |                                                                                                                                                                                                                       ^ | 11 | | 12 |     // And l'utilisateur sélectionne une date qui n'a pas d'événements | 13 |     await page.locator(\"#selectedDate >> xpath=ancestor::div[contains(concat(' ',normalize-space(@class),' '),' choices ')][1] >> css=.choices__inner\").click(); | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\aucun-r-sultat.spec.ts:10:215",
+    "Recommended action: The scenario selects option value \"Salle sans événements\" that is not among the verified options of the dropdown in the knowledge base. The test data does not exist in the application — pick a real option value."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n  - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\\' \\',normalize-space(@class),\\' \\'),\\' choices \\')][1]').locator('.choices__list--dropdown').getByText('Salle sans événements', { exact: true })\n\n\n   8 |     // Given l'utilisateur sélectionne une salle qui n'a pas d'événements\n   9 |     await page.locator(\"#selectedSalle >> xpath=ancestor::div[contains(concat(' ',normalize-space(@class),' '),' choices ')][1] >> css=.choices__inner\").click();\n> 10 |     await page.locator(\"#selectedSalle >> xpath=ancestor::div[contains(concat(' ',normalize-space(@class),' '),' choices ')][1] >> css=.choices__list--dropdown\").getByText(\"Salle sans événements\", { exact: true }).click();\n     |                                                                                                                                                                                                                       ^\n  11 |\n  12 |     // And l'utilisateur sélectionne une date qui n'a pas d'événements\n  13 |     await page.locator(\"#selectedDate >> xpath=ancestor::div[contains(concat(' ',normalize-space(@class),' '),' choices ')][1] >> css=.choices__inner\").click();\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\aucun-r-sultat.spec.ts:10:215"
+    },
+    {
+      "source": "test_source",
+      "content": "    // Given l'utilisateur sélectionne une salle qui n'a pas d'événements\n    await page.locator(\"#selectedSalle >> xpath=ancestor::div[contains(concat(\\\" \\\",normalize-space(@class),\\\" \\\"),\\\" choices \\\")][1] >> css=.choices__inner\").click();\n    await page.locator(\"#selectedSalle >> xpath=ancestor::div[contains(concat(\\\" \\\",normalize-space(@class),\\\" \\\"),\\\" choices \\\")][1] >> css=.choices__list--dropdown\").getByText(\"Game Art Park\", { exact: true }).click();\n\n    // And l'utilisateur sélectionne une date qui n'a pas d'événements"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\aucun-r-sultat-Filtre-d-év-dae73--et-par-date-Aucun-résultat-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\aucun-r-sultat.spec.ts",
+    "column": 215,
+    "line": 10
+  },
+  "diagnostics": {
+    "failingLocator": "#selectedSalle",
+    "locatorLines": [
+      "waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\\' \\',normalize-space(@class),\\' \\'),\\' choices \\')][1]').locator('.choices__list--dropdown').getByText('Salle sans événements', { exact: true })",
+      "locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\\' \\',normalize-space(@class),\\' \\'),\\' choices \\')][1]').locator('.choices__list--dropdown')",
+      "getByText('Salle sans événements', { exact: true })",
+      "getByText(\"Salle sans événements\", { exact: true }).click()"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./category/spectacle.select_selectedSalle"
+    ],
+    "unknownOptionTexts": [
+      "Salle sans événements"
+    ]
+  },
+  "analyzedAt": "2026-08-16T10:14:39.136Z"
+}

@@ -1,0 +1,48 @@
+{
+  "scenario": "Sélectionner une salle et une date puis cliquer sur \"Recherche\" affiche uniquement les événements correspondants",
+  "status": "failed",
+  "failureType": "data_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_test_data",
+  "repairRecommendation": "Literal scenario-outline placeholder \"<anonymous>\" was emitted into the test instead of a real value. Fix the Examples table / data substitution in the Gherkin so every \"<token>\" is replaced, then regenerate the test.",
+  "reasoning": [
+    "Failure classified as \"data_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_test_data — the scenario data (Examples table / placeholder values / selected options) is invalid for this flow.",
+    "Failing locator: #selectedSalle",
+    "Literal placeholder token(s) \"<anonymous>\" still present in the test code — scenario-outline data was never substituted.",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./category/spectacle.select_selectedSalle] appear in the failing locator.",
+    "Playwright call log: - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner') | Error: locator.click: SyntaxError: Failed to execute 'evaluate' on 'Document': The string 'ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner' is not a valid XPath expression. | at Object.queryAll (<anonymous>:6296:25) | at InjectedScript._queryEngineAll (<anonymous>:6969:49) | at InjectedScript.querySelectorAll (<anonymous>:6956:30) | at callMatchedElements (eval at evaluate (:311:30), <anonymous>:2:29) | at UtilityScript.evaluate (<anonymous>:313:16) | at UtilityScript.<anonymous> (<anonymous>:1:44) | Call log: | - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner') | at Object.queryAll (<anonymous>:6296:25) | at InjectedScript._queryEngineAll (<anonymous>:6969:49) | at InjectedScript.querySelectorAll (<anonymous>:6956:30) | at callMatchedElements (eval at evaluate (:311:30), <anonymous>:2:29) | at UtilityScript.evaluate (<anonymous>:313:16) | at UtilityScript.<anonymous> (<anonymous>:1:44) | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\s-lectionner-une-salle-et-une-date-puis-cliquer-sur-recherche-affiche-uniquement-les-v-nements-correspondants.spec.ts:6:157 | Error: locator.click: SyntaxError: Failed to execute 'evaluate' on 'Document': The string 'ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner' is not a valid XPath expression. | at Object.queryAll (<anonymous>:6296:25) | at InjectedScript._queryEngineAll (<anonymous>:6969:49) | at InjectedScript.querySelectorAll (<anonymous>:6956:30) | at callMatchedElements (eval at evaluate (:311:30), <anonymous>:2:29) | at UtilityScript.evaluate (<anonymous>:313:16) | at UtilityScript.<anonymous> (<anonymous>:1:44) | Call log: | - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner') | at Object.queryAll (<anonymous>:6296:25) | at InjectedScript._queryEngineAll (<anonymous>:6969:49) | at InjectedScript.querySelectorAll (<anonymous>:6956:30) | at callMatchedElements (eval at evaluate (:311:30), <anonymous>:2:29) | at UtilityScript.evaluate (<anonymous>:313:16) | at UtilityScript.<anonymous> (<anonymous>:1:44) | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\s-lectionner-une-salle-et-une-date-puis-cliquer-sur-recherche-affiche-uniquement-les-v-nements-correspondants.spec.ts:6:157",
+    "Recommended action: Literal scenario-outline placeholder \"<anonymous>\" was emitted into the test instead of a real value. Fix the Examples table / data substitution in the Gherkin so every \"<token>\" is replaced, then regenerate the test."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: locator.click: SyntaxError: Failed to execute 'evaluate' on 'Document': The string 'ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner' is not a valid XPath expression.\n    at Object.queryAll (<anonymous>:6296:25)\n    at InjectedScript._queryEngineAll (<anonymous>:6969:49)\n    at InjectedScript.querySelectorAll (<anonymous>:6956:30)\n    at callMatchedElements (eval at evaluate (:311:30), <anonymous>:2:29)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\nCall log:\n  - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner')\n\nError: locator.click: SyntaxError: Failed to execute 'evaluate' on 'Document': The string 'ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner' is not a valid XPath expression.\n    at Object.queryAll (<anonymous>:6296:25)\n    at InjectedScript._queryEngineAll (<anonymous>:6969:49)\n    at InjectedScript.querySelectorAll (<anonymous>:6956:30)\n    at callMatchedElements (eval at evaluate (:311:30), <anonymous>:2:29)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\nCall log:\n  - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner')\n\n    at Object.queryAll (<anonymous>:6296:25)\n    at InjectedScript._queryEngineAll (<anonymous>:6969:49)\n    at InjectedScript.querySelectorAll (<anonymous>:6956:30)\n    at callMatchedElements (eval at evaluate (:311:30), <anonymous>:2:29)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\s-lectionner-une-salle-et-une-date-puis-cliquer-sur-recherche-affiche-uniquement-les-v-nements-correspondants.spec.ts:6:157\nError: locator.click: SyntaxError: Failed to execute 'evaluate' on 'Document': The string 'ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner' is not a valid XPath expression.\n    at Object.queryAll (<anonymous>:6296:25)\n    at InjectedScript._queryEngineAll (<anonymous>:6969:49)\n    at InjectedScript.querySelectorAll (<anonymous>:6956:30)\n    at callMatchedElements (eval at evaluate (:311:30), <anonymous>:2:29)\n    at UtilityScript.evaluate (<anonym"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\s-lectionner-une-salle-et--1f162-s-événements-correspondants-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: locator.click: SyntaxError: Failed to execute 'evaluate' on 'Document': The string 'ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner' is n...",
+  "location": {
+    "file": "<anonymous>",
+    "column": 25,
+    "line": 6296
+  },
+  "diagnostics": {
+    "failingLocator": "#selectedSalle",
+    "locatorLines": [
+      "waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner')",
+      "locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\"),\" choices \")][1] >> css=.choices__inner')"
+    ],
+    "placeholders": [
+      "anonymous"
+    ],
+    "knownSelectorKeys": [
+      "pages./category/spectacle.select_selectedSalle"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-19T01:23:37.256Z"
+}

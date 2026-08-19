@@ -1,0 +1,14 @@
+{
+  "scenario": "Email non enregistré génère le même message d'erreur générique",
+  "failureType": "data_issue",
+  "repairType": "replace_test_data",
+  "attempt": 0,
+  "result": "escalated",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts",
+    "column": 77,
+    "line": 9
+  },
+  "appliedAt": "2026-08-18T15:59:57.243Z",
+  "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+}

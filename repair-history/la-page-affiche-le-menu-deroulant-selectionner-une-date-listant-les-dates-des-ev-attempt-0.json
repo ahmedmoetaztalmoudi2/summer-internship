@@ -1,0 +1,14 @@
+{
+  "scenario": "La page affiche le menu déroulant \"Sélectionner une Date\" listant les dates des événements",
+  "failureType": "unknown",
+  "repairType": "no_repair",
+  "attempt": 0,
+  "result": "escalated",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\la-page-affiche-le-menu-d-roulant-s-lectionner-une-date-listant-les-dates-des-v-nements.spec.ts",
+    "column": 10,
+    "line": 5
+  },
+  "appliedAt": "2026-08-19T01:23:37.269Z",
+  "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+}

@@ -1,0 +1,29 @@
+{
+  "scenario": "Sélectionner une salle et une date puis cliquer sur \"Recherche\" affiche uniquement les événements correspondants",
+  "failureType": "data_issue",
+  "rootCause": "bad_test_data",
+  "repairType": "fix_examples_table",
+  "target": "Examples Table",
+  "currentValue": "<anonymous>",
+  "replacementValue": "Amphithéâtre plein air Boukornine",
+  "confidence": 0.95,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Replace the literal placeholder <anonymous> with a real option value in the Gherkin Examples table.",
+      "file": "<anonymous>",
+      "line": 6296
+    },
+    {
+      "action": "Suggested verified options: \"Amphithéâtre plein air Boukornine\".",
+      "file": "<anonymous>",
+      "line": 6296
+    }
+  ],
+  "explanation": [
+    "Scenario-outline placeholders survived into the generated test; the Examples data was never substituted.",
+    "The failing dropdown is the verified widget \"pages./category/spectacle.select_selectedSalle\"."
+  ],
+  "sourceFile": "<anonymous>"
+}

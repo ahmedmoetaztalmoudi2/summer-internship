@@ -1,0 +1,52 @@
+{
+  "scenario": "User clicks Voir Plus to load more events",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #load_more",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: #load_more",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./category/spectacle.button_loadMore] appear in the failing locator.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('#load_more') | 7 × locator resolved to <button type=\"button\" id=\"load_more\" class=\"btn_search\">…</button> | - unexpected value \"hidden\" | - Test timeout of 30000ms exceeded. | 13 |     // When: the user clicks the \"Voir Plus\" button | 14 |     const loadMoreBtn = page.locator('#load_more'); | > 15 |     await expect(loadMoreBtn).toBeVisible(); | |                               ^ | 16 |     await loadMoreBtn.click(); | 17 | | 18 |     // Then: additional events are displayed | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\user-clicks-voir-plus-to-load-more-events.spec.ts:15:31",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #load_more"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: expect(locator).toBeVisible() failed\n\nLocator:  locator('#load_more')\nExpected: visible\nReceived: hidden\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('#load_more')\n    7 × locator resolved to <button type=\"button\" id=\"load_more\" class=\"btn_search\">…</button>\n      - unexpected value \"hidden\"\n  - Test timeout of 30000ms exceeded.\n\n\n  13 |     // When: the user clicks the \"Voir Plus\" button\n  14 |     const loadMoreBtn = page.locator('#load_more');\n> 15 |     await expect(loadMoreBtn).toBeVisible();\n     |                               ^\n  16 |     await loadMoreBtn.click();\n  17 |\n  18 |     // Then: additional events are displayed\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\user-clicks-voir-plus-to-load-more-events.spec.ts:15:31"
+    },
+    {
+      "source": "test_source",
+      "content": "    // When: the user clicks the \"Voir Plus\" button\n    const loadMoreBtn = page.locator('#load_more');\n    await expect(loadMoreBtn).toBeVisible();\n    await loadMoreBtn.click();\n"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\user-clicks-voir-plus-to-l-64b94-ir-Plus-to-load-more-events-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\user-clicks-voir-plus-to-load-more-events.spec.ts",
+    "column": 31,
+    "line": 15
+  },
+  "diagnostics": {
+    "failingLocator": "#load_more",
+    "locatorLines": [
+      "waiting for locator('#load_more')",
+      "Locator: locator('#load_more')",
+      "locator('#load_more')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./category/spectacle.button_loadMore"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-18T15:23:25.364Z"
+}

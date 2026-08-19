@@ -85,7 +85,7 @@ const COLLECT_PAGE_ELEMENTS_SOURCE = `
   }
 `;
 
-async function runCollector(page: Page): Promise<RawElement[]> {
+export async function runCollector(page: Page): Promise<RawElement[]> {
   const result = await page.evaluate(`(${COLLECT_PAGE_ELEMENTS_SOURCE})()`);
   return result as RawElement[];
 }
@@ -95,7 +95,7 @@ async function runCollector(page: Page): Promise<RawElement[]> {
  * Falls back to the computed DOM path, and finally to the top candidate with an
  * explicit `nth=0` disambiguation as a last resort.
  */
-async function resolveUniqueSelector(page: Page, raw: RawElement): Promise<string> {
+export async function resolveUniqueSelector(page: Page, raw: RawElement): Promise<string> {
   const candidates = generateSelectorCandidates(raw.attributes);
 
   for (const candidate of candidates) {

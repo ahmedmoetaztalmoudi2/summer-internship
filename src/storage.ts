@@ -71,6 +71,7 @@ export function mergeSelectorMap(existing: SelectorMap | null, updated: Selector
     ...existing,
     ...updated,
     login,
-    forms: { ...existing.forms, ...updated.forms }
+    forms: { ...existing.forms, ...updated.forms },
+    pages: { ...existing.pages, ...updated.pages }
   };
 }

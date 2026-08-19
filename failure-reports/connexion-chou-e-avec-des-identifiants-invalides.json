@@ -1,0 +1,62 @@
+{
+  "scenario": "Connexion échouée avec des identifiants invalides",
+  "status": "failed",
+  "failureType": "data_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_test_data",
+  "repairRecommendation": "The scenario selects option value \"Identifiants invalides\" that is not among the verified options of the dropdown in the knowledge base. The test data does not exist in the application — pick a real option value.",
+  "reasoning": [
+    "Failure classified as \"data_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_test_data — the scenario data (Examples table / placeholder values / selected options) is invalid for this flow.",
+    "Failing locator: .alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]",
+    "Requested dropdown option text \"Identifiants invalides\" is NOT among the verified options of the matched widget in the knowledge base — the scenario data does not exist in the application.",
+    "Cross-referenced with the knowledge base: verified selector(s) [login.password, login.submit, forms.form-1.password, forms.form-1.submit, pages./user/login.input_password, pages./user/login.alert_error] appear in the failing locator.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true }) | Error: expect(locator).toBeVisible() failed | Locator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true }) | Expected: visible | Timeout: 5000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true }) | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides.spec.ts:9:152 | Error: expect(locator).toBeVisible() failed | Locator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true }) | Expected: visible | Timeout: 5000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true }) | 7 |     await page.locator('input[name=\"password\"]').fill('WrongPass'); | 8 |     await page.locator('button:has-text(\"Se connecter\")').click(); | >  9 |     await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })).toBeVisible(); | |                                                                                                                                                        ^ | 10 |   }); | 11 | }); | 12 | | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides.spec.ts:9:152",
+    "Recommended action: The scenario selects option value \"Identifiants invalides\" that is not among the verified options of the dropdown in the knowledge base. The test data does not exist in the application — pick a real option value."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })\n\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides.spec.ts:9:152\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })\n\n\n   7 |     await page.locator('input[name=\"password\"]').fill('WrongPass');\n   8 |     await page.locator('button:has-text(\"Se connecter\")').click();\n>  9 |     await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })).toBeVisible();\n     |                                                                                                                                                        ^\n  10 |   });\n  11 | });\n  12 |\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides.spec.ts:9:152"
+    },
+    {
+      "source": "test_source",
+      "content": "    await page.locator('input[name=\"password\"]').fill('WrongPass');\n    await page.locator('button:has-text(\"Se connecter\")').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })).toBeVisible();\n  });\n});"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\connexion-chou-e-avec-des--e3732--des-identifiants-invalides-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides.spec.ts",
+    "column": 152,
+    "line": 9
+  },
+  "diagnostics": {
+    "failingLocator": ".alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]",
+    "locatorLines": [
+      "waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })",
+      "Locator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').getByText('Identifiants invalides', { exact: true })",
+      "locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')",
+      "locator('input[name=\"password\"]').fill('WrongPass')",
+      "locator('button:has-text(\"Se connecter\")')",
+      "getByText('Identifiants invalides', { exact: true })",
+      "getByText('Identifiants invalides', { exact: true })).toBeVisible()"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "login.password",
+      "login.submit",
+      "forms.form-1.password",
+      "forms.form-1.submit",
+      "pages./user/login.input_password",
+      "pages./user/login.alert_error"
+    ],
+    "unknownOptionTexts": [
+      "Identifiants invalides"
+    ]
+  },
+  "analyzedAt": "2026-08-18T16:27:23.467Z"
+}

@@ -57,7 +57,14 @@ export async function parseFeatureFile(filePath: string): Promise<ParsedFeature>
       continue;
     }
 
-    if (currentScenario?.examples && !line.startsWith('|') && !stepPattern.test(line)) {
+    if (
+      currentScenario?.examples &&
+      !line.startsWith('|') &&
+      !stepPattern.test(line) &&
+      !scenarioPattern.test(line) &&
+      !featurePattern.test(line) &&
+      !backgroundPattern.test(line)
+    ) {
       currentScenario.examples = undefined;
     }
 

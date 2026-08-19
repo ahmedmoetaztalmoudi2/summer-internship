@@ -1,0 +1,27 @@
+{
+  "scenario": "La page affiche le menu déroulant \"Sélectionner une Date\" listant les dates des événements",
+  "failureType": "unknown",
+  "rootCause": "unknown",
+  "repairType": "no_repair",
+  "target": "Unknown failure",
+  "confidence": 0.14,
+  "repairable": false,
+  "requiresHumanReview": true,
+  "actions": [
+    {
+      "action": "No classification matched, so no deterministic repair is proposed.",
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\la-page-affiche-le-menu-d-roulant-s-lectionner-une-date-listant-les-dates-des-v-nements.spec.ts",
+      "line": 5
+    },
+    {
+      "action": "Inspect the raw Playwright error, screenshot and trace manually.",
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\la-page-affiche-le-menu-d-roulant-s-lectionner-une-date-listant-les-dates-des-v-nements.spec.ts",
+      "line": 5
+    }
+  ],
+  "explanation": [
+    "Unknown failures are intentionally not repaired automatically.",
+    "Extend the classification rules in src/failure-analysis/rules.ts once the signature is understood."
+  ],
+  "sourceFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\la-page-affiche-le-menu-d-roulant-s-lectionner-une-date-listant-les-dates-des-v-nements.spec.ts"
+}

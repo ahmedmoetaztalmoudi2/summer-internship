@@ -1,34 +1,32 @@
 Fonctionnalite: Connexion utilisateur
 
-  Arrière-plan:
+  Contexte:
     Étant donné que l'utilisateur est sur la page de connexion
 
-  Scénario: Connexion avec des identifiants invalides
-    Étant donné que l'utilisateur entre une adresse email
-    Et que l'utilisateur entre un mot de passe
+  Scenario: Connexion réussie avec des identifiants valides
+    Étant donné que l'utilisateur saisit une adresse email valide dans le champ email
+    Et que l'utilisateur saisit un mot de passe valide dans le champ mot de passe
     Lorsque l'utilisateur soumet le formulaire de connexion
-    Alors un message d'erreur devrait être affiché
+    Alors l'utilisateur devrait être redirigé vers son tableau de bord
 
-  Scénario: Connexion avec un email non enregistré
-    Étant donné que l'utilisateur entre un email non enregistré
-    Et que l'utilisateur entre un mot de passe
+  Scenario Outline: Connexion échouée avec mot de passe incorrect
+    Étant donné que l'utilisateur saisit "<email>" dans le champ email
+    Et que l'utilisateur saisit "<mot de passe>" dans le champ mot de passe
     Lorsque l'utilisateur soumet le formulaire de connexion
-    Alors un message d'erreur devrait être affiché
-
-  Scénario: Connexion avec un mot de passe incorrect
-    Étant donné que l'utilisateur entre une adresse email
-    Et que l'utilisateur entre un mot de passe incorrect
-    Lorsque l'utilisateur soumet le formulaire de connexion
-    Alors un message d'erreur devrait être affiché
-
-  Scénario Outline: Connexion avec des identifiants invalides multiples fois
-    Étant donné que l'utilisateur entre "<email>"
-    Et que l'utilisateur entre "<password>"
-    Lorsque l'utilisateur soumet le formulaire de connexion
-    Et que l'utilisateur répète les étapes de connexion avec des identifiants incorrects "<nbTentatives>" fois
-    Alors un message d'erreur devrait être affiché
+    Alors un message d'erreur "Nom d'utilisateur ou mot de passe erroné !" devrait être affiché
 
     Exemples:
-      | email          | password    | nbTentatives |
-      | wrong@test.com | Secret123!  | 5           |
-      | user@example.com | WrongPass | 3           |
+      | email               | mot de passe   |
+      | user@example.com    | mauvaisMotDePasse |
+      | autre@exemple.com   | mauvaisPass123 |
+
+  Scenario Outline: Connexion échouée avec email non enregistré
+    Étant donné que l'utilisateur saisit "<email>" dans le champ email
+    Et que l'utilisateur saisit "<mot de passe>" dans le champ mot de passe
+    Lorsque l'utilisateur soumet le formulaire de connexion
+    Alors un message d'erreur "Nom d'utilisateur ou mot de passe erroné !" devrait être affiché
+
+    Exemples:
+      | email               | mot de passe   |
+      | inconnu@domain.com  | quelconqueMotDePasse |
+      | pasinscrit@test.com | MotDePasseValide |

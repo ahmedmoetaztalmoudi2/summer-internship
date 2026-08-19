@@ -1,0 +1,58 @@
+{
+  "scenario": "Email non enregistré génère le même message d'erreur générique",
+  "status": "failed",
+  "failureType": "data_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_test_data",
+  "repairRecommendation": "The scenario selects option value \"Identifiants invalides\" that is not among the verified options of the dropdown in the knowledge base. The test data does not exist in the application — pick a real option value.",
+  "reasoning": [
+    "Failure classified as \"data_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_test_data — the scenario data (Examples table / placeholder values / selected options) is invalid for this flow.",
+    "Failing locator: getByText(\"Identifiants invalides\", { exact: true })).toBeVisible()",
+    "Requested dropdown option text \"Identifiants invalides\" is NOT among the verified options of the matched widget in the knowledge base — the scenario data does not exist in the application.",
+    "Cross-referenced with the knowledge base: verified selector(s) [login.password, login.submit, forms.form-1.password, forms.form-1.submit, pages./user/login.input_password] appear in the failing locator.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for getByText('Identifiants invalides', { exact: true }) | Error: expect(locator).toBeVisible() failed | Locator: getByText('Identifiants invalides', { exact: true }) | Expected: visible | Timeout: 5000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for getByText('Identifiants invalides', { exact: true }) | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts:9:77 | Error: expect(locator).toBeVisible() failed | Locator: getByText('Identifiants invalides', { exact: true }) | Expected: visible | Timeout: 5000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for getByText('Identifiants invalides', { exact: true }) | 7 |     await page.locator('input[name=\"password\"]').fill(\"anyPassword\"); | 8 |     await page.locator('button:has-text(\"Se connecter\")').click(); | >  9 |     await expect(page.getByText(\"Identifiants invalides\", { exact: true })).toBeVisible(); | |                                                                             ^ | 10 |   }); | 11 | }); | 12 | | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts:9:77",
+    "Recommended action: The scenario selects option value \"Identifiants invalides\" that is not among the verified options of the dropdown in the knowledge base. The test data does not exist in the application — pick a real option value."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('Identifiants invalides', { exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for getByText('Identifiants invalides', { exact: true })\n\nError: expect(locator).toBeVisible() failed\n\nLocator: getByText('Identifiants invalides', { exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for getByText('Identifiants invalides', { exact: true })\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts:9:77\nError: expect(locator).toBeVisible() failed\n\nLocator: getByText('Identifiants invalides', { exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for getByText('Identifiants invalides', { exact: true })\n\n\n   7 |     await page.locator('input[name=\"password\"]').fill(\"anyPassword\");\n   8 |     await page.locator('button:has-text(\"Se connecter\")').click();\n>  9 |     await expect(page.getByText(\"Identifiants invalides\", { exact: true })).toBeVisible();\n     |                                                                             ^\n  10 |   });\n  11 | });\n  12 |\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts:9:77"
+    },
+    {
+      "source": "test_source",
+      "content": "    await page.locator('input[name=\"password\"]').fill(\"anyPassword\");\n    await page.locator('button:has-text(\"Se connecter\")').click();\n    await expect(page.getByText(\"Identifiants invalides\", { exact: true })).toBeVisible();\n  });\n});"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\email-non-enregistr-g-n-re-c33c4--message-d-erreur-générique-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts",
+    "column": 77,
+    "line": 9
+  },
+  "diagnostics": {
+    "failingLocator": "getByText(\"Identifiants invalides\", { exact: true })).toBeVisible()",
+    "locatorLines": [
+      "locator('input[name=\"password\"]')",
+      "locator('button:has-text(\"Se connecter\")')",
+      "getByText('Identifiants invalides', { exact: true })",
+      "getByText(\"Identifiants invalides\", { exact: true })).toBeVisible()"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "login.password",
+      "login.submit",
+      "forms.form-1.password",
+      "forms.form-1.submit",
+      "pages./user/login.input_password"
+    ],
+    "unknownOptionTexts": [
+      "Identifiants invalides"
+    ]
+  },
+  "analyzedAt": "2026-08-18T15:59:57.223Z"
+}

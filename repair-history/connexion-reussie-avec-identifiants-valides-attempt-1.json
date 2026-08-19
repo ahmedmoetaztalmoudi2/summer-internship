@@ -1,0 +1,19 @@
+{
+  "scenario": "Connexion réussie avec identifiants valides",
+  "failureType": "strict_mode_violation",
+  "repairType": "disambiguate_selector",
+  "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion réussie avec identifiants valides', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    await page.locator('input[name=\"password\"]').fill('123456789');\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page).toHaveURL('https://teskerti.tn/category/spectacle');\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion réussie avec identifiants valides', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    await page.locator('input[name=\"password\"]').fill('123456789');\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page).toHaveURL('https://teskerti.tn/category/spectacle');\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-identifiants-valides.spec.ts",
+  "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-reussie-avec-identifiants-valides\\original.spec.ts",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-identifiants-valides.spec.ts",
+    "column": 82,
+    "line": 8
+  },
+  "appliedAt": "2026-08-19T01:12:28.816Z",
+  "durationMs": 9012,
+  "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://teskerti.tn/\u001b[7mcategory/spectacle\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"https://teskerti.tn/\u001b[7muser/login\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"https://teskerti.tn/user/login\"\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://teskerti.tn/\u001b[7mcategory/spectacle\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"https://teskerti.tn/\u001b[7muser/login\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"https://teskerti.tn/user/login\"\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-identifiants-valides.spec.ts:9:24"
+}

@@ -62,6 +62,52 @@ export interface FormSelectorMap {
 }
 
 /**
+ * The kind of widget an element is on the live page. Drives the Playwright
+ * interaction strategy (see interactionForWidget).
+ */
+export type WidgetType =
+  | 'input'
+  | 'textarea'
+  | 'checkbox'
+  | 'radio'
+  | 'button'
+  | 'link'
+  | 'select'
+  | 'choices'
+  | 'modal'
+  | 'table'
+  | 'container'
+  | 'other';
+
+export interface SelectOptionRecord {
+  value: string;
+  label: string;
+}
+
+/**
+ * A named page element ("button_filter") -> verified knowledge.
+ * The selector string is always the single source of truth; widgetType,
+ * interaction, label and options give the Step Mapper / Interaction Adapter
+ * everything needed to drive the element without guessing.
+ */
+export interface PageElementRecord {
+  selector: string;
+  widgetType?: WidgetType;
+  interaction?: string;
+  role?: ElementRole;
+  label?: string;
+  options?: SelectOptionRecord[];
+  note?: string;
+}
+
+export type PageSelectorMapEntry = string | PageElementRecord;
+
+/**
+ * A named page element ("button_filter") -> verified selector or element record.
+ */
+export type PageSelectorMap = Record<string, PageSelectorMapEntry>;
+
+/**
  * Selector knowledge base stored at ./selectors/<domain>.json
  */
 export interface SelectorMap {
@@ -70,4 +116,6 @@ export interface SelectorMap {
   analyzedAt: string;
   login?: LoginSelectorMap;
   forms?: Record<string, FormSelectorMap>;
+  /** Verified selectors keyed by page path (e.g. "/category/spectacle"). */
+  pages?: Record<string, PageSelectorMap>;
 }

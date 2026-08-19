@@ -1,0 +1,40 @@
+{
+  "scenario": "La page affiche le menu déroulant \"Sélectionner une Date\" listant les dates des événements",
+  "status": "failed",
+  "failureType": "unknown",
+  "confidence": 0.2,
+  "rootCause": "unknown",
+  "repairRecommendation": "No classification rule matched this failure signature. Inspect the raw Playwright error, screenshots and trace manually, then extend the rules in src/failure-analysis/rules.ts.",
+  "reasoning": [
+    "Failure classified as \"unknown\" with confidence 0.20.",
+    "Root cause dimension: unknown — not enough evidence was available to determine the cause.",
+    "Recommended action: No classification rule matched this failure signature. Inspect the raw Playwright error, screenshots and trace manually, then extend the rules in src/failure-analysis/rules.ts."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: Playwright Test did not expect test.describe() to be called here.\nMost common reasons include:\n- You are calling test.describe() in a configuration file.\n- You are calling test.describe() in a file that is imported by the configuration file.\n- You have two different versions of @playwright/test. This usually happens\n  when one of the dependencies in your package.json depends on @playwright/test.\n- You are calling test.describe() from an async test.describe() block. Only sync ones are supported.\nError: Playwright Test did not expect test.describe() to be called here.\nMost common reasons include:\n- You are calling test.describe() in a configuration file.\n- You are calling test.describe() in a file that is imported by the configuration file.\n- You have two different versions of @playwright/test. This usually happens\n  when one of the dependencies in your package.json depends on @playwright/test.\n- You are calling test.describe() from an async test.describe() block. Only sync ones are supported.\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\la-page-affiche-le-menu-d-roulant-s-lectionner-une-date-listant-les-dates-des-v-nements.spec.ts:5:10\nError: Playwright Test did not expect test.describe() to be called here.\nMost common reasons include:\n- You are calling test.describe() in a configuration file.\n- You are calling test.describe() in a file that is imported by the configuration file.\n- You have two different versions of @playwright/test. This usually happens\n  when one of the dependencies in your package.json depends on @playwright/test.\n- You are calling test.describe() from an async test.describe() block. Only sync ones are supported.\n\n  3 | test.describe(\"Filtrage des événements par salle et date sur la page de catégorie\", () => {\n  4 |   test(\"La page affiche le menu déroulant \\\"Sélectionner une Date\\\" listant les dates des événements\", async ({ page }) => {\n> 5 |     test.describe('Filtrage des événements par salle et date sur la page de catégorie', () => {\n    |          ^\n  6 |       test('La page affiche le menu déroulant \\\"Sélectionner une Date\\\" listant les dates des événements', async ({ page }) => {\n  7 |         // Given: the user is on the category page \"Spectacle\"\n  8 |         await page.goto('https://teskerti.tn/category/spectacle');\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\la-page-affiche-le-menu-d-roulant-s-lectionner-une-date-listant-les-dates-des-v-nements.spec.ts:5:10"
+    },
+    {
+      "source": "test_source",
+      "content": "test.describe(\"Filtrage des événements par salle et date sur la page de catégorie\", () => {\n  test(\"La page affiche le menu déroulant \\\"Sélectionner une Date\\\" listant les dates des événements\", async ({ page }) => {\n    test.describe('Filtrage des événements par salle et date sur la page de catégorie', () => {\n      test('La page affiche le menu déroulant \\\"Sélectionner une Date\\\" listant les dates des événements', async ({ page }) => {\n        // Given: the user is on the category page \"Spectacle\""
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\la-page-affiche-le-menu-d--8b104-nt-les-dates-des-événements-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: Playwright Test did not expect test.describe() to be called here.",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\la-page-affiche-le-menu-d-roulant-s-lectionner-une-date-listant-les-dates-des-v-nements.spec.ts",
+    "column": 10,
+    "line": 5
+  },
+  "diagnostics": {
+    "locatorLines": [],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-19T01:23:37.255Z"
+}

@@ -1,0 +1,14 @@
+{
+  "scenario": "Sélectionner une salle et une date puis cliquer sur \"Recherche\" affiche uniquement les événements correspondants",
+  "failureType": "data_issue",
+  "repairType": "fix_examples_table",
+  "attempt": 0,
+  "result": "escalated",
+  "location": {
+    "file": "<anonymous>",
+    "column": 25,
+    "line": 6296
+  },
+  "appliedAt": "2026-08-19T01:23:37.273Z",
+  "reason": "Not auto-repairable: Target \"<anonymous>\" is not a *.spec.ts test file — refusing to patch."
+}

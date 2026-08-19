@@ -1,0 +1,698 @@
+[
+  {
+    "scenario": "Recherche d'événements par salle et par date",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\recherche-d-evenements-par-salle-et-par-date\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+      "column": 8,
+      "line": 32
+    },
+    "appliedAt": "2026-08-16T10:54:33.975Z",
+    "error": "Could not find scenario \"Recherche d'événements par salle et par date\" in the Playwright report (test may have failed to collect).\n{\n  \"config\": {\n    \"argv\": [\n      \"C:\\\\Program Files\\\\nodejs\\\\node.exe\",\n      \"C:\\\\Users\\\\melli\\\\QA_Testing\\\\node_modules\\\\@playwright\\\\test\\\\cli.js\",\n      \"test\",\n      \"C:\\\\Users\\\\melli\\\\QA_Testing\\\\tests\\\\generated\\\\recherche-d-v-nements-par-salle-et-par-date.spec.ts\",\n      \"-g\",\n      \"^Recherche d'événements par salle et par date$\",\n      \"--reporter=json\"\n    ],\n    \"configFile\": \"C:\\\\Users\\\\melli\\\\QA_Testing\\\\playwright.config.ts\",\n    \"rootDir\": \"C:/Users/melli/QA_Testing/tests/gene"
+  },
+  {
+    "scenario": "Recherche d'événements par salle et par date",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\recherche-d-evenements-par-salle-et-par-date\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+      "column": 8,
+      "line": 32
+    },
+    "appliedAt": "2026-08-16T10:55:17.700Z",
+    "error": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+  },
+  {
+    "scenario": "Recherche d'événements par salle et par date",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\recherche-d-evenements-par-salle-et-par-date\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+      "column": 8,
+      "line": 32
+    },
+    "appliedAt": "2026-08-16T10:56:48.004Z",
+    "durationMs": 60197,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Recherche d'événements par salle et par date",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+      "column": 8,
+      "line": 32
+    },
+    "appliedAt": "2026-08-16T10:56:48.020Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Escalated."
+  },
+  {
+    "scenario": "Recherche d'événements par salle et par date",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\recherche-d-evenements-par-salle-et-par-date\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+      "column": 8,
+      "line": 32
+    },
+    "appliedAt": "2026-08-16T10:59:15.870Z",
+    "durationMs": 60089,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Recherche d'événements par salle et par date",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\recherche-d-evenements-par-salle-et-par-date\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+      "column": 8,
+      "line": 32
+    },
+    "appliedAt": "2026-08-16T11:00:19.310Z",
+    "durationMs": 60182,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Recherche d'événements par salle et par date",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Filtre d'événements par salle et par date\", () => {\n  test(\"Recherche d'événements par salle et par date\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given l'utilisateur est sur la page de catégorie\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n    // Given l'utilisateur sélectionne une salle \"Théâtre de plein air de Hammamet\"\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"Théâtre de plein air de Hammamet\", { exact: true })\n      .click();\n\n    // And l'utilisateur sélectionne une date \"15 Août 2026\"\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner'\n      )\n      .click();\n    await page\n      .locator(\n        '#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown'\n      )\n      .getByText(\"15 Août 2026\", { exact: true })\n      .click();\n\n    // When l'utilisateur clique sur \"Recherche\"\n    await page.locator(\"#filter\").click();\n\n    // Then seuls les événements correspondants devraient être affichés\n    await page.locator(\"#dynamic_data .tour_container\").first().scrollIntoViewIfNeeded();\n    await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n  });\n});\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\recherche-d-evenements-par-salle-et-par-date\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\recherche-d-v-nements-par-salle-et-par-date.spec.ts",
+      "column": 8,
+      "line": 32
+    },
+    "appliedAt": "2026-08-16T11:01:22.583Z",
+    "durationMs": 60145,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Failed login with invalid credentials",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Authentification utilisateur\", () => {\n  test(\"Failed login with invalid credentials\", async ({ page }) => {\n    // Given the user is on the login page\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // When the user enters \"wrong@test.com\" in the email field\n    await page.locator(\"input[name=\\\"email\\\"]\").fill(\"wrong@test.com\");\n\n    // And the user enters \"\" in the password field\n    await page.locator(\"input[name=\\\"password\\\"]\").fill(\"\");\n\n    // And the user submits the login form\n    await page.locator(\"button:has-text(\\\"Se connecter\\\")\").click();\n\n    // Then an error message should be displayed\n    await expect(\n      page.locator(\".alert, .error, [role=\\\"alert\\\"], .flash, .message\").first()\n    ).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Authentification utilisateur\", () => {\n  test(\"Failed login with invalid credentials\", async ({ page }) => {\n    // Given the user is on the login page\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // When the user enters \"wrong@test.com\" in the email field\n    await page.locator(\"input[name=\\\"email\\\"]\").fill(\"wrong@test.com\");\n\n    // And the user enters \"\" in the password field\n    await page.locator(\"input[name=\\\"password\\\"]\").fill(\"\");\n\n    // And the user submits the login form\n    await page.locator(\"button:has-text(\\\"Se connecter\\\")\").click();\n\n    // Then an error message should be displayed\n    await expect(\n      page.locator(\".alert, .error, [role=\\\"alert\\\"], .flash, .message\").first()\n    ).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\failed-login-with-invalid-credentials.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\failed-login-with-invalid-credentials.spec.ts",
+      "column": 7,
+      "line": 20
+    },
+    "appliedAt": "2026-08-18T13:23:54.103Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Pied de page du site', () => {\n  test('Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"', async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n    // TODO:\n    await expect(page.locator('footer').getByRole('list')).toBeVisible();\n    await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Pied de page du site', () => {\n  test('Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"', async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n    // TODO:\n    await expect(page.locator(\"footer.first()\").getByRole('list')).toBeVisible();\n    await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\le-pied-de-page-affiche-la-liste-des-categories-et-le-lien-la-liste-de-nos-guich\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts",
+      "column": 60,
+      "line": 7
+    },
+    "appliedAt": "2026-08-18T15:07:16.048Z",
+    "durationMs": 3169,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer.first() >> internal:role=list\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer.first() >> internal:role=list\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer.first() >> internal:role=list\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer.first() >> internal:role=list\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts:7:68"
+  },
+  {
+    "scenario": "Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Pied de page du site', () => {\n  test('Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"', async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n    // TODO:\n    await expect(page.locator('footer').getByRole('list')).toBeVisible();\n    await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Pied de page du site', () => {\n  test('Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"', async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n    // TODO:\n    await expect(page.locator(\"footer.first()\").getByRole('list')).toBeVisible();\n    await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible();\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\le-pied-de-page-affiche-la-liste-des-categories-et-le-lien-la-liste-de-nos-guich\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts",
+      "column": 60,
+      "line": 7
+    },
+    "appliedAt": "2026-08-18T15:07:20.968Z",
+    "durationMs": 2300,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer.first() >> internal:role=list\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer.first() >> internal:role=list\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer.first() >> internal:role=list\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer.first() >> internal:role=list\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts:7:68"
+  },
+  {
+    "scenario": "Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Pied de page du site', () => {\n  test('Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"', async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n    // TODO:\n    await expect(page.locator('footer').getByRole('list')).toBeVisible();\n    await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Pied de page du site', () => {\n  test('Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"', async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/category/spectacle\");\n    // TODO:\n    await expect(page.locator(\"footer.first()\").getByRole('list')).toBeVisible();\n    await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible();\n  });\n});\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\le-pied-de-page-affiche-la-liste-des-categories-et-le-lien-la-liste-de-nos-guich\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts",
+      "column": 60,
+      "line": 7
+    },
+    "appliedAt": "2026-08-18T15:07:25.903Z",
+    "durationMs": 2108,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer.first() >> internal:role=list\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer.first() >> internal:role=list\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer.first() >> internal:role=list\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer.first() >> internal:role=list\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts:7:68"
+  },
+  {
+    "scenario": "User clicks Voir Plus to load more events",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Filtrage des événements par salle et date sur la page de catégorie', () => {\n  test('User clicks Voir Plus to load more events', async ({ page }) => {\n    await page.goto('https://teskerti.tn/category/spectacle');\n\n    // TODO: select a room and a date and click \"Recherche\"\n\n    // And: the results list displays events\n    await page.locator('#dynamic_data .tour_container').first().scrollIntoViewIfNeeded();\n    await expect(page.locator('#dynamic_data .tour_container').first()).toBeVisible();\n\n    // When: the user clicks the \"Voir Plus\" button\n    const loadMoreBtn = page.locator('#load_more');\n    await expect(loadMoreBtn).toBeVisible();\n    await loadMoreBtn.click();\n\n    // Then: additional events are displayed\n    await page.locator('#dynamic_data .tour_container').first().scrollIntoViewIfNeeded();\n    await expect(page.locator('#dynamic_data .tour_container').first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Filtrage des événements par salle et date sur la page de catégorie', () => {\n  test('User clicks Voir Plus to load more events', async ({ page }) => {\n    await page.goto('https://teskerti.tn/category/spectacle');\n\n    // TODO: select a room and a date and click \"Recherche\"\n\n    // And: the results list displays events\n    await page.locator('#dynamic_data .tour_container').first().scrollIntoViewIfNeeded();\n    await expect(page.locator('#dynamic_data .tour_container').first()).toBeVisible();\n\n    // When: the user clicks the \"Voir Plus\" button\n    const loadMoreBtn = page.locator('#load_more');\n    await expect(loadMoreBtn).toBeVisible();\n    await loadMoreBtn.click();\n\n    // Then: additional events are displayed\n    await page.locator('#dynamic_data .tour_container').first().scrollIntoViewIfNeeded();\n    await expect(page.locator('#dynamic_data .tour_container').first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\user-clicks-voir-plus-to-load-more-events.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\user-clicks-voir-plus-to-load-more-events.spec.ts",
+      "column": 31,
+      "line": 15
+    },
+    "appliedAt": "2026-08-18T15:23:25.427Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Email non enregistré génère le même message d'erreur générique",
+    "failureType": "data_issue",
+    "repairType": "replace_test_data",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts",
+      "column": 77,
+      "line": 9
+    },
+    "appliedAt": "2026-08-18T15:59:57.243Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Le champ mot de passe est masqué par défaut et peut être affiché",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Le champ mot de passe est masqué par défaut et peut être affiché\", async ({ page }) => {\n    // Given the user is on the login page\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // Given the user is on the login page (duplicate)\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // When the user views the password field\n    await page.locator('input[name=\"password\"]').focus();\n    // Then the password field should be masked\n    await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password');\n    // When the user clicks \"Afficher le mot de passe\"\n    await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click();\n    // And the user enters \"Secret123!\" in the password field\n    await page.locator('input[name=\"password\"]').fill('Secret123!');\n    // Then the password field should show the entered text\n    await expect(page.locator('input[name=\"password\"]')).toHaveValue('Secret123!');\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Le champ mot de passe est masqué par défaut et peut être affiché\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given the user is on the login page\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // Given the user is on the login page (duplicate)\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // When the user views the password field\n    await page.locator('input[name=\"password\"]').focus();\n    // Then the password field should be masked\n    await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password');\n    // When the user clicks \"Afficher le mot de passe\"\n    await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click();\n    // And the user enters \"Secret123!\" in the password field\n    await page.locator('input[name=\"password\"]').fill('Secret123!');\n    // Then the password field should show the entered text\n    await expect(page.locator('input[name=\"password\"]')).toHaveValue('Secret123!');\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\le-champ-mot-de-passe-est-masque-par-defaut-et-peut-etre-affiche\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts",
+      "column": 110,
+      "line": 14
+    },
+    "appliedAt": "2026-08-18T16:01:00.625Z",
+    "durationMs": 60094,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Le champ mot de passe est masqué par défaut et peut être affiché",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Le champ mot de passe est masqué par défaut et peut être affiché\", async ({ page }) => {\n    // Given the user is on the login page\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // Given the user is on the login page (duplicate)\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // When the user views the password field\n    await page.locator('input[name=\"password\"]').focus();\n    // Then the password field should be masked\n    await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password');\n    // When the user clicks \"Afficher le mot de passe\"\n    await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click();\n    // And the user enters \"Secret123!\" in the password field\n    await page.locator('input[name=\"password\"]').fill('Secret123!');\n    // Then the password field should show the entered text\n    await expect(page.locator('input[name=\"password\"]')).toHaveValue('Secret123!');\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Le champ mot de passe est masqué par défaut et peut être affiché\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given the user is on the login page\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // Given the user is on the login page (duplicate)\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // When the user views the password field\n    await page.locator('input[name=\"password\"]').focus();\n    // Then the password field should be masked\n    await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password');\n    // When the user clicks \"Afficher le mot de passe\"\n    await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click();\n    // And the user enters \"Secret123!\" in the password field\n    await page.locator('input[name=\"password\"]').fill('Secret123!');\n    // Then the password field should show the entered text\n    await expect(page.locator('input[name=\"password\"]')).toHaveValue('Secret123!');\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\le-champ-mot-de-passe-est-masque-par-defaut-et-peut-etre-affiche\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts",
+      "column": 110,
+      "line": 14
+    },
+    "appliedAt": "2026-08-18T16:02:03.743Z",
+    "durationMs": 60042,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Le champ mot de passe est masqué par défaut et peut être affiché",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Le champ mot de passe est masqué par défaut et peut être affiché\", async ({ page }) => {\n    // Given the user is on the login page\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // Given the user is on the login page (duplicate)\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // When the user views the password field\n    await page.locator('input[name=\"password\"]').focus();\n    // Then the password field should be masked\n    await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password');\n    // When the user clicks \"Afficher le mot de passe\"\n    await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click();\n    // And the user enters \"Secret123!\" in the password field\n    await page.locator('input[name=\"password\"]').fill('Secret123!');\n    // Then the password field should show the entered text\n    await expect(page.locator('input[name=\"password\"]')).toHaveValue('Secret123!');\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Le champ mot de passe est masqué par défaut et peut être affiché\", async ({ page }) => {\n    test.setTimeout(60000);\n    // Given the user is on the login page\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // Given the user is on the login page (duplicate)\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // When the user views the password field\n    await page.locator('input[name=\"password\"]').focus();\n    // Then the password field should be masked\n    await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password');\n    // When the user clicks \"Afficher le mot de passe\"\n    await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click();\n    // And the user enters \"Secret123!\" in the password field\n    await page.locator('input[name=\"password\"]').fill('Secret123!');\n    // Then the password field should show the entered text\n    await expect(page.locator('input[name=\"password\"]')).toHaveValue('Secret123!');\n  });\n});\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\le-champ-mot-de-passe-est-masque-par-defaut-et-peut-etre-affiche\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts",
+      "column": 110,
+      "line": 14
+    },
+    "appliedAt": "2026-08-18T16:03:07.366Z",
+    "durationMs": 60115,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Mot de passe incorrect génère un message d'erreur générique",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Mot de passe incorrect génère un message d\\'erreur générique', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('user@example.com');\n    await page.locator('input[name=\"password\"]').fill('WrongPassword123!');\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toHaveText('Identifiants invalides');\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Mot de passe incorrect génère un message d\\'erreur générique', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('user@example.com');\n    await page.locator('input[name=\"password\"]').fill('WrongPassword123!');\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toHaveText('Identifiants invalides');\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\mot-de-passe-incorrect-g-n-re-un-message-d-erreur-g-n-rique.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\mot-de-passe-incorrect-genere-un-message-d-erreur-generique\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\mot-de-passe-incorrect-g-n-re-un-message-d-erreur-g-n-rique.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-18T16:03:19.052Z",
+    "durationMs": 8597,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: \u001b[32m\"Identifiants invalides\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: \u001b[32m\"Identifiants invalides\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\mot-de-passe-incorrect-g-n-re-un-message-d-erreur-g-n-rique.spec.ts:9:99"
+  },
+  {
+    "scenario": "Connexion échouée avec des identifiants invalides",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec des identifiants invalides\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    await page.locator('input[name=\"email\"]').fill(\"unknown@test.com\");\n    await page.locator('input[name=\"password\"]').fill(\"WrongPass\");\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toHaveText(\"Identifiants invalides\");\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec des identifiants invalides\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    await page.locator('input[name=\"email\"]').fill(\"unknown@test.com\");\n    await page.locator('input[name=\"password\"]').fill(\"WrongPass\");\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toHaveText(\"Identifiants invalides\");\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides-2.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-des-identifiants-invalides\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides-2.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-18T16:27:34.898Z",
+    "durationMs": 8388,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: \u001b[32m\"Identifiants invalides\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: \u001b[32m\"Identifiants invalides\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides-2.spec.ts:9:99"
+  },
+  {
+    "scenario": "Connexion échouée avec des identifiants invalides",
+    "failureType": "data_issue",
+    "repairType": "replace_test_data",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-des-identifiants-invalides.spec.ts",
+      "column": 152,
+      "line": 9
+    },
+    "appliedAt": "2026-08-18T16:27:34.908Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Connexion échouée avec email non enregistré",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // TODO: email (unregistered)\n    await page.locator('input[name=\"email\"]').fill(\"\");\n    // TODO: password\n    await page.locator('input[name=\"password\"]').fill(\"\");\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator(\".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\")).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // TODO: email (unregistered)\n    await page.locator('input[name=\"email\"]').fill(\"\");\n    // TODO: password\n    await page.locator('input[name=\"password\"]').fill(\"\");\n    await page.locator('input[name=\"password\"]').click();\n    await expect(page.locator(\".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\")).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-email-non-enregistre\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+      "column": 82,
+      "line": 10
+    },
+    "appliedAt": "2026-08-18T17:07:17.924Z",
+    "durationMs": 8630,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts:11:103"
+  },
+  {
+    "scenario": "Connexion échouée avec email non enregistré",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // TODO: email (unregistered)\n    await page.locator('input[name=\"email\"]').fill(\"\");\n    // TODO: password\n    await page.locator('input[name=\"password\"]').fill(\"\");\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator(\".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\")).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // TODO: email (unregistered)\n    await page.locator('input[name=\"email\"]').fill(\"\");\n    // TODO: password\n    await page.locator('input[name=\"password\"]').fill(\"\");\n    await page.locator('input[name=\"password\"]').click();\n    await expect(page.locator(\".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\")).toBeVisible();\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-email-non-enregistre\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+      "column": 82,
+      "line": 10
+    },
+    "appliedAt": "2026-08-18T17:07:29.501Z",
+    "durationMs": 8637,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts:11:103"
+  },
+  {
+    "scenario": "Connexion échouée avec email non enregistré",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // TODO: email (unregistered)\n    await page.locator('input[name=\"email\"]').fill(\"\");\n    // TODO: password\n    await page.locator('input[name=\"password\"]').fill(\"\");\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator(\".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\")).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // TODO: email (unregistered)\n    await page.locator('input[name=\"email\"]').fill(\"\");\n    // TODO: password\n    await page.locator('input[name=\"password\"]').fill(\"\");\n    await page.locator('input[name=\"password\"]').click();\n    await expect(page.locator(\".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\")).toBeVisible();\n  });\n});\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-email-non-enregistre\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+      "column": 82,
+      "line": 10
+    },
+    "appliedAt": "2026-08-18T17:07:42.288Z",
+    "durationMs": 9892,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts:11:103"
+  },
+  {
+    "scenario": "Connexion échouée avec mot de passe incorrect",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec mot de passe incorrect\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // TODO: email credential needed\n    // TODO: password credential needed\n    await page.locator('button:has-text(\"Se connecter\")').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec mot de passe incorrect\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n    // TODO: email credential needed\n    // TODO: password credential needed\n    await page.locator('button:has-text(\"Se connecter\")').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect.spec.ts",
+      "column": 107,
+      "line": 9
+    },
+    "appliedAt": "2026-08-18T17:07:42.299Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Connexion échouée avec email non enregistré",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec email non enregistré', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n\n    // TODO: fill email with unregistered email\n    // TODO: fill password\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec email non enregistré', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n\n    // TODO: fill email with unregistered email\n    // TODO: fill password\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"].first()').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr-2.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-email-non-enregistre\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr-2.spec.ts",
+      "column": 82,
+      "line": 9
+    },
+    "appliedAt": "2026-08-19T01:11:42.181Z",
+    "durationMs": 1839,
+    "error": "Error: locator.click: Unexpected token \"first(\" while parsing css selector \"button:has-text(\"Se connecter\"), button[type=\"submit\"].first()\". Did you mean to CSS.escape it?\nCall log:\n\u001b[2m  - waiting for button:has-text(\"Se connecter\"), button[type=\"submit\"].first()\u001b[22m\n\nError: locator.click: Unexpected token \"first(\" while parsing css selector \"button:has-text(\"Se connecter\"), button[type=\"submit\"].first()\". Did you mean to CSS.escape it?\nCall log:\n\u001b[2m  - waiting for button:has-text(\"Se connecter\"), button[type=\"submit\"].first()\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr-2.spec.ts:9:90"
+  },
+  {
+    "scenario": "Connexion échouée avec mot de passe incorrect",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: \n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: \n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-mot-de-passe-incorrect\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T01:11:52.946Z",
+    "durationMs": 7763,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts:9:107"
+  },
+  {
+    "scenario": "Connexion échouée avec mot de passe incorrect",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: \n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: \n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-mot-de-passe-incorrect\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T01:12:04.941Z",
+    "durationMs": 9139,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts:9:107"
+  },
+  {
+    "scenario": "Connexion échouée avec mot de passe incorrect",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: \n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: \n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-mot-de-passe-incorrect\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T01:12:16.730Z",
+    "durationMs": 8745,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect-2.spec.ts:9:107"
+  },
+  {
+    "scenario": "Connexion réussie avec identifiants valides",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion réussie avec identifiants valides', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    await page.locator('input[name=\"password\"]').fill('123456789');\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page).toHaveURL('https://teskerti.tn/category/spectacle');\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion réussie avec identifiants valides', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    await page.locator('input[name=\"password\"]').fill('123456789');\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page).toHaveURL('https://teskerti.tn/category/spectacle');\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-identifiants-valides.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-reussie-avec-identifiants-valides\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-identifiants-valides.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T01:12:28.816Z",
+    "durationMs": 9012,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://teskerti.tn/\u001b[7mcategory/spectacle\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"https://teskerti.tn/\u001b[7muser/login\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"https://teskerti.tn/user/login\"\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://teskerti.tn/\u001b[7mcategory/spectacle\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"https://teskerti.tn/\u001b[7muser/login\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"https://teskerti.tn/user/login\"\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-identifiants-valides.spec.ts:9:24"
+  },
+  {
+    "scenario": "La page affiche le menu déroulant \"Sélectionner une Date\" listant les dates des événements",
+    "failureType": "unknown",
+    "repairType": "no_repair",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\la-page-affiche-le-menu-d-roulant-s-lectionner-une-date-listant-les-dates-des-v-nements.spec.ts",
+      "column": 10,
+      "line": 5
+    },
+    "appliedAt": "2026-08-19T01:23:37.269Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Sélectionner une salle et une date puis cliquer sur \"Recherche\" affiche uniquement les événements correspondants",
+    "failureType": "data_issue",
+    "repairType": "fix_examples_table",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "<anonymous>",
+      "column": 25,
+      "line": 6296
+    },
+    "appliedAt": "2026-08-19T01:23:37.273Z",
+    "reason": "Not auto-repairable: Target \"<anonymous>\" is not a *.spec.ts test file — refusing to patch."
+  },
+  {
+    "scenario": "Échec de connexion avec mot de passe incorrect",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Échec de connexion avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: fill password with incorrect value\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Échec de connexion avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: fill password with incorrect value\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\echec-de-connexion-avec-mot-de-passe-incorrect\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T08:11:38.833Z",
+    "durationMs": 8413,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts:9:99"
+  },
+  {
+    "scenario": "Échec de connexion avec mot de passe incorrect",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Échec de connexion avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: fill password with incorrect value\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Échec de connexion avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: fill password with incorrect value\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toBeVisible();\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\echec-de-connexion-avec-mot-de-passe-incorrect\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T08:11:50.103Z",
+    "durationMs": 8292,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts:9:99"
+  },
+  {
+    "scenario": "Échec de connexion avec mot de passe incorrect",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Échec de connexion avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: fill password with incorrect value\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Échec de connexion avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: fill password with incorrect value\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')).toBeVisible();\n  });\n});\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\echec-de-connexion-avec-mot-de-passe-incorrect\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T08:12:01.331Z",
+    "durationMs": 8382,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]')\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\chec-de-connexion-avec-mot-de-passe-incorrect.spec.ts:9:99"
+  },
+  {
+    "scenario": "Connexion réussie avec des identifiants valides",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion réussie avec des identifiants valides', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    await page.locator('input[name=\"password\"]').fill('123456789');\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page).toHaveURL('https://teskerti.tn/category/spectacle');\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion réussie avec des identifiants valides', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    await page.locator('input[name=\"password\"]').fill('123456789');\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page).toHaveURL('https://teskerti.tn/category/spectacle');\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-reussie-avec-des-identifiants-valides\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T08:12:12.628Z",
+    "durationMs": 8283,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://teskerti.tn/\u001b[7mcategory/spectacle\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"https://teskerti.tn/\u001b[7muser/login\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"https://teskerti.tn/user/login\"\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://teskerti.tn/\u001b[7mcategory/spectacle\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"https://teskerti.tn/\u001b[7muser/login\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"https://teskerti.tn/user/login\"\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts:9:24"
+  },
+  {
+    "scenario": "Connexion échouée avec email non enregistré",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect(\n      page.locator(\n        \".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\"\n      ).first()\n    ).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect(\n      page.locator(\n        \".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\"\n      ).first()\n    ).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-email-non-enregistre\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+      "column": 43,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T08:19:30.190Z",
+    "durationMs": 60141,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Connexion échouée avec email non enregistré",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect(\n      page.locator(\n        \".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\"\n      ).first()\n    ).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect(\n      page.locator(\n        \".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\"\n      ).first()\n    ).toBeVisible();\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-email-non-enregistre\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+      "column": 43,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T08:20:33.562Z",
+    "durationMs": 60107,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Connexion échouée avec email non enregistré",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect(\n      page.locator(\n        \".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\"\n      ).first()\n    ).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Connexion utilisateur\", () => {\n  test(\"Connexion échouée avec email non enregistré\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn/user/login\");\n\n    // TODO: enter unregistered email\n    await page.getByLabel(\"Mot de passe\").fill(\"123456789\");\n    await page.getByRole(\"button\", { name: \"Se connecter\" }).click();\n    await expect(\n      page.locator(\n        \".alert-danger, .error-message, [class*=\\\"error\\\"], [role=\\\"alert\\\"]\"\n      ).first()\n    ).toBeVisible();\n  });\n});\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-email-non-enregistre\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
+      "column": 43,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T08:20:47.121Z",
+    "durationMs": 10687,
+    "error": "Error: page.goto: net::ERR_NETWORK_CHANGED at https://teskerti.tn/user/login\nCall log:\n\u001b[2m  - navigating to \"https://teskerti.tn/user/login\", waiting until \"load\"\u001b[22m\n\nError: page.goto: net::ERR_NETWORK_CHANGED at https://teskerti.tn/user/login\nCall log:\n\u001b[2m  - navigating to \"https://teskerti.tn/user/login\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts:6:16"
+  },
+  {
+    "scenario": "Connexion échouée avec mot de passe incorrect",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: fill password with an incorrect password\n    await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Connexion utilisateur', () => {\n  test('Connexion échouée avec mot de passe incorrect', async ({ page }) => {\n    await page.goto('https://teskerti.tn/user/login');\n    await page.locator('input[name=\"email\"]').fill('mellitisabaa@gmail.com');\n    // TODO: fill password with an incorrect password\n    await page.locator('input[name=\"email\"]').click();\n    await expect(page.locator('.alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]').first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect.spec.ts",
+    "backupFile": "C:\\Users\\melli\\QA_Testing\\repair-backups\\connexion-echouee-avec-mot-de-passe-incorrect\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect.spec.ts",
+      "column": 82,
+      "line": 8
+    },
+    "appliedAt": "2026-08-19T08:20:52.072Z",
+    "durationMs": 2229,
+    "error": "Error: page.goto: net::ERR_INTERNET_DISCONNECTED at https://teskerti.tn/user/login\nCall log:\n\u001b[2m  - navigating to \"https://teskerti.tn/user/login\", waiting until \"load\"\u001b[22m\n\nError: page.goto: net::ERR_INTERNET_DISCONNECTED at https://teskerti.tn/user/login\nCall log:\n\u001b[2m  - navigating to \"https://teskerti.tn/user/login\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect.spec.ts:5:16"
+  }
+]

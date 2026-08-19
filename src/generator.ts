@@ -95,7 +95,11 @@ function toLiteral(value: string): string {
 }
 
 function stripCodeFences(content: string): string {
-  const trimmed = content.trim();
+  let trimmed = content.trim();
+
+  trimmed = trimmed.replace(/<think>[\s\S]*?<\/think>\s*/gi, '').trim();
+  trimmed = trimmed.replace(/<think>[\s\S]*$/gi, '').trim();
+
   const fencedMatch = trimmed.match(/^```(?:typescript|ts)?\s*([\s\S]*?)\s*```$/i);
 
   if (fencedMatch) {
@@ -130,6 +134,10 @@ function buildScenarioPrompt(
 
   const systemInstruction = [
     'You are a senior QA automation engineer generating clean Playwright Test TypeScript.',
+    'CRITICAL Playwright conventions — VIOLATION WILL CAUSE RUNTIME ERRORS:',
+    '- ALWAYS use "test.describe()" NOT "describe()" — Playwright requires the test. prefix',
+    '- ALWAYS use "test()" NOT "it()" — Playwright requires the test. prefix',
+    '- ALWAYS prefix expect() calls with await',
     'Return only executable TypeScript code.',
     'Use: import { test, expect } from "@playwright/test";',
     'Use flexible selectors: try getByRole, getByLabel, getByPlaceholder, getByTestId, or locator() with CSS selectors.',
@@ -138,7 +146,12 @@ function buildScenarioPrompt(
     'If a step cannot be mapped precisely, emit a SINGLE "// TODO:" comment on its own line. A TODO comment must NEVER be followed by any assertion or locator for that step — emit the TODO instead of the assertion.',
     `Always navigate directly to the full application URL "${baseUrl}" as the starting page for the scenario. Use the exact URL as provided. Do NOT append or guess extra path segments (e.g. "/login" or "/connexion"). If the starting page for the scenario differs from the provided URL, add a TODO comment and do not invent a path.`,
     'Use the providedCredentials values (e.g. EMAIL, PASSWORD, TOKEN) ONLY when a step explicitly asks for the user account credentials without providing a concrete value. When the Gherkin provides a concrete value, or a Scenario Outline provides an Examples table, use that data EXACTLY (e.g. "<email>" placeholder means the value from the Examples row, such as "wrong@test.com") and do NOT substitute providedCredentials. Do NOT invent or guess credentials; if a required value is missing, leave a TODO comment stating which credential is needed.',
+    'When a scenario starts on a page whose path is listed in knownSelectors.pages (the starting page for the scenario, e.g. the category page "/category/spectacle"), navigate to the baseUrl plus that exact path, e.g. await page.goto("https://teskerti.tn/category/spectacle");. Never append a path that is NOT listed in knownSelectors.pages — only the verified path from knownSelectors.pages may be appended to baseUrl.',
     'Use the verified selector strings from knownSelectors (e.g. knownSelectors.login.email) by embedding them directly in locator calls, for example: page.locator("input[name=\\"email\\"]"). Do NOT define a knownSelectors constant in the test file and do NOT reference a knownSelectors variable. Only use flexible/guessed selectors for elements that are NOT present in knownSelectors.',
+    'knownSelectors.pages maps page paths (the path part of the starting baseUrl, e.g. "/category/spectacle") to verified element entries. Each entry is either a plain selector string or an object with a "selector" field (plus optional "widgetType", "interaction", "label", "options"). ALWAYS embed the string from the "selector" field (or the plain string itself) directly in locator() calls — never invent a selector and never emit the JSON wrapper. Typical keys on "/category/spectacle": select_selectedSalle (a Choices.js widget — drive it with the choicesDropdown recipe below), select_selectedDate, button_filter, button_loadMore, eventList, eventCard, input_productTitle. Prefer these verified selectors over any guessed locator.',
+    'Choices.js dropdowns: the salle/date <select> elements are hidden (they carry the hidden="" attribute) so page.selectOption() will time out and must NEVER be used for them. Instead: (1) click the verified choicesInner selector of that select to open the dropdown, (2) click the option inside its choicesDropdown selector by the exact visible option text from the Gherkin. Example: await page.locator("#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner").click(); await page.locator("#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown").getByText("Théâtre de plein air de Hammamet", { exact: true }).click(); For a date use the same pattern on select_selectedDate_choicesInner / select_selectedDate_choicesDropdown with the exact visible date text such as "15 Août 2026".',
+    'Assertions about displayed events must target the verified eventCard selector (e.g. "#dynamic_data .tour_container"), never a guessed class. For a no-result expectation assert an empty list: await expect(page.locator("#dynamic_data .tour_container")).toHaveCount(0). For a populated-list expectation, the site may animate cards into view on scroll (e.g. WOW.js adds visibility:hidden until revealed), so first scroll the first card into view and then assert: await page.locator("#dynamic_data .tour_container").first().scrollIntoViewIfNeeded(); await expect(page.locator("#dynamic_data .tour_container").first()).toBeVisible();.',
+    'When a "Voir Plus"/"Load More" button is hidden because everything is already loaded (it has no more content to fetch), do NOT let the test fail: only click it when it is visible, and assert that event cards are displayed (see the eventCard assertion guidance) to confirm content is present.',
     'Assertions: only call expect(page) for URL/status checks (e.g. expect(page).toHaveURL(...)). For text or visibility assertions use expect(page.locator(...)) or expect(page.getByText(...)). NEVER call toContainText, toBeVisible or toHaveText on the page object itself.',
     'NEVER invent the exact text of error, success or info messages. If the Gherkin step does not quote the exact message text, assert the generic alert region instead: await expect(page.locator(".alert, .error, [role=\\"alert\\"], .flash, .message").first()).toBeVisible(). NEVER use locator("text=...") or getByText("...") with a fabricated message string.',
     'When a Then step contains "or"/"ou" alternatives about a FAILED operation, assert ONLY the error-message outcome: await expect(page.locator(".alert, .error, [role=\\"alert\\"], .flash, .message").first()).toBeVisible() and emit NO toHaveURL assertion at all. Do not include both an error-message assertion and a URL assertion in the same test.',
@@ -285,13 +298,27 @@ async function callGroqForTestCode(
 ): Promise<string> {
   loadDotEnv();
 
-  const apiKey = process.env.GROQ_API_KEY?.trim() ?? '';
-  if (!apiKey) {
-    throw new Error('Missing GROQ_API_KEY for Playwright test generation.');
+  const provider = (process.env.TEST_LLM_PROVIDER ?? 'openrouter').toLowerCase();
+
+  let apiKey: string;
+  let baseUrl: string;
+  let model: string;
+
+  if (provider === 'openrouter') {
+    apiKey = process.env.OPENROUTER_API_KEY?.trim() ?? '';
+    baseUrl = (process.env.OPENROUTER_BASE_URL ?? 'https://openrouter.ai/api/v1').replace(/\/+$/, '');
+    model = process.env.OPENROUTER_MODEL ?? 'meta-llama/llama-3.3-70b-instruct:free';
+  } else {
+    apiKey = process.env.GROQ_API_KEY?.trim() ?? '';
+    baseUrl = (process.env.GROQ_BASE_URL ?? 'https://api.groq.com/openai/v1').replace(/\/+$/, '');
+    model = process.env.GROQ_TEST_MODEL ?? process.env.GROQ_MODEL ?? 'openai/gpt-oss-20b';
   }
 
-  const baseUrl = (process.env.GROQ_BASE_URL ?? 'https://api.groq.com/openai/v1').replace(/\/+$/, '');
-  const model = process.env.GROQ_TEST_MODEL ?? process.env.GROQ_MODEL ?? 'llama-3.3-70b-versatile';
+  if (!apiKey) {
+    const envKey = provider === 'openrouter' ? 'OPENROUTER_API_KEY' : 'GROQ_API_KEY';
+    throw new Error(`Missing ${envKey} for Playwright test generation.`);
+  }
+
   const messages = toGroqMessages(buildScenarioPrompt(feature, scenario, options));
 
   const maxAttempts = 5;
@@ -321,7 +348,8 @@ async function callGroqForTestCode(
 
     if (!retryable || attempt === maxAttempts) {
       const details = [
-        `Groq API request failed with status ${response.status}`,
+        `LLM API request failed with status ${response.status}`,
+        `provider=${provider}`,
         `model=${model}`,
         `message=${payload.error?.message ?? 'unknown error'}`
       ].join(' | ');
@@ -330,15 +358,15 @@ async function callGroqForTestCode(
     }
 
     const suggestedDelay = parseRetryDelay(payload.error?.message);
-    const delayMs = suggestedDelay ?? Math.min(1000 * 2 ** (attempt - 1), 8000);
-    console.log(`[groq-request] Attempt ${attempt} failed with status ${response.status}, retrying in ${delayMs}ms...`);
+    const delayMs = suggestedDelay ?? Math.min(2000 * 2 ** (attempt - 1), 15000);
+    console.log(`[llm-request] Attempt ${attempt} failed with status ${response.status}, retrying in ${delayMs}ms...`);
     await new Promise((resolve) => setTimeout(resolve, delayMs));
   }
 
   const content = payload.choices?.[0]?.message?.content;
 
   if (!content || typeof content !== 'string') {
-    throw new Error('Groq API returned an empty completion payload.');
+    throw new Error('LLM API returned an empty completion payload.');
   }
 
   return stripCodeFences(content);
@@ -350,12 +378,13 @@ async function callTestLlm(
   options: GeneratorOptions = {}
 ): Promise<string> {
   loadDotEnv();
-  const provider = (process.env.TEST_LLM_PROVIDER ?? 'groq').toLowerCase();
+  const provider = (process.env.TEST_LLM_PROVIDER ?? 'openrouter').toLowerCase();
 
   if (provider === 'gemini') {
     return callGeminiForTestCode(feature, scenario, options);
   }
 
+  // Both 'groq' and 'openrouter' go through the same OpenAI-compatible path
   return callGroqForTestCode(feature, scenario, options);
 }
 
@@ -372,8 +401,22 @@ function sanitizeContradictoryAssertions(content: string): string {
     .join('\n');
 }
 
+function fixPlaywrightConventions(content: string): string {
+  let fixed = content;
+
+  // Fix bare describe() → test.describe()
+  fixed = fixed.replace(/^(\s*)describe\s*\(/gm, '$1test.describe(');
+
+  // Fix bare it() → test()
+  fixed = fixed.replace(/^(\s*)it\s*\(/gm, '$1test(');
+
+  // Fix expect() without import (already handled by wrapTestFile)
+  return fixed;
+}
+
 function wrapTestFile(feature: ParsedFeature, scenario: ParsedScenario, body: string): string {
-  const normalizedBody = sanitizeContradictoryAssertions(body.trim());
+  let normalizedBody = sanitizeContradictoryAssertions(body.trim());
+  normalizedBody = fixPlaywrightConventions(normalizedBody);
   const hasImport = /^\s*import\s/m.test(normalizedBody);
   const hasTopLevelTest = /^\s*test\.describe\s*\(/m.test(normalizedBody) || /^\s*test\s*\(/m.test(normalizedBody);
 

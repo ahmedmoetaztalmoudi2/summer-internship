@@ -1,42 +1,12 @@
-Fonctionnalite: Filtre d'événements
+Fonctionnalite: Pied de page du site
 
-  Scenario: Sélection d'une catégorie d'événements
-    Given une liste d'événements est affichée
-    When l'utilisateur sélectionne une catégorie "Festivals"
-    Then seuls les événements de la catégorie "Festivals" sont affichés
+Contexte:
+    Étant donné que l'utilisateur est sur n'importe quelle page
 
-  Scenario: Sélection d'une ville pour les événements
-    Given une liste d'événements est affichée
-    When l'utilisateur sélectionne une ville "Tunis"
-    Then la liste des événements est filtrée pour ne montrer que les événements à "Tunis"
+Scénario: Le pied de page affiche les liens "A propos" et "Termes et conditions"
+    Alors le pied de page doit afficher le lien "A propos"
+    Et le pied de page doit afficher le lien "Termes et conditions"
 
-  Scenario Outline: Filtre d'événements par catégorie et ville
-    Given une liste d'événements est affichée
-    When l'utilisateur sélectionne une catégorie "<categorie>"
-    And l'utilisateur sélectionne une ville "<ville>"
-    Then la liste des événements est filtrée pour ne montrer que les événements de la catégorie "<categorie>" à "<ville>"
-
-    Examples:
-      | categorie | ville   |
-      | Festivals | Tunis   |
-      | Sport     | Sousse  |
-
-  Scenario: Aucun événement ne correspond aux filtres
-    Given une liste d'événements est affichée
-    When l'utilisateur sélectionne une catégorie "Théâtre"
-    And l'utilisateur sélectionne une ville "Monastir"
-    And aucun événement ne correspond à ces filtres
-    Then le message "Aucun événement disponible pour ces critères" est affiché
-
-  Scenario Outline: Filtre d'événements avec plusieurs combinaisons de catégorie et ville
-    Given une liste d'événements est affichée
-    When l'utilisateur sélectionne une catégorie "<categorie>"
-    And l'utilisateur sélectionne une ville "<ville>"
-    Then la liste des événements est filtrée pour ne montrer que les événements de la catégorie "<categorie>" à "<ville>"
-    And si aucun événement ne correspond à ces filtres, le message "Aucun événement disponible pour ces critères" est affiché
-
-    Examples:
-      | categorie | ville   |
-      | Festivals | Tunis   |
-      | Sport     | Sousse  |
-      | Théâtre   | Monastir|
+Scénario: Le pied de page affiche la liste des catégories et le lien "La liste de nos guichets"
+    Alors le pied de page doit afficher la liste des catégories
+    Et le pied de page doit afficher le lien "La liste de nos guichets"

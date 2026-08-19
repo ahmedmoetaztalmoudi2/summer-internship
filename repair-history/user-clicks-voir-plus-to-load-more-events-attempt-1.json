@@ -1,0 +1,18 @@
+{
+  "scenario": "User clicks Voir Plus to load more events",
+  "failureType": "visibility_issue",
+  "repairType": "add_visibility_guard",
+  "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Filtrage des événements par salle et date sur la page de catégorie', () => {\n  test('User clicks Voir Plus to load more events', async ({ page }) => {\n    await page.goto('https://teskerti.tn/category/spectacle');\n\n    // TODO: select a room and a date and click \"Recherche\"\n\n    // And: the results list displays events\n    await page.locator('#dynamic_data .tour_container').first().scrollIntoViewIfNeeded();\n    await expect(page.locator('#dynamic_data .tour_container').first()).toBeVisible();\n\n    // When: the user clicks the \"Voir Plus\" button\n    const loadMoreBtn = page.locator('#load_more');\n    await expect(loadMoreBtn).toBeVisible();\n    await loadMoreBtn.click();\n\n    // Then: additional events are displayed\n    await page.locator('#dynamic_data .tour_container').first().scrollIntoViewIfNeeded();\n    await expect(page.locator('#dynamic_data .tour_container').first()).toBeVisible();\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe('Filtrage des événements par salle et date sur la page de catégorie', () => {\n  test('User clicks Voir Plus to load more events', async ({ page }) => {\n    await page.goto('https://teskerti.tn/category/spectacle');\n\n    // TODO: select a room and a date and click \"Recherche\"\n\n    // And: the results list displays events\n    await page.locator('#dynamic_data .tour_container').first().scrollIntoViewIfNeeded();\n    await expect(page.locator('#dynamic_data .tour_container').first()).toBeVisible();\n\n    // When: the user clicks the \"Voir Plus\" button\n    const loadMoreBtn = page.locator('#load_more');\n    await expect(loadMoreBtn).toBeVisible();\n    await loadMoreBtn.click();\n\n    // Then: additional events are displayed\n    await page.locator('#dynamic_data .tour_container').first().scrollIntoViewIfNeeded();\n    await expect(page.locator('#dynamic_data .tour_container').first()).toBeVisible();\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\user-clicks-voir-plus-to-load-more-events.spec.ts",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\user-clicks-voir-plus-to-load-more-events.spec.ts",
+    "column": 31,
+    "line": 15
+  },
+  "appliedAt": "2026-08-18T15:23:25.427Z",
+  "error": "Patch produced no changes (already applied or no-op).",
+  "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+}

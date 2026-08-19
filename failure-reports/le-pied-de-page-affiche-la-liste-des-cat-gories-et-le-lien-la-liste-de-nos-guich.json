@@ -1,0 +1,60 @@
+{
+  "scenario": "Le pied de page affiche la liste des catégories et le lien \"La liste de nos guichets\"",
+  "status": "failed",
+  "failureType": "strict_mode_violation",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: footer",
+  "reasoning": [
+    "Failure classified as \"strict_mode_violation\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /strict mode violation/i.",
+    "Failing locator: footer",
+    "Requested dropdown option texts \"A propos Termes et conditions\", \"Carthage Off Festival international de Carthage Festivals Spectacle Festival\" are NOT among the verified options of the matched widget in the knowledge base — the scenario data does not exist in the application.",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('footer').getByRole('list') | Error: expect(locator).toBeVisible() failed | Locator: locator('footer').getByRole('list') | Expected: visible | Error: strict mode violation: locator('footer').getByRole('list') resolved to 3 elements: | 1) <ul>…</ul> aka getByText('A propos Termes et conditions') | 2) <ul>…</ul> aka getByText('Carthage Off Festival international de Carthage Festivals Spectacle Festival') | 3) <ul>…</ul> aka locator('#social_footer > ul') | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('footer').getByRole('list') | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts:7:60 | Error: expect(locator).toBeVisible() failed | Locator: locator('footer').getByRole('list') | Expected: visible | Error: strict mode violation: locator('footer').getByRole('list') resolved to 3 elements: | 1) <ul>…</ul> aka getByText('A propos Termes et conditions') | 2) <ul>…</ul> aka getByText('Carthage Off Festival international de Carthage Festivals Spectacle Festival') | 3) <ul>…</ul> aka locator('#social_footer > ul') | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('footer').getByRole('list') | 5 |     await page.goto(\"https://teskerti.tn/category/spectacle\"); | 6 |     // TODO: | >  7 |     await expect(page.locator('footer').getByRole('list')).toBeVisible(); | |                                                            ^ | 8 |     await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible(); | 9 |   }); | 10 | }); | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts:7:60",
+    "Recommended action: The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: footer"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('footer').getByRole('list')\nExpected: visible\nError: strict mode violation: locator('footer').getByRole('list') resolved to 3 elements:\n    1) <ul>…</ul> aka getByText('A propos Termes et conditions')\n    2) <ul>…</ul> aka getByText('Carthage Off Festival international de Carthage Festivals Spectacle Festival')\n    3) <ul>…</ul> aka locator('#social_footer > ul')\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('footer').getByRole('list')\n\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('footer').getByRole('list')\nExpected: visible\nError: strict mode violation: locator('footer').getByRole('list') resolved to 3 elements:\n    1) <ul>…</ul> aka getByText('A propos Termes et conditions')\n    2) <ul>…</ul> aka getByText('Carthage Off Festival international de Carthage Festivals Spectacle Festival')\n    3) <ul>…</ul> aka locator('#social_footer > ul')\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('footer').getByRole('list')\n\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts:7:60\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('footer').getByRole('list')\nExpected: visible\nError: strict mode violation: locator('footer').getByRole('list') resolved to 3 elements:\n    1) <ul>…</ul> aka getByText('A propos Termes et conditions')\n    2) <ul>…</ul> aka getByText('Carthage Off Festival international de Carthage Festivals Spectacle Festival')\n    3) <ul>…</ul> aka locator('#social_footer > ul')\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('footer').getByRole('list')\n\n\n   5 |     await page.goto(\"https://teskerti.tn/category/spectacle\");\n   6 |     // TODO:\n>  7 |     await expect(page.locator('footer').getByRole('list')).toBeVisible();\n     |                                                            ^\n   8 |     await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible();\n   9 |   });\n  10 | });\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts:7:60"
+    },
+    {
+      "source": "test_source",
+      "content": "    await page.goto(\"https://teskerti.tn/category/spectacle\");\n    // TODO:\n    await expect(page.locator('footer').getByRole('list')).toBeVisible();\n    await expect(page.getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible();\n  });"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\le-pied-de-page-affiche-la-f4bab-n-La-liste-de-nos-guichets--chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-pied-de-page-affiche-la-liste-des-cat-gories-et-le-lien-la-liste-de-nos-guichets.spec.ts",
+    "column": 60,
+    "line": 7
+  },
+  "diagnostics": {
+    "failingLocator": "footer",
+    "locatorLines": [
+      "waiting for locator('footer').getByRole('list')",
+      "Locator: locator('footer').getByRole('list')",
+      "locator('footer').getByRole('list')",
+      "locator('#social_footer > ul')",
+      "getByText('A propos Termes et conditions')",
+      "getByText('Carthage Off Festival international de Carthage Festivals Spectacle Festival')",
+      "getByRole('list')",
+      "getByRole('list')).toBeVisible()",
+      "getByRole('link', { name: 'La liste de nos guichets' })).toBeVisible()"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": [
+      "A propos Termes et conditions",
+      "Carthage Off Festival international de Carthage Festivals Spectacle Festival"
+    ]
+  },
+  "analyzedAt": "2026-08-18T15:07:09.800Z"
+}

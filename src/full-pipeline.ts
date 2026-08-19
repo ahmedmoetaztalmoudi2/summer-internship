@@ -5,6 +5,9 @@ import type { ParsedFeature } from './parser.js';
 import { generatePlaywrightTestsForFeatures } from './generator.js';
 import { runGeneratedTests } from './runner.js';
 import { createReport, writeReport } from './reporter.js';
+import { analyzeFailures } from './agents/failure-analysis.js';
+import { autoRepairAndRetry } from './agents/auto-repair.js';
+import { generateRepairProposals } from './repair-agent/repair-agent.js';
 import { askForCredentials, parseCredentialsArg } from './prompts.js';
 import { getDomainFromUrl, loadSelectorMap } from './storage.js';
 import type { SelectorMap } from './selector-types.js';
@@ -28,10 +31,11 @@ interface GherkinModule {
     outputDir?: string,
     options?: {
       provider?: string;
-      selectors?: { login?: SelectorMap['login']; forms?: SelectorMap['forms'] };
+      capabilities?: string[];
       credentials?: Record<string, string>;
     }
   ): Promise<FeatureResult>;
+  extractBusinessCapabilities(selectors: unknown): string[];
 }
 
 interface JiraModule {
@@ -45,6 +49,7 @@ const jiraModule = require('../jira-fetcher.js') as JiraModule;
 function parseProvider(args: string[]): string | undefined {
   if (args.includes('--mock')) return 'mock';
   if (args.includes('--groq') || args.includes('--qwen')) return 'groq';
+  if (args.includes('--openrouter')) return 'openrouter';
 
   const providerArg = args.find((arg) => arg.startsWith('--provider='));
   return providerArg?.split('=')[1];
@@ -75,7 +80,7 @@ async function main(): Promise<void> {
     process.env.BASE_URL = appUrl;
   }
 
-  if (provider === 'groq' || provider === 'gemini') {
+  if (provider === 'groq' || provider === 'gemini' || provider === 'openrouter') {
     process.env.TEST_LLM_PROVIDER = provider;
   }
 
@@ -83,20 +88,22 @@ async function main(): Promise<void> {
   const testsDir = path.resolve('tests/generated');
   const reportPath = path.resolve('report.json');
 
-  // Load the verified selector knowledge base once and reuse it for both the
-  // Gherkin step (to ground scenarios in the real page) and the test step.
+  // Load the verified selector knowledge base.
+  // Selectors are ONLY used for: Playwright generation, failure analysis, repair.
+  // Gherkin generation receives business-level capabilities extracted from selectors.
   const baseUrlForSelectors = process.env.BASE_URL ?? '';
   const selectorMap = baseUrlForSelectors ? loadSelectorMap(getDomainFromUrl(baseUrlForSelectors)) : null;
-  const selectorsContext = selectorMap ? { login: selectorMap.login, forms: selectorMap.forms } : undefined;
+  const businessCapabilities = gherkinModule.extractBusinessCapabilities(selectorMap);
 
   console.log('========================================================');
   console.log('   FULL PIPELINE: Jira -> Gherkin -> Playwright -> Run');
   console.log('========================================================\n');
-  console.log(`Gherkin provider: ${provider ?? 'groq'}`);
-  console.log(`Test generation provider: ${process.env.TEST_LLM_PROVIDER ?? 'groq'}`);
+  console.log(`Gherkin provider: ${provider ?? 'openrouter'}`);
+  console.log(`Test generation provider: ${process.env.TEST_LLM_PROVIDER ?? 'openrouter'}`);
   console.log(`Application URL: ${process.env.BASE_URL ?? 'http://localhost:3000'}`);
   if (selectorMap?.login) {
-    console.log(`[Agent] Using verified selectors from selectors/${getDomainFromUrl(baseUrlForSelectors)}.json`);
+    console.log(`[Agent] Loaded selector KB from selectors/${getDomainFromUrl(baseUrlForSelectors)}.json`);
+    console.log(`[Agent] Extracted ${businessCapabilities.length} business capabilities for Gherkin grounding`);
   }
 
   const cliCredentials = parseCredentialsArg(args);
@@ -109,7 +116,7 @@ async function main(): Promise<void> {
     featureResults.push(
       await gherkinModule.generateAndSaveFeature(ticketKey, featuresDir, {
         provider,
-        selectors: selectorsContext,
+        capabilities: businessCapabilities,
         credentials: cliCredentials
       })
     );
@@ -124,7 +131,7 @@ async function main(): Promise<void> {
         featureResults.push(
           await gherkinModule.generateAndSaveFeature(ticket.key, featuresDir, {
             provider,
-            selectors: selectorsContext,
+            capabilities: businessCapabilities,
             credentials: cliCredentials
           })
         );
@@ -135,7 +142,9 @@ async function main(): Promise<void> {
   }
 
   // Step 4: Gherkin -> Playwright tests
-  console.log('\n[Step 4] Parsing generated Gherkin feature files...');
+  console.log('\n[Step 4] Waiting for Groq rate limit cooldown...');
+  await new Promise((resolve) => setTimeout(resolve, 12000));
+  console.log('[Step 4] Parsing generated Gherkin feature files...');
   const parsedFeatures: ParsedFeature[] = [];
   for (const result of featureResults) {
     try {
@@ -166,6 +175,41 @@ async function main(): Promise<void> {
   await writeReport(report, reportPath);
 
   console.log(`\n[Step 5] Report saved to: ${reportPath}`);
+
+  // Step 6: Failure Analysis (diagnosis only — no repair yet)
+  console.log('\n[Step 6] Analyzing failures...');
+  const failureAnalysis = await analyzeFailures(report, {
+    testDir: testsDir,
+    selectors: selectorMap ?? undefined,
+    outputDir: path.resolve('failure-reports')
+  });
+  console.log(`[Step 6] ${failureAnalysis.result.reports.length} failed scenario(s) analyzed.`);
+  console.log(`[Step 6] Structured failure report saved to: ${failureAnalysis.files.summaryFile}`);
+
+  // Step 7: Repair Planning (proposal mode only — no file changes)
+  console.log('\n[Step 7] Generating repair proposals (no file changes)...');
+  const repairResult = await generateRepairProposals(failureAnalysis.result.reports, {
+    testDir: testsDir,
+    selectors: selectorMap ?? undefined,
+    outputDir: path.resolve('repair-reports')
+  });
+  console.log(
+    `[Step 7] ${repairResult.result.repairable} repairable / ${repairResult.result.manual} manual repair plan(s).`
+  );
+  console.log(`[Step 7] Repair plans saved to: ${repairResult.files.summaryFile}`);
+
+  // Step 8: Auto-Repair & Retry (apply safe repairs, re-run, save fixes or escalate)
+  console.log('\n[Step 8] Auto-repairing safe failures and re-running affected scenarios...');
+  const autoRepair = await autoRepairAndRetry(failureAnalysis.result.reports, {
+    testDir: testsDir,
+    selectors: selectorMap ?? undefined,
+    outputDir: path.resolve('repair-reports')
+  });
+  console.log(
+    `[Step 8] ${autoRepair.result.fixed} fixed, ${autoRepair.result.escalated} escalated, ${autoRepair.result.skipped} skipped.`
+  );
+  console.log(`[Step 8] Auto-repair summary saved to: ${autoRepair.files.summaryFile}`);
+
   console.log('\n========================================================');
   console.log('   FULL PIPELINE COMPLETE');
   console.log('========================================================\n');

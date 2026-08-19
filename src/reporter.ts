@@ -13,6 +13,8 @@ export interface JsonReport {
   passed: number;
   failed: number;
   details: JsonReportDetail[];
+  /** Raw Playwright JSON reporter output, retained so the Failure Analysis Agent can re-analyze offline. */
+  raw?: unknown;
 }
 
 export function createReport(summary: TestRunSummary): JsonReport {
@@ -24,7 +26,8 @@ export function createReport(summary: TestRunSummary): JsonReport {
       test: detail.test,
       status: detail.status,
       error: detail.error
-    }))
+    })),
+    raw: summary.raw
   };
 }
 

@@ -1,0 +1,29 @@
+{
+  "scenario": "Email non enregistré génère le même message d'erreur générique",
+  "failureType": "data_issue",
+  "rootCause": "bad_test_data",
+  "repairType": "replace_test_data",
+  "target": "Examples Table",
+  "currentValue": "Identifiants invalides",
+  "replacementValue": "(a real option from the knowledge base)",
+  "confidence": 0.65,
+  "repairable": false,
+  "requiresHumanReview": true,
+  "actions": [
+    {
+      "action": "Replace the option \"Identifiants invalides\" with an option that actually exists in the dropdown.",
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts",
+      "line": 9
+    },
+    {
+      "action": "No verified option found — re-analyze the dropdown.",
+      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts",
+      "line": 9
+    }
+  ],
+  "explanation": [
+    "The option \"Identifiants invalides\" is not among the verified options of the dropdown, so the scenario data does not exist in the application.",
+    "Using a knowledge-base-verified option makes the test data valid."
+  ],
+  "sourceFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\email-non-enregistr-g-n-re-le-m-me-message-d-erreur-g-n-rique.spec.ts"
+}

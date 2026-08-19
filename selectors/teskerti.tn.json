@@ -1,7 +1,7 @@
 {
-  "url": "https://teskerti.tn/user/login",
+  "url": "https://teskerti.tn/category/spectacle",
   "domain": "teskerti.tn",
-  "analyzedAt": "2026-08-06T21:07:34.007Z",
+  "analyzedAt": "2026-08-15T12:08:52.257Z",
   "login": {
     "email": "input[name=\"email\"]",
     "password": "input[name=\"password\"]",
@@ -15,6 +15,260 @@
     },
     "form-2": {
       "submit": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(4) > form:nth-of-type(1) > button:nth-of-type(1)"
+    }
+  },
+  "pages": {
+    "/user/login": {
+      "input_email": {
+        "selector": "input[name=\"email\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Email"
+      },
+      "input_password": {
+        "selector": "input[name=\"password\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Mot de passe"
+      },
+      "button_toggle_password": {
+        "selector": "button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]",
+        "widgetType": "button",
+        "interaction": "click",
+        "label": "Afficher/masquer le mot de passe",
+        "note": "Toggle password visibility"
+      },
+      "button_submit": {
+        "selector": "button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+        "widgetType": "button",
+        "interaction": "click",
+        "label": "Se connecter"
+      },
+      "alert_error": {
+        "selector": ".alert-danger, .error-message, [class*=\"error\"], [role=\"alert\"]",
+        "widgetType": "container",
+        "interaction": "assert",
+        "label": "Message d'erreur"
+      },
+      "link_forgot_password": {
+        "selector": "a:has-text(\"Mot de passe oublié\"), a:has-text(\"Forgot password\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "Mot de passe oublié"
+      }
+    },
+    "/category/spectacle": {
+      "input_q": {
+        "selector": "input[name=\"q\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Recherche..."
+      },
+      "input_honeypot": {
+        "selector": "input[name=\"honeypot\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "honeypot",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "a_closeIn": {
+        "selector": "#close_in",
+        "widgetType": "link",
+        "interaction": "click",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=#"
+      },
+      "input_productTitle": {
+        "selector": "#productTitle",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Mot clé"
+      },
+      "select_selectedSalle_choicesInner": {
+        "selector": "#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner",
+        "widgetType": "container",
+        "interaction": "click",
+        "label": "Choices dropdown opener",
+        "note": "Click to open the dropdown; the native select is hidden."
+      },
+      "select_selectedSalle_choicesDropdown": {
+        "selector": "#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown",
+        "widgetType": "container",
+        "interaction": "selectOption",
+        "label": "Choices dropdown list",
+        "note": "Click an option inside this list by its exact visible text."
+      },
+      "select_selectedSalle": {
+        "selector": "#selectedSalle",
+        "widgetType": "choices",
+        "interaction": "choicesDropdown",
+        "label": "- Sélectionner une salle -",
+        "options": [
+          {
+            "value": "",
+            "label": "- Sélectionner une salle -"
+          },
+          {
+            "value": "37",
+            "label": "Amphithéâtre plein air Boukornine"
+          },
+          {
+            "value": "217",
+            "label": "Borj el Kebir: Ottoman Fort"
+          },
+          {
+            "value": "369",
+            "label": "Game Art Park"
+          },
+          {
+            "value": "49",
+            "label": "Ribat monastir"
+          },
+          {
+            "value": "16",
+            "label": "Théâtre Antique de Carthage"
+          },
+          {
+            "value": "50",
+            "label": "Théâtre de plein air de Hammamet"
+          },
+          {
+            "value": "480",
+            "label": "Théâtre de Plein Air nabeul"
+          },
+          {
+            "value": "33",
+            "label": "théâtre de plein air sidi dhaher"
+          },
+          {
+            "value": "483",
+            "label": "Théâtre Plein air Mohamed Ben Ali"
+          },
+          {
+            "value": "20",
+            "label": "THÉÂTRE SIDI DHAHER SOUSSE"
+          }
+        ],
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "select_selectedDate_choicesInner": {
+        "selector": "#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner",
+        "widgetType": "container",
+        "interaction": "click",
+        "label": "Choices dropdown opener",
+        "note": "Click to open the dropdown; the native select is hidden."
+      },
+      "select_selectedDate_choicesDropdown": {
+        "selector": "#selectedDate >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown",
+        "widgetType": "container",
+        "interaction": "selectOption",
+        "label": "Choices dropdown list",
+        "note": "Click an option inside this list by its exact visible text."
+      },
+      "select_selectedDate": {
+        "selector": "#selectedDate",
+        "widgetType": "choices",
+        "interaction": "choicesDropdown",
+        "label": "- Sélectionner une Date -",
+        "options": [
+          {
+            "value": "",
+            "label": "- Sélectionner une Date -"
+          },
+          {
+            "value": "2026-09-06",
+            "label": "06 Septembre 2026"
+          },
+          {
+            "value": "2026-08-15",
+            "label": "15 Août 2026"
+          },
+          {
+            "value": "2026-08-20",
+            "label": "20 Août 2026"
+          },
+          {
+            "value": "2026-08-22",
+            "label": "22 Août 2026"
+          },
+          {
+            "value": "2026-08-23",
+            "label": "23 Août 2026"
+          },
+          {
+            "value": "2026-08-24",
+            "label": "24 Août 2026"
+          },
+          {
+            "value": "2026-08-25",
+            "label": "25 Août 2026"
+          },
+          {
+            "value": "2026-08-26",
+            "label": "26 Août 2026"
+          },
+          {
+            "value": "2026-08-28",
+            "label": "28 Août 2026"
+          },
+          {
+            "value": "2026-08-29",
+            "label": "29 Août 2026"
+          },
+          {
+            "value": "2026-08-30",
+            "label": "30 Août 2026"
+          }
+        ],
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "button_filter": {
+        "selector": "#filter",
+        "widgetType": "button",
+        "interaction": "click",
+        "label": "Recherche",
+        "role": "submit"
+      },
+      "button_loadMore": {
+        "selector": "#load_more",
+        "widgetType": "button",
+        "interaction": "click",
+        "label": "Voir Plus",
+        "role": "submit",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "input_rowcount": {
+        "selector": "#rowcount",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "rowcount",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "a_phone": {
+        "selector": "a:has-text(\"+216 26 505 485\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "+216 26 505 485",
+        "note": "href=tel:+216 26 505 485"
+      },
+      "a_emailFooter": {
+        "selector": "#email_footer",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "contact@teskerti.tn",
+        "note": "href=mailto:contact@teskerti.tn"
+      },
+      "eventList": {
+        "selector": "#dynamic_data",
+        "widgetType": "container",
+        "interaction": "assert",
+        "label": "Dynamic results list"
+      },
+      "eventCard": {
+        "selector": "#dynamic_data .tour_container",
+        "widgetType": "container",
+        "interaction": "assert",
+        "label": "Results card"
+      }
     }
   }
 }

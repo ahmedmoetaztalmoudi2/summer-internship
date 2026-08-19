@@ -1,0 +1,55 @@
+{
+  "scenario": "Le champ mot de passe est masqué par défaut et peut être affiché",
+  "status": "failed",
+  "failureType": "timeout",
+  "confidence": 0.75,
+  "rootCause": "timing_issue",
+  "repairRecommendation": "A wait timed out while the failure gives no proof the element is missing — the element likely appears later than the default wait allows. Increase the wait/action timeout or replace a bare click with expect(locator).toBeVisible() first; also consider response-driven waits (waitForResponse) for AJAX content. Failing locator: button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]",
+  "reasoning": [
+    "Failure classified as \"timeout\" with confidence 0.75.",
+    "Root cause dimension: timing_issue — the element or application state appears later than the wait strategy allows.",
+    "Matched error signature: /test timeout of \\d+ms exceeded/i.",
+    "Failing locator: button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]",
+    "Cross-referenced with the knowledge base: verified selector(s) [login.password, forms.form-1.password, pages./user/login.input_password, pages./user/login.button_toggle_password] appear in the failing locator.",
+    "Playwright call log: - waiting for locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]') | 12 |     await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password'); | 13 |     // When the user clicks \"Afficher le mot de passe\" | > 14 |     await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click(); | |                                                                                                              ^ | 15 |     // And the user enters \"Secret123!\" in the password field | 16 |     await page.locator('input[name=\"password\"]').fill('Secret123!'); | 17 |     // Then the password field should show the entered text | at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts:14:110",
+    "Recommended action: A wait timed out while the failure gives no proof the element is missing — the element likely appears later than the default wait allows. Increase the wait/action timeout or replace a bare click with expect(locator).toBeVisible() first; also consider response-driven waits (waitForResponse) for AJAX content. Failing locator: button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n  - waiting for locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]')\n\n\n  12 |     await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password');\n  13 |     // When the user clicks \"Afficher le mot de passe\"\n> 14 |     await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click();\n     |                                                                                                              ^\n  15 |     // And the user enters \"Secret123!\" in the password field\n  16 |     await page.locator('input[name=\"password\"]').fill('Secret123!');\n  17 |     // Then the password field should show the entered text\n    at C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts:14:110"
+    },
+    {
+      "source": "test_source",
+      "content": "    await expect(page.locator('input[name=\"password\"]')).toHaveAttribute('type', 'password');\n    // When the user clicks \"Afficher le mot de passe\"\n    await page.locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]').click();\n    // And the user enters \"Secret123!\" in the password field\n    await page.locator('input[name=\"password\"]').fill('Secret123!');"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\melli\\QA_Testing\\test-results\\le-champ-mot-de-passe-est--673d4-défaut-et-peut-être-affiché-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\le-champ-mot-de-passe-est-masqu-par-d-faut-et-peut-tre-affich.spec.ts",
+    "column": 110,
+    "line": 14
+  },
+  "diagnostics": {
+    "failingLocator": "button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]",
+    "locatorLines": [
+      "waiting for locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]')",
+      "locator('button[type=\"button\"][class*=\"toggle\"], .password-toggle, [data-toggle=\"password\"]')",
+      "locator('input[name=\"password\"]')).toHaveAttribute('type', 'password')",
+      "locator('input[name=\"password\"]').fill('Secret123!')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "login.password",
+      "forms.form-1.password",
+      "pages./user/login.input_password",
+      "pages./user/login.button_toggle_password"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-18T15:59:57.225Z"
+}
