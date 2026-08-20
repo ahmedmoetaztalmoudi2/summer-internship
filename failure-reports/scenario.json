@@ -1,0 +1,42 @@
+{
+  "scenario": "...",
+  "status": "failed",
+  "failureType": "navigation_failure",
+  "confidence": 0.97,
+  "rootCause": "environment_issue",
+  "repairRecommendation": "Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect.",
+  "reasoning": [
+    "Failure classified as \"navigation_failure\" with confidence 0.97.",
+    "Root cause dimension: environment_issue — the network, application availability or execution environment caused the failure.",
+    "Matched error signature: /net::err_[a-z_]+/i.",
+    "Playwright call log: - navigating to \"http://localhost:3000/\", waiting until \"load\" | Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/ | Call log: | - navigating to \"http://localhost:3000/\", waiting until \"load\" | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\tests\\generated\\generated-scenario.spec.ts:5:16 | Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/ | Call log: | - navigating to \"http://localhost:3000/\", waiting until \"load\" | 3 | test.describe(\"Authentification utilisateur\", () => { | 4 |   test(\"...\", async ({ page }) => { | > 5 |     await page.goto(\"http://localhost:3000\"); | |                ^ | 6 |     // TODO: scenario has no steps | 7 |   }); | 8 | }); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\tests\\generated\\generated-scenario.spec.ts:5:16",
+    "Recommended action: Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n  - navigating to \"http://localhost:3000/\", waiting until \"load\"\n\nError: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n  - navigating to \"http://localhost:3000/\", waiting until \"load\"\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\tests\\generated\\generated-scenario.spec.ts:5:16\nError: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/\nCall log:\n  - navigating to \"http://localhost:3000/\", waiting until \"load\"\n\n\n  3 | test.describe(\"Authentification utilisateur\", () => {\n  4 |   test(\"...\", async ({ page }) => {\n> 5 |     await page.goto(\"http://localhost:3000\");\n    |                ^\n  6 |     // TODO: scenario has no steps\n  7 |   });\n  8 | });\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\tests\\generated\\generated-scenario.spec.ts:5:16"
+    },
+    {
+      "source": "test_source",
+      "content": "test.describe(\"Authentification utilisateur\", () => {\n  test(\"...\", async ({ page }) => {\n    await page.goto(\"http://localhost:3000\");\n    // TODO: scenario has no steps\n  });"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\test-results\\generated-scenario-Authentification-utilisateur--chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\tests\\generated\\generated-scenario.spec.ts",
+    "column": 16,
+    "line": 5
+  },
+  "diagnostics": {
+    "locatorLines": [],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-19T19:31:15.636Z"
+}

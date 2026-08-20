@@ -31,8 +31,8 @@
   "dependencies": {
     "@playwright/test": "^1.55.0",
     "dotenv": "^17.4.2",
-    "node-fetch": "^2.7.0",
-    "openai": "^7.0.0"
+    "figlet": "^1.11.4",
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

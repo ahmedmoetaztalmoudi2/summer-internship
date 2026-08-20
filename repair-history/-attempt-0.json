@@ -1,0 +1,14 @@
+{
+  "scenario": "...",
+  "failureType": "navigation_failure",
+  "repairType": "manual_review",
+  "attempt": 0,
+  "result": "escalated",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\tests\\generated\\generated-scenario.spec.ts",
+    "column": 16,
+    "line": 5
+  },
+  "appliedAt": "2026-08-19T19:31:15.642Z",
+  "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+}

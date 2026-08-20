@@ -6,8 +6,6 @@ const { getTicket } = require('./jira-fetcher');
 
 const DEFAULT_GROQ_BASE_URL = 'https://api.groq.com/openai/v1';
 const DEFAULT_GROQ_MODEL = 'qwen/qwen3.6-27b';
-const DEFAULT_OPENROUTER_BASE_URL = 'https://openrouter.ai/api/v1';
-const DEFAULT_OPENROUTER_MODEL = 'meta-llama/llama-3.3-70b-instruct:free';
 
 const SYSTEM_PROMPT = `
 You are an expert QA Automation Engineer and BDD (Behavior-Driven Development) specialist.
@@ -195,28 +193,21 @@ async function generateGherkin(ticket, options = {}) {
 }
 
 function getLlmProvider(options = {}) {
-  return (options.provider || process.env.LLM_PROVIDER || 'openrouter').toLowerCase();
+  return (options.provider || process.env.LLM_PROVIDER || 'groq').toLowerCase();
 }
 
 async function generateGherkinWithGroq(ticket, options = {}) {
   const provider = getLlmProvider(options);
 
   let apiKey, baseUrl, model;
-  if (provider === 'openrouter') {
-    apiKey = options.apiKey || process.env.OPENROUTER_API_KEY;
-    baseUrl = (options.baseUrl || process.env.OPENROUTER_BASE_URL || DEFAULT_OPENROUTER_BASE_URL).replace(/\/+$/, '');
-    model = options.model || process.env.OPENROUTER_MODEL || DEFAULT_OPENROUTER_MODEL;
-  } else {
-    apiKey = options.apiKey || process.env.GROQ_API_KEY || process.env.LLM_API_KEY;
-    baseUrl = (options.baseUrl || process.env.GROQ_BASE_URL || DEFAULT_GROQ_BASE_URL).replace(/\/+$/, '');
-    model = options.model || process.env.GROQ_MODEL || DEFAULT_GROQ_MODEL;
-  }
+  apiKey = options.apiKey || process.env.GROQ_API_KEY || process.env.LLM_API_KEY;
+  baseUrl = (options.baseUrl || process.env.GROQ_BASE_URL || DEFAULT_GROQ_BASE_URL).replace(/\/+$/, '');
+  model = options.model || process.env.GROQ_MODEL || DEFAULT_GROQ_MODEL;
 
   if (!apiKey) {
-    const providerLabel = provider === 'openrouter' ? 'OPENROUTER_API_KEY' : 'GROQ_API_KEY';
     throw new Error(
-      `Missing ${providerLabel} in .env!\n` +
-        `Please set ${providerLabel}=sk-... in your .env file.`
+      `Missing GROQ_API_KEY in .env!\n` +
+        `Please set GROQ_API_KEY=gsk_... in your .env file.`
     );
   }
 
@@ -245,7 +236,6 @@ async function generateGherkinWithGroq(ticket, options = {}) {
       const retryable = res.status === 429 || res.status === 500 || res.status === 502 || res.status === 503;
       if (!retryable || attempt === maxAttempts) throw lastError;
       const delayMs = Math.min(5000 * 2 ** (attempt - 1), 30000);
-      console.log(`[llm-request] Gherkin attempt ${attempt} failed (${res.status}), retrying in ${delayMs}ms...`);
       await new Promise((r) => setTimeout(r, delayMs));
       continue;
     }

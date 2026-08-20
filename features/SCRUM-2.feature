@@ -1,31 +1,19 @@
-Fonctionnalite: Réinitialisation du mot de passe
+Fonctionnalité: Consultation du programme mis en avant depuis la page d'accueil
 
-  Scenario: Demander un lien de réinitialisation avec un email valide
-    Given l'utilisateur est sur la page de connexion
-    When l'utilisateur entre un email valide
-    And l'utilisateur soumet le formulaire de réinitialisation
-    Then un message générique devrait être affiché
+  Contexte:
+    Étant donné l'utilisateur est sur la page d'accueil
 
-  Scenario: Demander un lien de réinitialisation avec un email non enregistré
-    Given l'utilisateur est sur la page de connexion
-    When l'utilisateur entre un email non enregistré
-    And l'utilisateur soumet le formulaire de réinitialisation
-    Then un message générique devrait être affiché
+  Scénario: La section héro affiche le bouton "Voir programme"
+    Alors la section héro doit afficher un bouton "Voir programme"
 
-  Scenario Outline: Nouveau mot de passe avec une politique minimale
-    Given l'utilisateur est sur la page de réinitialisation du mot de passe
-    When l'utilisateur entre "<password>"
-    And l'utilisateur soumet le formulaire de réinitialisation
-    Then un message d'erreur devrait être affiché si le mot de passe est invalide
+  Scénario: Cliquer sur "Voir programme" ouvre la page des événements
+    Quand l'utilisateur clique sur le bouton "Voir programme"
+    Alors l'utilisateur doit être redirigé vers la page des événements du programme
 
-    Examples:
-      | password    |
-      | azerty      | 
-      | 1234567     | 
-      | azerty1     | 
+  Scénario: La page affiche les détails des événements
+    Étant donné l'utilisateur est sur la page des événements du programme
+    Alors chaque événement affiché doit inclure sa salle, son prix en TND et sa date
 
-  Scenario: Nouveau mot de passe valide
-    Given l'utilisateur est sur la page de réinitialisation du mot de passe
-    When l'utilisateur entre un mot de passe avec au moins 8 caractères et 1 chiffre
-    And l'utilisateur soumet le formulaire de réinitialisation
-    Then l'utilisateur devrait être redirigé
+  Scénario: Le bouton "Contactez-nous!" affiche les informations de contact
+    Quand l'utilisateur clique sur le bouton "Contactez-nous!"
+    Alors les informations de contact de Teskerti doivent être affichées

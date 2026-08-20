@@ -1,66 +1,8 @@
 {
-  "analyzedAt": "2026-08-19T08:18:26.723Z",
-  "total": 2,
-  "repairable": 2,
+  "analyzedAt": "2026-08-20T00:56:17.249Z",
+  "total": 0,
+  "repairable": 0,
   "manual": 0,
-  "plans": [
-    {
-      "scenario": "Connexion échouée avec email non enregistré",
-      "failureType": "timeout",
-      "rootCause": "timing_issue",
-      "repairType": "add_wait_strategy",
-      "target": "Wait strategy (line 8)",
-      "currentValue": "getByLabel(\"Mot de passe\").fill(\"123456789\")",
-      "confidence": 0.59,
-      "repairable": true,
-      "requiresHumanReview": false,
-      "actions": [
-        {
-          "action": "Precede the action with an explicit expectation: await expect(page.locator(\"getByLabel(\"Mot de passe\").fill(\"123456789\")\")).toBeVisible({ timeout: 15000 });",
-          "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
-          "line": 8
-        },
-        {
-          "action": "Prefer response-driven waits (waitForResponse) over bare waits for AJAX content.",
-          "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
-          "line": 8
-        },
-        {
-          "action": "Raise the action timeout from the default instead of relying on the test-level timeout.",
-          "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts",
-          "line": 8
-        }
-      ],
-      "explanation": [
-        "The wait timed out but the error gives no proof the element is missing.",
-        "The element likely appears later than the default wait allows, so a targeted wait strategy replaces the guesswork."
-      ],
-      "sourceFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-email-non-enregistr.spec.ts"
-    },
-    {
-      "scenario": "Connexion échouée avec mot de passe incorrect",
-      "failureType": "strict_mode_violation",
-      "rootCause": "bad_selector",
-      "repairType": "disambiguate_selector",
-      "target": "Selector (line 8)",
-      "currentValue": "button:has-text(\"Se connecter\"), button[type=\"submit\"]",
-      "replacementValue": "input[name=\"email\"]",
-      "confidence": 0.85,
-      "repairable": true,
-      "requiresHumanReview": false,
-      "actions": [
-        {
-          "action": "Use the verified single-element selector \"input[name=\"email\"]\" from the knowledge base.",
-          "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect.spec.ts",
-          "line": 8
-        }
-      ],
-      "explanation": [
-        "The locator resolved to multiple elements (strict mode violation).",
-        "A more specific verified selector exists: input[name=\"email\"]."
-      ],
-      "sourceFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-chou-e-avec-mot-de-passe-incorrect.spec.ts"
-    }
-  ],
-  "summaryFile": "C:\\Users\\melli\\QA_Testing\\repair-reports\\repair-report.json"
+  "plans": [],
+  "summaryFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\repair-reports\\repair-report.json"
 }

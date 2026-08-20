@@ -49,7 +49,6 @@ const jiraModule = require('../jira-fetcher.js') as JiraModule;
 function parseProvider(args: string[]): string | undefined {
   if (args.includes('--mock')) return 'mock';
   if (args.includes('--groq') || args.includes('--qwen')) return 'groq';
-  if (args.includes('--openrouter')) return 'openrouter';
 
   const providerArg = args.find((arg) => arg.startsWith('--provider='));
   return providerArg?.split('=')[1];
@@ -69,6 +68,23 @@ function errorMessage(error: unknown): string {
 }
 
 async function main(): Promise<void> {
+  console.log('');
+  console.log('   ____                                 _       _ ');
+  console.log('  / ___|__ _ _ __   __ _  ___ _ __ ___ (_)_ __ (_)');
+  console.log(' | |   / _` | \'_ \\ / _` |/ _ \\ \'_ ` _ \\| | \'_ \\| |');
+  console.log(' | |__| (_| | |_) | (_| |  __/ | | | | | | | | | |');
+  console.log('  \\____\\__,_| .__/ \\__, |\\___|_| |_| |_|_|_| |_|_|');
+  console.log('            |_|    |___/                          ');
+  console.log('  _____             _                      _             ');
+  console.log(' | ____|_ __   __ _(_)_ __   ___  ___ _ __(_)_ __   __ _ ');
+  console.log(' |  _| | \'_ \\ / _` | | \'_ \\ / _ \\/ _ \\ \'__| | \'_ \\ / _` |');
+  console.log(' | |___| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |');
+  console.log(' |_____|_| |_|\\__, |_|_| |_|\\___|\\___|_|  |_|_| |_|\\__, |');
+  console.log('              |___/                                |___/ ');
+  console.log('');
+  console.log('   ~~Adding value. Scaling impact.~~');
+  console.log('');
+
   loadDotEnv();
 
   const args = process.argv.slice(2);
@@ -80,7 +96,7 @@ async function main(): Promise<void> {
     process.env.BASE_URL = appUrl;
   }
 
-  if (provider === 'groq' || provider === 'gemini' || provider === 'openrouter') {
+  if (provider === 'groq' || provider === 'gemini') {
     process.env.TEST_LLM_PROVIDER = provider;
   }
 
@@ -95,11 +111,8 @@ async function main(): Promise<void> {
   const selectorMap = baseUrlForSelectors ? loadSelectorMap(getDomainFromUrl(baseUrlForSelectors)) : null;
   const businessCapabilities = gherkinModule.extractBusinessCapabilities(selectorMap);
 
-  console.log('========================================================');
-  console.log('   FULL PIPELINE: Jira -> Gherkin -> Playwright -> Run');
-  console.log('========================================================\n');
-  console.log(`Gherkin provider: ${provider ?? 'openrouter'}`);
-  console.log(`Test generation provider: ${process.env.TEST_LLM_PROVIDER ?? 'openrouter'}`);
+  console.log(`Gherkin provider: ${provider ?? 'groq'}`);
+  console.log(`Test generation provider: ${process.env.TEST_LLM_PROVIDER ?? 'groq'}`);
   console.log(`Application URL: ${process.env.BASE_URL ?? 'http://localhost:3000'}`);
   if (selectorMap?.login) {
     console.log(`[Agent] Loaded selector KB from selectors/${getDomainFromUrl(baseUrlForSelectors)}.json`);

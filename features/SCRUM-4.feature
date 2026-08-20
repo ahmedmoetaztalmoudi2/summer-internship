@@ -1,45 +1,66 @@
-Fonctionnalite: Ajout de produit au panier
+Feature: -> Fonctionnalité: (or Feature: is fine, but prompt says "Fonctionnalite:" in French)
+   Background: -> Contexte:
+   Given: -> Etant donné que
+   When: -> Quand
+   Then: -> Alors
+   And: -> Et
 
-  Background:
-    Given l'utilisateur est sur la fiche produit ou la liste de résultats
-    And le panier est vide
+   I will use standard French Gherkin keywords.
+   Let's draft carefully.
 
-  Scenario: Ajouter un produit au panier
-    Given le produit est en stock
-    And la quantité disponible est de 10
-    When l'utilisateur clique sur "Ajouter au panier"
-    Then le compteur du panier dans l'en-tête est incrémenté de 1
-    And un message de confirmation s'affiche brièvement
+   Feature: Gestion de la sélection et de l'ajout de billets au panier
+     Contexte:
+       Etant donné que l'utilisateur est sur la fiche d'un événement
 
-  Scenario: Ajouter un produit déjà dans le panier
-    Given le produit est déjà dans le panier avec une quantité de 2
-    And la quantité disponible est de 10
-    When l'utilisateur clique sur "Ajouter au panier"
-    Then la quantité du produit dans le panier est incrémentée de 1
-    And le compteur du panier dans l'en-tête est incrémenté de 1
-    And un message de confirmation s'affiche brièvement
+     Scenario: Sélection du nombre de billets souhaité
+       Quand l'utilisateur sélectionne un nombre de billets supérieur à zéro
+       Alors le sélecteur de quantité doit refléter le nombre choisi
 
-  Scenario: Produit en rupture de stock
-    Given le produit est en rupture de stock
-    When l'utilisateur tente de cliquer sur "Ajouter au panier"
-    Then le bouton "Ajouter au panier" est désactivé
-    And le message "Rupture de stock" est affiché
+     Scenario: Ajout des billets au panier via le bouton d'achat
+       Etant donné que l'utilisateur a sélectionné un nombre de billets
+       Quand l'utilisateur clique sur le bouton d'achat
+       Alors les billets doivent être ajoutés au panier
 
-  Scenario Outline: Quantité ajoutée ne peut pas dépasser le stock disponible
-    Given le produit est en stock avec une quantité disponible de "<stock_disponible>"
-    And l'utilisateur tente d'ajouter "<quantite_ajoutee>" articles au panier
-    When l'utilisateur clique sur "Ajouter au panier"
-    Then la quantité du produit dans le panier est de "<quantite_attendue>"
-    And un message de confirmation s'affiche brièvement
+     Scenario: Incrémentation du compteur du panier dans l'en-tête
+       Etant donné que le panier est actuellement vide
+       Et que l'utilisateur a sélectionné 3 billets
+       Quand l'utilisateur clique sur le bouton d'achat
+       Alors le compteur du panier dans l'en-tête doit s'incrémenter de 3
 
-    Examples:
-      | stock_disponible | quantite_ajoutee | quantite_attendue |
-      | 5               | 3               | 3                 |
-      | 5               | 10              | 5                 |
-      | 10              | 5               | 5                 |
+     Scenario: Ajustement du total en TND selon la quantité
+       Etant donné que le prix unitaire du billet est de 50 TND
+       Et que l'utilisateur a sélectionné 2 billets
+       Quand l'utilisateur clique sur le bouton d'achat
+       Alors le total affiché doit s'ajuster à 100 TND
 
-  Scenario: Ajouter plusieurs produits au panier
-    Given le produit est en stock avec une quantité disponible de 10
-    When l'utilisateur clique sur "Ajouter au panier" plusieurs fois
-    Then le compteur du panier dans l'en-tête est incrémenté de la quantité ajoutée
-    And un message de confirmation s'affiche brièvement après chaque ajout
+     Scenario: Affichage du message de confirmation après l'ajout
+       Etant donné que l'utilisateur a sélectionné un nombre de billets
+       Quand l'utilisateur clique sur le bouton d'achat
+       Alors un message de confirmation doit s'afficher
+
+   Check against rules:
+   - Output ONLY valid Gherkin feature file.
+   - FIRST line MUST start with "Feature:" or "Fonctionnalite:". I'll use "Fonctionnalité:" (or "Feature:" as allowed). I'll stick to "Feature:" to be safe, or "Fonctionnalité:" since it's French. The prompt says "Feature:" (or "Fonctionnalite:" in French). I'll use "Fonctionnalité:".
+   - Every test case MUST use "Scenario:" or "Scenario Outline:".
+   - Output raw Gherkin only. No markdown fences.
+   - No CSS, XPath, etc.
+   - Match input language: French.
+   - Generate a scenario for EVERY acceptance criterion: 5 criteria -> 5 scenarios. Checked.
+   - Business-level language only. Checked.
+   - No test credentials provided -> irrelevant here, but I didn't add login. Checked.
+   - Cover happy path, edge cases, etc. The criteria are all happy path/validation. I'll stick to them.
+
+   One minor adjustment: The prompt says "Feature:" or "Fonctionnalite:". I will use "Fonctionnalité:".
+   I will ensure the formatting is exact.
+   Let's verify the French keywords are standard:
+   Fonctionnalité:
+   Contexte:
+   Etant donné que
+   Quand
+   Alors
+   Et
+   Scenario:
+
+   All good.
+   I will produce the raw text now.
+   Wait, should I combine them into a single scenario that covers all criteria? The prompt says "Generate a scenario for EVERY acceptance criterion. Do NOT skip any criterion. If the Jira ticket lists 5 acceptance criteria, you MUST produce at
