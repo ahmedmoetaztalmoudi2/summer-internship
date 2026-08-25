@@ -1,0 +1,534 @@
+# AI Test Pilot
+
+Build a modern, simple frontend for my AI-powered QA Testing Agent.
+
+Project Context
+
+I am building an AI QA testing system that takes a Jira ticket and a website URL, analyzes the Jira requirements, generates BDD/Gherkin test scenarios, generates Playwright tests, executes them against the target website, analyzes failures, and can propose or perform repairs.
+
+The existing backend/pipeline already handles the core logic. The frontend should provide a clean user interface to interact with this pipeline and visualize its execution.
+
+The main workflow is:
+
+Jira Ticket → Jira Analysis → Gherkin Generation → Selector Grounding → Playwright Generation → Test Execution → Failure Analysis → Repair/Result
+
+Do NOT implement fake AI logic in the frontend. The frontend should be structured so that it can call my existing backend API.
+
+Design Goal
+
+Create a professional but simple QA testing dashboard.
+
+The application should feel like an AI testing agent rather than a generic form.
+
+Use a clean modern interface with:
+
+Minimal design
+
+Clear typography
+
+Cards
+
+Status indicators
+
+Progress visualization
+
+Good spacing
+
+Responsive layout
+
+Professional QA/developer-tool aesthetic
+
+Avoid excessive animations or unnecessary UI elements.
+
+SCREEN 1 — Start a Test
+
+Create a landing/start screen.
+
+Title:
+
+"QA Testing Agent"
+
+Subtitle:
+
+"Automatically generate, execute, and analyze Playwright tests from your Jira requirements."
+
+Main form:
+
+Jira Ticket
+
+Input:
+"Enter Jira ticket"
+Example:
+SCRUM-3
+
+Website URL
+
+Input:
+"Enter website URL"
+Example:
+https://teskerti.tn/category/spectacle
+
+Primary button:
+
+"Start Testing"
+
+The user should initially only need to provide:
+
+Jira ticket
+
+Website URL
+
+Do NOT ask for email/password at this stage.
+
+The agent should determine whether additional information is required.
+
+SCREEN 2 — Additional Information Required
+
+The backend may determine that the test requires information such as authentication credentials.
+
+When this happens, display a clear modal/card:
+
+"Additional information required"
+
+Example message:
+
+"This test requires authentication to access the requested functionality."
+
+Then dynamically display the fields requested by the backend.
+
+For example:
+
+Email
+[________________________]
+
+Password
+[________________________]
+
+The UI should be designed so that other information types can be added later, such as:
+
+API key
+
+Username
+
+Test data
+
+Environment variable
+
+Custom input
+
+Do not hard-code the frontend architecture around only email/password.
+
+The backend should be able to return something conceptually like:
+
+{
+"requiresInput": true,
+"fields": [
+{
+"name": "email",
+"label": "Email",
+"type": "email",
+"required": true
+},
+{
+"name": "password",
+"label": "Password",
+"type": "password",
+"required": true
+}
+]
+}
+
+Render these fields dynamically.
+
+Include:
+
+"Continue Testing"
+
+button.
+
+Never display passwords in execution logs or results.
+
+SCREEN 3 — Agent Execution
+
+After starting the test, navigate to an execution/results page.
+
+Display:
+
+Test Information
+
+Ticket:
+SCRUM-3
+
+Website:
+https://teskerti.tn/category/spectacle
+
+Status:
+Running
+
+Agent Pipeline
+
+Display the execution stages vertically or horizontally:
+
+Jira Analysis
+
+Acceptance Criteria Extraction
+
+Gherkin Generation
+
+Selector Verification
+
+Playwright Generation
+
+Test Execution
+
+Failure Analysis
+
+Repair
+
+Each stage should have a status:
+
+Waiting
+
+Running
+
+Completed
+
+Failed
+
+Skipped
+
+Use appropriate visual status indicators.
+
+Example:
+
+✓ Jira Analysis
+✓ Acceptance Criteria Extraction
+✓ Gherkin Generation
+✓ Selector Verification
+● Playwright Generation
+○ Test Execution
+○ Failure Analysis
+○ Repair
+
+The frontend should be prepared to receive real-time status updates from the backend later.
+
+For now, structure the code so the execution state can be updated from API responses.
+
+SCREEN 4 — Test Results
+
+When execution finishes, show a clear summary.
+
+Example:
+
+Test Results
+
+SCRUM-3
+
+Total Tests: 4
+
+Passed: 3
+
+Failed: 1
+
+Pass Rate: 75%
+
+Execution Time: 32.4s
+
+Then display each test:
+
+✓ Affichage des menus déroulants
+PASSED
+
+✓ Aucun résultat
+PASSED
+
+✓ Chargement de plus d'événements
+PASSED
+
+✗ Recherche d'événements par salle et par date
+FAILED
+
+Each test should be expandable.
+
+For failed tests show:
+
+Error message
+
+Failure category
+
+Failed Playwright step
+
+Selector involved if relevant
+
+Failure analysis
+
+Repair proposal/status
+
+Example:
+
+Failure category:
+"timeout"
+
+Error:
+"Timeout waiting for selector..."
+
+Agent analysis:
+"The expected element was not visible within the timeout."
+
+Repair:
+"Add visibility guard before interacting with the element."
+
+CODE VIEW
+
+Add a tab or expandable section:
+
+"Playwright Code"
+
+Display the generated Playwright code in a syntax-highlighted code editor/viewer.
+
+Include:
+
+"Copy Code"
+
+button.
+
+The code should come from the backend rather than being generated by the frontend.
+
+GHERKIN VIEW
+
+Add another tab:
+
+"Gherkin"
+
+Display the generated Gherkin feature.
+
+Example:
+
+Feature: Event search
+
+Scenario: Search events by room and date
+
+...
+
+The frontend should render the actual backend-generated content.
+
+API ARCHITECTURE
+
+Create a clean API service layer.
+
+Do not put API calls directly throughout React components.
+
+Create a centralized API client/service.
+
+The frontend should be designed around endpoints conceptually similar to:
+
+POST /api/test/start
+
+Request:
+
+{
+"ticket": "SCRUM-3",
+"websiteUrl": "https://teskerti.tn/category/spectacle"
+}
+
+Possible response:
+
+{
+"runId": "abc123",
+"requiresInput": true,
+"fields": [...]
+}
+
+Then:
+
+POST /api/test/{runId}/input
+
+Request:
+
+{
+"email": "...",
+"password": "..."
+}
+
+Then:
+
+GET /api/test/{runId}/status
+
+Returns the current pipeline status.
+
+Then:
+
+GET /api/test/{runId}/results
+
+Returns:
+
+test summary
+
+individual tests
+
+generated Gherkin
+
+generated Playwright code
+
+execution results
+
+failure analysis
+
+repair information
+
+These endpoint names are examples. Keep the API layer easy to modify because I will connect it to my existing backend.
+
+IMPORTANT ARCHITECTURE REQUIREMENT
+
+Separate the frontend into:
+
+UI components
+
+API/service layer
+
+types/interfaces
+
+state management
+
+pages/views
+
+Do not mix backend logic with UI components.
+
+Create reusable components such as:
+
+TicketForm
+
+WebsiteInput
+
+AdditionalInformationForm
+
+PipelineProgress
+
+PipelineStep
+
+TestSummary
+
+TestResultCard
+
+CodeViewer
+
+GherkinViewer
+
+FailureAnalysis
+
+RepairStatus
+
+USER EXPERIENCE
+
+The user journey should be:
+
+User enters Jira ticket.
+
+User enters website URL.
+
+User clicks "Start Testing".
+
+Agent analyzes the ticket.
+
+If additional information is required, the UI asks for it.
+
+User provides the information.
+
+Agent generates Gherkin.
+
+Agent generates Playwright.
+
+Agent executes the tests.
+
+Results appear in the dashboard.
+
+Failed tests show their analysis.
+
+If the repair agent is activated, show the repair proposal/result.
+
+User can inspect the generated Gherkin and Playwright code.
+
+The user should never need to interact with CLI commands.
+
+ERROR STATES
+
+Handle:
+
+Invalid Jira ticket
+
+Jira unavailable
+
+Invalid website URL
+
+Website unreachable
+
+Missing credentials
+
+Gherkin generation failure
+
+Playwright generation failure
+
+Test execution failure
+
+Backend unavailable
+
+Agent timeout
+
+Show understandable messages instead of raw technical errors whenever possible.
+
+Example:
+
+"Unable to access the website. Please verify the URL and try again."
+
+SECURITY
+
+Treat credentials as sensitive.
+
+Password fields must use type=password.
+
+Never display passwords in logs.
+
+Never display passwords in test results.
+
+Do not store credentials in localStorage.
+
+Do not hard-code credentials.
+
+The frontend should only send credentials to the backend through the appropriate API request.
+
+IMPORTANT
+
+Do not create a fake/demo-only frontend that pretends tests are running.
+
+Build the UI around real API integration points so I can connect it to my existing QA agent backend.
+
+If the backend endpoints are not yet available, create a clearly isolated mock API/service layer that can later be replaced with the real endpoints without rewriting the UI.
+
+The final application should look like a real AI QA testing product.
+
+The main value proposition should be immediately understandable:
+
+"Give me a Jira ticket + website → the AI agent generates, executes, analyzes, and repairs Playwright tests."
+
+This project was built with [Lovable](https://lovable.dev).
+
+**Live app**: https://gherkin-glyph.lovable.app
+
+## Build with Lovable
+
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ed4fc5bd-dde3-4c1b-82e8-8266eebde02f).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+```sh
+git clone <this-repository-url>
+cd <repository-name>
+npm i
+npm run dev
+```

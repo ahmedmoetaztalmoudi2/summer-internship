@@ -1,0 +1,299 @@
+{
+  "total": 4,
+  "passed": 4,
+  "failed": 0,
+  "details": [
+    {
+      "test": "Connexion avec un email non enregistré",
+      "status": "passed"
+    },
+    {
+      "test": "Connexion avec un mot de passe incorrect",
+      "status": "passed"
+    },
+    {
+      "test": "Tentative de connexion avec un email non enregistré",
+      "status": "passed"
+    },
+    {
+      "test": "Tentative de connexion avec un mot de passe incorrect",
+      "status": "passed"
+    }
+  ],
+  "raw": {
+    "config": {
+      "argv": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\melli\\QA_Testing\\backend\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "tests/generated",
+        "--reporter=json"
+      ],
+      "configFile": "C:\\Users\\melli\\QA_Testing\\backend\\playwright.config.ts",
+      "rootDir": "C:/Users/melli/QA_Testing/backend/tests/generated",
+      "failOnFlakyTests": false,
+      "forbidOnly": false,
+      "fullyParallel": false,
+      "globalSetup": null,
+      "globalTeardown": null,
+      "globalTimeout": 0,
+      "grep": {},
+      "grepInvert": null,
+      "maxFailures": 0,
+      "metadata": {
+        "actualWorkers": 4
+      },
+      "preserveOutput": "always",
+      "projects": [
+        {
+          "outputDir": "C:/Users/melli/QA_Testing/backend/test-results",
+          "repeatEach": 1,
+          "retries": 0,
+          "metadata": {
+            "actualWorkers": 4
+          },
+          "id": "chromium",
+          "name": "chromium",
+          "testDir": "C:/Users/melli/QA_Testing/backend/tests/generated",
+          "testIgnore": [],
+          "testMatch": [
+            "**/*.spec.ts"
+          ],
+          "timeout": 30000
+        }
+      ],
+      "quiet": false,
+      "reporter": [
+        [
+          "json"
+        ]
+      ],
+      "reportSlowTests": {
+        "max": 5,
+        "threshold": 300000
+      },
+      "shard": null,
+      "tags": [],
+      "updateSnapshots": "missing",
+      "updateSourceMethod": "patch",
+      "version": "1.62.1",
+      "workers": 4,
+      "webServer": null
+    },
+    "suites": [
+      {
+        "title": "connexion-avec-un-email-non-enregistr.spec.ts",
+        "file": "connexion-avec-un-email-non-enregistr.spec.ts",
+        "column": 0,
+        "line": 0,
+        "specs": [],
+        "suites": [
+          {
+            "title": "Connexion à la plateforme",
+            "file": "connexion-avec-un-email-non-enregistr.spec.ts",
+            "line": 3,
+            "column": 6,
+            "specs": [
+              {
+                "title": "Connexion avec un email non enregistré",
+                "ok": true,
+                "tags": [],
+                "tests": [
+                  {
+                    "timeout": 30000,
+                    "annotations": [],
+                    "expectedStatus": "passed",
+                    "projectId": "chromium",
+                    "projectName": "chromium",
+                    "results": [
+                      {
+                        "workerIndex": 0,
+                        "parallelIndex": 0,
+                        "status": "passed",
+                        "duration": 478,
+                        "errors": [],
+                        "stdout": [],
+                        "stderr": [],
+                        "retry": 0,
+                        "startTime": "2026-08-25T14:22:00.267Z",
+                        "annotations": [],
+                        "attachments": []
+                      }
+                    ],
+                    "status": "expected"
+                  }
+                ],
+                "id": "2b85158bf344dea77218-b64be67dcfef3530be7d",
+                "file": "connexion-avec-un-email-non-enregistr.spec.ts",
+                "line": 4,
+                "column": 7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+        "file": "connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+        "column": 0,
+        "line": 0,
+        "specs": [],
+        "suites": [
+          {
+            "title": "Connexion à la plateforme",
+            "file": "connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+            "line": 3,
+            "column": 6,
+            "specs": [
+              {
+                "title": "Connexion avec un mot de passe incorrect",
+                "ok": true,
+                "tags": [],
+                "tests": [
+                  {
+                    "timeout": 30000,
+                    "annotations": [],
+                    "expectedStatus": "passed",
+                    "projectId": "chromium",
+                    "projectName": "chromium",
+                    "results": [
+                      {
+                        "workerIndex": 1,
+                        "parallelIndex": 1,
+                        "status": "passed",
+                        "duration": 498,
+                        "errors": [],
+                        "stdout": [],
+                        "stderr": [],
+                        "retry": 0,
+                        "startTime": "2026-08-25T14:22:00.288Z",
+                        "annotations": [],
+                        "attachments": []
+                      }
+                    ],
+                    "status": "expected"
+                  }
+                ],
+                "id": "ec94872afdec2a769d4f-b376f07fec9e4192cbc3",
+                "file": "connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+                "line": 4,
+                "column": 7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "tentative-de-connexion-avec-un-email-non-enregistr.spec.ts",
+        "file": "tentative-de-connexion-avec-un-email-non-enregistr.spec.ts",
+        "column": 0,
+        "line": 0,
+        "specs": [],
+        "suites": [
+          {
+            "title": "Connexion à la plateforme",
+            "file": "tentative-de-connexion-avec-un-email-non-enregistr.spec.ts",
+            "line": 3,
+            "column": 6,
+            "specs": [
+              {
+                "title": "Tentative de connexion avec un email non enregistré",
+                "ok": true,
+                "tags": [],
+                "tests": [
+                  {
+                    "timeout": 30000,
+                    "annotations": [],
+                    "expectedStatus": "passed",
+                    "projectId": "chromium",
+                    "projectName": "chromium",
+                    "results": [
+                      {
+                        "workerIndex": 2,
+                        "parallelIndex": 2,
+                        "status": "passed",
+                        "duration": 396,
+                        "errors": [],
+                        "stdout": [],
+                        "stderr": [],
+                        "retry": 0,
+                        "startTime": "2026-08-25T14:22:00.263Z",
+                        "annotations": [],
+                        "attachments": []
+                      }
+                    ],
+                    "status": "expected"
+                  }
+                ],
+                "id": "fe36aef3d58c131466ab-b6c422d6a38eaf8a01e7",
+                "file": "tentative-de-connexion-avec-un-email-non-enregistr.spec.ts",
+                "line": 4,
+                "column": 7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "tentative-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+        "file": "tentative-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+        "column": 0,
+        "line": 0,
+        "specs": [],
+        "suites": [
+          {
+            "title": "Connexion à la plateforme",
+            "file": "tentative-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+            "line": 3,
+            "column": 6,
+            "specs": [
+              {
+                "title": "Tentative de connexion avec un mot de passe incorrect",
+                "ok": true,
+                "tags": [],
+                "tests": [
+                  {
+                    "timeout": 30000,
+                    "annotations": [],
+                    "expectedStatus": "passed",
+                    "projectId": "chromium",
+                    "projectName": "chromium",
+                    "results": [
+                      {
+                        "workerIndex": 3,
+                        "parallelIndex": 3,
+                        "status": "passed",
+                        "duration": 409,
+                        "errors": [],
+                        "stdout": [],
+                        "stderr": [],
+                        "retry": 0,
+                        "startTime": "2026-08-25T14:22:00.267Z",
+                        "annotations": [],
+                        "attachments": []
+                      }
+                    ],
+                    "status": "expected"
+                  }
+                ],
+                "id": "b960b56acb058a7a8d3f-8fcdf209edd03e2deb14",
+                "file": "tentative-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+                "line": 4,
+                "column": 7
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "stats": {
+      "startTime": "2026-08-25T14:21:59.560Z",
+      "duration": 2605.675,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  }
+}
