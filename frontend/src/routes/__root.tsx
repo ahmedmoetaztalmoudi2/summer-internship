@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "QA Testing Agent" },
+      { title: "Capgemini Engineering QA Testing Agent" },
       {
         name: "description",
         content:
           "Automatically generate, execute, and analyze Playwright tests from your Jira requirements.",
       },
-      { property: "og:title", content: "QA Testing Agent" },
+      { property: "og:title", content: "Capgemini Engineering QA Testing Agent" },
       {
         property: "og:description",
         content:

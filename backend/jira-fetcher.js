@@ -15,10 +15,11 @@ function getEnv(name) {
 
 /**
  * Builds the Base64 Basic Auth header value from Jira email + API token.
+ * @param {{ domain?: string; email?: string; apiToken?: string }} [overrides]
  */
-function getAuthHeader() {
-  const email = getEnv('JIRA_EMAIL');
-  const apiToken = getEnv('JIRA_API_TOKEN');
+function getAuthHeader(overrides) {
+  const email = overrides?.email || getEnv('JIRA_EMAIL');
+  const apiToken = overrides?.apiToken || getEnv('JIRA_API_TOKEN');
   const encoded = Buffer.from(`${email}:${apiToken}`).toString('base64');
   return `Basic ${encoded}`;
 }
@@ -26,15 +27,18 @@ function getAuthHeader() {
 /**
  * Sends an authenticated request to the Jira REST API v3.
  * Throws with the response body when the status is not OK.
+ * @param {string} path
+ * @param {object} [options]
+ * @param {{ domain?: string; email?: string; apiToken?: string }} [overrides]
  */
-async function jiraFetch(path, options = {}) {
-  const domain = getEnv('JIRA_DOMAIN');
+async function jiraFetch(path, options = {}, overrides) {
+  const domain = overrides?.domain || getEnv('JIRA_DOMAIN');
   const url = `https://${domain}.atlassian.net${path}`;
 
   const res = await fetch(url, {
     ...options,
     headers: {
-      Authorization: getAuthHeader(),
+      Authorization: getAuthHeader(overrides),
       Accept: 'application/json',
       'Content-Type': 'application/json',
       ...options.headers,
@@ -64,9 +68,11 @@ function mapIssue(issue) {
 
 /**
  * Fetches a single Jira issue by ticket key (e.g. "SCRUM-1").
+ * @param {string} ticketKey
+ * @param {{ domain?: string; email?: string; apiToken?: string }} [overrides]
  */
-async function getTicket(ticketKey) {
-  const data = await jiraFetch(`/rest/api/3/issue/${ticketKey}`);
+async function getTicket(ticketKey, overrides) {
+  const data = await jiraFetch(`/rest/api/3/issue/${ticketKey}`, {}, overrides);
   return mapIssue(data);
 }
 
@@ -75,8 +81,9 @@ async function getTicket(ticketKey) {
  * Uses pagination so it works even when you have more than one page of tickets.
  *
  * @param {string} [jql] - Optional JQL filter. Defaults to all project issues.
+ * @param {{ domain?: string; email?: string; apiToken?: string }} [overrides]
  */
-async function getAllTickets(jql = 'project IS NOT EMPTY ORDER BY key ASC') {
+async function getAllTickets(jql = 'project IS NOT EMPTY ORDER BY key ASC', overrides) {
   const tickets = [];
   let nextPageToken;
 
@@ -93,7 +100,7 @@ async function getAllTickets(jql = 'project IS NOT EMPTY ORDER BY key ASC') {
     const data = await jiraFetch('/rest/api/3/search/jql', {
       method: 'POST',
       body: JSON.stringify(body),
-    });
+    }, overrides);
 
     for (const issue of data.issues || []) {
       tickets.push(mapIssue(issue));

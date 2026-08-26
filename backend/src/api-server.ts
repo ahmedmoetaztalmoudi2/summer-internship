@@ -20,6 +20,7 @@ interface GherkinModule {
       provider?: string;
       capabilities?: string[];
       credentials?: Record<string, string>;
+      jiraOverrides?: { domain?: string; email?: string; apiToken?: string };
     }
   ): Promise<{
     ticketKey: string;
@@ -31,7 +32,7 @@ interface GherkinModule {
 }
 
 interface JiraModule {
-  getTicket(ticketKey: string): Promise<{ key: string; summary: string; description: string }>;
+  getTicket(ticketKey: string, overrides?: { domain?: string; email?: string; apiToken?: string }): Promise<{ key: string; summary: string; description: string }>;
   getAllTickets(jql?: string): Promise<Array<{ key: string; summary: string; description: string }>>;
 }
 
@@ -60,6 +61,7 @@ interface TestRun {
   }>;
   requiresInput: boolean;
   credentials?: Record<string, string>;
+  jiraOverrides?: { domain?: string; email?: string; apiToken?: string };
   gherkin?: string;
   playwrightCode?: string;
   results?: {
@@ -92,6 +94,48 @@ interface TestRun {
 
 const runs = new Map<string, TestRun>();
 
+function credentialFields() {
+  return [
+    { name: 'email', label: 'Email', type: 'email', required: false },
+    { name: 'password', label: 'Password', type: 'password', required: false },
+    {
+      name: 'extraCredentials',
+      label: 'Extra credentials',
+      type: 'textarea',
+      required: false,
+      placeholder: 'TOKEN=abc\nUSERNAME=tester',
+      description: 'Optional. Add one KEY=value credential per line.'
+    },
+  ];
+}
+
+function normalizeCredentials(values: Record<string, unknown>): Record<string, string> | undefined {
+  const credentials: Record<string, string> = {};
+
+  const add = (key: string, value: unknown) => {
+    if (typeof value !== 'string') return;
+    const trimmed = value.trim();
+    if (trimmed) credentials[key] = trimmed;
+  };
+
+  add('EMAIL', values.email ?? values.EMAIL);
+  add('PASSWORD', values.password ?? values.PASSWORD);
+
+  const extra = values.extraCredentials ?? values.EXTRA_CREDENTIALS;
+  if (typeof extra === 'string') {
+    for (const line of extra.split(/\r?\n/)) {
+      const separatorIndex = line.indexOf('=');
+      if (separatorIndex <= 0) continue;
+
+      const key = line.slice(0, separatorIndex).trim().toUpperCase();
+      const value = line.slice(separatorIndex + 1).trim();
+      if (key && value) credentials[key] = value;
+    }
+  }
+
+  return Object.keys(credentials).length > 0 ? credentials : undefined;
+}
+
 function generateRunId(): string {
   return Math.random().toString(36).slice(2, 10);
 }
@@ -123,7 +167,7 @@ function updateStage(runId: string, stageId: string, status: TestRun['stages'][0
 // POST /api/test/start
 app.post('/api/test/start', async (req, res) => {
   try {
-    const { ticket, websiteUrl } = req.body;
+    const { ticket, websiteUrl, jiraCredentials } = req.body;
 
     if (!ticket || !websiteUrl) {
       return res.status(400).json({
@@ -137,24 +181,29 @@ app.post('/api/test/start', async (req, res) => {
       runId,
       ticket: ticket.trim(),
       websiteUrl: websiteUrl.trim(),
-      status: 'pending',
+      status: 'awaiting_input',
       stages: createInitialStages(),
-      requiresInput: false,
+      requiresInput: true,
+      message: 'Does the application need credentials or other private values for these tests?',
     };
+
+    if (jiraCredentials && (jiraCredentials.domain || jiraCredentials.email || jiraCredentials.apiToken)) {
+      run.jiraOverrides = {
+        domain: jiraCredentials.domain?.trim() || undefined,
+        email: jiraCredentials.email?.trim() || undefined,
+        apiToken: jiraCredentials.apiToken?.trim() || undefined,
+      };
+    }
 
     runs.set(runId, run);
 
-    // Start pipeline asynchronously
-    startPipeline(runId).catch((error) => {
-      console.error(`Pipeline error for run ${runId}:`, error);
-      const targetRun = runs.get(runId);
-      if (targetRun) {
-        targetRun.status = 'failed';
-        targetRun.error = error instanceof Error ? error.message : String(error);
-      }
+    res.json({
+      runId,
+      status: 'awaiting_input',
+      requiresInput: true,
+      message: run.message,
+      fields: credentialFields(),
     });
-
-    res.json({ runId, status: 'pending' });
   } catch (error) {
     console.error('Error starting test:', error);
     res.status(500).json({
@@ -178,9 +227,12 @@ app.post('/api/test/:runId/input', async (req, res) => {
       });
     }
 
-    run.credentials = values;
+    run.credentials = normalizeCredentials(values);
     run.requiresInput = false;
     run.status = 'running';
+    run.message = run.credentials
+      ? `Using provided credential value(s): ${Object.keys(run.credentials).join(', ')}`
+      : 'Continuing without credentials.';
 
     // Resume pipeline
     resumePipeline(runId).catch((error) => {
@@ -226,10 +278,7 @@ app.get('/api/test/:runId/status', (req, res) => {
   };
 
   if (run.requiresInput) {
-    (response as any).fields = [
-      { name: 'email', label: 'Email', type: 'email', required: true },
-      { name: 'password', label: 'Password', type: 'password', required: true },
-    ];
+    (response as any).fields = credentialFields();
   }
 
   res.json(response);
@@ -295,10 +344,12 @@ async function executePipelineCore(runId: string) {
   const testsDir = path.resolve('tests/generated');
   const reportPath = path.resolve('report.json');
 
+  const jiraOverrides = run.jiraOverrides;
+
   // Stage 1: Jira Analysis
   updateStage(runId, 'jira_analysis', 'running');
   try {
-    const ticketData = await jiraModule.getTicket(run.ticket);
+    const ticketData = await jiraModule.getTicket(run.ticket, jiraOverrides);
     updateStage(runId, 'jira_analysis', 'completed', `Found: ${ticketData.summary}`);
   } catch (err) {
     console.warn(`Jira fetch warning for ${run.ticket}:`, err);
@@ -319,6 +370,7 @@ async function executePipelineCore(runId: string) {
     provider: process.env.LLM_PROVIDER || 'groq',
     capabilities: businessCapabilities,
     credentials: run.credentials,
+    jiraOverrides,
   });
 
   run.gherkin = featureResult.gherkinContent;

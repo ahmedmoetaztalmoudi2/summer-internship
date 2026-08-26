@@ -1,22 +1,27 @@
 {
-  "total": 4,
+  "total": 5,
   "passed": 4,
-  "failed": 0,
+  "failed": 1,
   "details": [
     {
-      "test": "Connexion avec un email non enregistré",
+      "test": "Connexion échouée avec un email non enregistré",
       "status": "passed"
     },
     {
-      "test": "Connexion avec un mot de passe incorrect",
+      "test": "Connexion échouée avec un mot de passe incorrect",
+      "status": "failed",
+      "error": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+    },
+    {
+      "test": "Connexion échouée avec un mot de passe incorrect",
       "status": "passed"
     },
     {
-      "test": "Tentative de connexion avec un email non enregistré",
+      "test": "Connexion réussie avec des identifiants valides",
       "status": "passed"
     },
     {
-      "test": "Tentative de connexion avec un mot de passe incorrect",
+      "test": "Connexion réussie avec des identifiants valides",
       "status": "passed"
     }
   ],
@@ -24,13 +29,13 @@
     "config": {
       "argv": [
         "C:\\Program Files\\nodejs\\node.exe",
-        "C:\\Users\\melli\\QA_Testing\\backend\\node_modules\\@playwright\\test\\cli.js",
+        "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\node_modules\\@playwright\\test\\cli.js",
         "test",
         "tests/generated",
         "--reporter=json"
       ],
-      "configFile": "C:\\Users\\melli\\QA_Testing\\backend\\playwright.config.ts",
-      "rootDir": "C:/Users/melli/QA_Testing/backend/tests/generated",
+      "configFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\playwright.config.ts",
+      "rootDir": "C:/Users/ahmed/OneDrive/Desktop/summer-internship---Capgemini-engineering/backend/tests/generated",
       "failOnFlakyTests": false,
       "forbidOnly": false,
       "fullyParallel": false,
@@ -41,20 +46,20 @@
       "grepInvert": null,
       "maxFailures": 0,
       "metadata": {
-        "actualWorkers": 4
+        "actualWorkers": 5
       },
       "preserveOutput": "always",
       "projects": [
         {
-          "outputDir": "C:/Users/melli/QA_Testing/backend/test-results",
+          "outputDir": "C:/Users/ahmed/OneDrive/Desktop/summer-internship---Capgemini-engineering/backend/test-results",
           "repeatEach": 1,
           "retries": 0,
           "metadata": {
-            "actualWorkers": 4
+            "actualWorkers": 5
           },
           "id": "chromium",
           "name": "chromium",
-          "testDir": "C:/Users/melli/QA_Testing/backend/tests/generated",
+          "testDir": "C:/Users/ahmed/OneDrive/Desktop/summer-internship---Capgemini-engineering/backend/tests/generated",
           "testIgnore": [],
           "testMatch": [
             "**/*.spec.ts"
@@ -77,25 +82,25 @@
       "updateSnapshots": "missing",
       "updateSourceMethod": "patch",
       "version": "1.62.1",
-      "workers": 4,
+      "workers": 8,
       "webServer": null
     },
     "suites": [
       {
-        "title": "connexion-avec-un-email-non-enregistr.spec.ts",
-        "file": "connexion-avec-un-email-non-enregistr.spec.ts",
+        "title": "connexion-chou-e-avec-un-email-non-enregistr.spec.ts",
+        "file": "connexion-chou-e-avec-un-email-non-enregistr.spec.ts",
         "column": 0,
         "line": 0,
         "specs": [],
         "suites": [
           {
-            "title": "Connexion à la plateforme",
-            "file": "connexion-avec-un-email-non-enregistr.spec.ts",
+            "title": "Authentification utilisateur",
+            "file": "connexion-chou-e-avec-un-email-non-enregistr.spec.ts",
             "line": 3,
             "column": 6,
             "specs": [
               {
-                "title": "Connexion avec un email non enregistré",
+                "title": "Connexion échouée avec un email non enregistré",
                 "ok": true,
                 "tags": [],
                 "tests": [
@@ -110,12 +115,12 @@
                         "workerIndex": 0,
                         "parallelIndex": 0,
                         "status": "passed",
-                        "duration": 478,
+                        "duration": 174,
                         "errors": [],
                         "stdout": [],
                         "stderr": [],
                         "retry": 0,
-                        "startTime": "2026-08-25T14:22:00.267Z",
+                        "startTime": "2026-08-26T00:26:30.405Z",
                         "annotations": [],
                         "attachments": []
                       }
@@ -123,8 +128,8 @@
                     "status": "expected"
                   }
                 ],
-                "id": "2b85158bf344dea77218-b64be67dcfef3530be7d",
-                "file": "connexion-avec-un-email-non-enregistr.spec.ts",
+                "id": "a10d61590f362e41da34-36660bf503bb372c889f",
+                "file": "connexion-chou-e-avec-un-email-non-enregistr.spec.ts",
                 "line": 4,
                 "column": 7
               }
@@ -133,21 +138,21 @@
         ]
       },
       {
-        "title": "connexion-avec-un-mot-de-passe-incorrect.spec.ts",
-        "file": "connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+        "title": "connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
+        "file": "connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
         "column": 0,
         "line": 0,
         "specs": [],
         "suites": [
           {
-            "title": "Connexion à la plateforme",
-            "file": "connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+            "title": "Authentification utilisateur",
+            "file": "connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
             "line": 3,
             "column": 6,
             "specs": [
               {
-                "title": "Connexion avec un mot de passe incorrect",
-                "ok": true,
+                "title": "Connexion échouée avec un mot de passe incorrect",
+                "ok": false,
                 "tags": [],
                 "tests": [
                   {
@@ -160,22 +165,44 @@
                       {
                         "workerIndex": 1,
                         "parallelIndex": 1,
-                        "status": "passed",
-                        "duration": 498,
-                        "errors": [],
+                        "status": "timedOut",
+                        "duration": 30274,
+                        "error": {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                          "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        "errors": [
+                          {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                          },
+                          {
+                            "location": {
+                              "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
+                              "column": 49,
+                              "line": 8
+                            },
+                            "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"email\"]')\u001b[22m\n\n\n   6 |     await page.goto(\"https://teskerti.tn/\");\n   7 |\n>  8 |     await page.locator(\"input[name=\\\"email\\\"]\").fill(\"mellitisaba@gmail.com\");\n     |                                                 ^\n   9 |     await page.locator(\"input[name=\\\"password\\\"]\").fill(\"123456789\");\n  10 |     await page.locator(\"button:has-text(\\\"Se connecter\\\"), button[type=\\\"submit\\\"]\").click();\n  11 |\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts:8:49"
+                          }
+                        ],
                         "stdout": [],
                         "stderr": [],
                         "retry": 0,
-                        "startTime": "2026-08-25T14:22:00.288Z",
+                        "startTime": "2026-08-26T00:26:30.429Z",
                         "annotations": [],
-                        "attachments": []
+                        "attachments": [
+                          {
+                            "name": "error-context",
+                            "contentType": "text/markdown",
+                            "path": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\connexion-chou-e-avec-un-m-672a6-c-un-mot-de-passe-incorrect-chromium\\error-context.md"
+                          }
+                        ]
                       }
                     ],
-                    "status": "expected"
+                    "status": "unexpected"
                   }
                 ],
-                "id": "ec94872afdec2a769d4f-b376f07fec9e4192cbc3",
-                "file": "connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+                "id": "861a68dd016fa82585dd-59899973ae1ecde6fe8a",
+                "file": "connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
                 "line": 4,
                 "column": 7
               }
@@ -184,20 +211,20 @@
         ]
       },
       {
-        "title": "tentative-de-connexion-avec-un-email-non-enregistr.spec.ts",
-        "file": "tentative-de-connexion-avec-un-email-non-enregistr.spec.ts",
+        "title": "connexion-chou-e-avec-un-mot-de-passe-incorrect.spec.ts",
+        "file": "connexion-chou-e-avec-un-mot-de-passe-incorrect.spec.ts",
         "column": 0,
         "line": 0,
         "specs": [],
         "suites": [
           {
-            "title": "Connexion à la plateforme",
-            "file": "tentative-de-connexion-avec-un-email-non-enregistr.spec.ts",
+            "title": "Authentification utilisateur",
+            "file": "connexion-chou-e-avec-un-mot-de-passe-incorrect.spec.ts",
             "line": 3,
             "column": 6,
             "specs": [
               {
-                "title": "Tentative de connexion avec un email non enregistré",
+                "title": "Connexion échouée avec un mot de passe incorrect",
                 "ok": true,
                 "tags": [],
                 "tests": [
@@ -212,12 +239,12 @@
                         "workerIndex": 2,
                         "parallelIndex": 2,
                         "status": "passed",
-                        "duration": 396,
+                        "duration": 178,
                         "errors": [],
                         "stdout": [],
                         "stderr": [],
                         "retry": 0,
-                        "startTime": "2026-08-25T14:22:00.263Z",
+                        "startTime": "2026-08-26T00:26:30.415Z",
                         "annotations": [],
                         "attachments": []
                       }
@@ -225,8 +252,8 @@
                     "status": "expected"
                   }
                 ],
-                "id": "fe36aef3d58c131466ab-b6c422d6a38eaf8a01e7",
-                "file": "tentative-de-connexion-avec-un-email-non-enregistr.spec.ts",
+                "id": "9b8919a58c73236b32f5-7f861027e8d706e55f8c",
+                "file": "connexion-chou-e-avec-un-mot-de-passe-incorrect.spec.ts",
                 "line": 4,
                 "column": 7
               }
@@ -235,20 +262,20 @@
         ]
       },
       {
-        "title": "tentative-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
-        "file": "tentative-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+        "title": "connexion-r-ussie-avec-des-identifiants-valides-2.spec.ts",
+        "file": "connexion-r-ussie-avec-des-identifiants-valides-2.spec.ts",
         "column": 0,
         "line": 0,
         "specs": [],
         "suites": [
           {
-            "title": "Connexion à la plateforme",
-            "file": "tentative-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+            "title": "Authentification utilisateur",
+            "file": "connexion-r-ussie-avec-des-identifiants-valides-2.spec.ts",
             "line": 3,
             "column": 6,
             "specs": [
               {
-                "title": "Tentative de connexion avec un mot de passe incorrect",
+                "title": "Connexion réussie avec des identifiants valides",
                 "ok": true,
                 "tags": [],
                 "tests": [
@@ -263,12 +290,12 @@
                         "workerIndex": 3,
                         "parallelIndex": 3,
                         "status": "passed",
-                        "duration": 409,
+                        "duration": 84,
                         "errors": [],
                         "stdout": [],
                         "stderr": [],
                         "retry": 0,
-                        "startTime": "2026-08-25T14:22:00.267Z",
+                        "startTime": "2026-08-26T00:26:30.423Z",
                         "annotations": [],
                         "attachments": []
                       }
@@ -276,8 +303,59 @@
                     "status": "expected"
                   }
                 ],
-                "id": "b960b56acb058a7a8d3f-8fcdf209edd03e2deb14",
-                "file": "tentative-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+                "id": "6899b5f34a815761c84a-f5383b6afa3af810ad22",
+                "file": "connexion-r-ussie-avec-des-identifiants-valides-2.spec.ts",
+                "line": 4,
+                "column": 7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
+        "file": "connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
+        "column": 0,
+        "line": 0,
+        "specs": [],
+        "suites": [
+          {
+            "title": "Authentification utilisateur",
+            "file": "connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
+            "line": 3,
+            "column": 6,
+            "specs": [
+              {
+                "title": "Connexion réussie avec des identifiants valides",
+                "ok": true,
+                "tags": [],
+                "tests": [
+                  {
+                    "timeout": 30000,
+                    "annotations": [],
+                    "expectedStatus": "passed",
+                    "projectId": "chromium",
+                    "projectName": "chromium",
+                    "results": [
+                      {
+                        "workerIndex": 4,
+                        "parallelIndex": 4,
+                        "status": "passed",
+                        "duration": 88,
+                        "errors": [],
+                        "stdout": [],
+                        "stderr": [],
+                        "retry": 0,
+                        "startTime": "2026-08-26T00:26:30.429Z",
+                        "annotations": [],
+                        "attachments": []
+                      }
+                    ],
+                    "status": "expected"
+                  }
+                ],
+                "id": "b05b5d3c90434b6eca76-c5288d1f5d0f5c2f2d29",
+                "file": "connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
                 "line": 4,
                 "column": 7
               }
@@ -288,11 +366,11 @@
     ],
     "errors": [],
     "stats": {
-      "startTime": "2026-08-25T14:21:59.560Z",
-      "duration": 2605.675,
+      "startTime": "2026-08-26T00:26:29.633Z",
+      "duration": 31786.633,
       "expected": 4,
       "skipped": 0,
-      "unexpected": 0,
+      "unexpected": 1,
       "flaky": 0
     }
   }

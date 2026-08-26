@@ -433,8 +433,9 @@ function validateGherkinContent(content) {
 
 async function generateAndSaveFeature(ticketKey, outputDir = './features', options = {}) {
   const provider = getLlmProvider(options);
+  const jiraOverrides = options.jiraOverrides;
   console.log(`[Step 3] Fetching ticket ${ticketKey} from Jira...`);
-  const ticket = await getTicket(ticketKey);
+  const ticket = await getTicket(ticketKey, jiraOverrides);
 
   if (provider === 'mock') {
     console.log(`[Step 3] Generating mock Gherkin locally for ${ticketKey}...`);

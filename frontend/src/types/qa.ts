@@ -60,6 +60,7 @@ export interface RequiredInput {
 export interface StartTestRequest {
   ticket: string;
   websiteUrl: string;
+  jiraCredentials?: { domain?: string; email?: string; apiToken?: string } | undefined;
 }
 
 export interface StartTestResponse {

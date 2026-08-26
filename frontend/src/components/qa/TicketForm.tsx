@@ -28,7 +28,7 @@ export function TicketForm({ submitting, onStart }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 rounded-xl bg-secondary/60 p-6 ring-1 ring-foreground/5 sm:p-8"
+      className="space-y-6 rounded-xl bg-surface p-6 shadow-sm ring-1 ring-brand/15 sm:p-8"
     >
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="space-y-2">
@@ -40,7 +40,7 @@ export function TicketForm({ submitting, onStart }: Props) {
             value={ticket}
             onChange={(e) => setTicket(e.target.value)}
             placeholder="Enter Jira ticket (e.g., SCRUM-3)"
-            className="w-full rounded-lg bg-surface px-4 py-2.5 font-mono text-sm ring-1 ring-foreground/10 transition-all placeholder:text-muted-foreground focus:ring-2 focus:ring-brand/30 focus:outline-none"
+            className="w-full rounded-lg bg-secondary px-4 py-2.5 font-mono text-sm ring-1 ring-foreground/10 transition-all placeholder:text-muted-foreground focus:ring-2 focus:ring-brand/30 focus:outline-none"
           />
         </div>
         <WebsiteInput value={websiteUrl} onChange={setWebsiteUrl} />
@@ -52,9 +52,9 @@ export function TicketForm({ submitting, onStart }: Props) {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex items-center justify-center rounded-lg bg-brand px-6 py-2.5 text-sm font-medium text-brand-foreground transition-all hover:bg-brand-muted disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center rounded-lg bg-brand px-6 py-2.5 text-sm font-medium text-brand-foreground shadow-sm transition-all hover:bg-brand-muted disabled:opacity-60 sm:w-auto"
         >
-          {submitting ? "Starting…" : "Start Testing"}
+          {submitting ? "Starting\u2026" : "Start Testing"}
         </button>
       </div>
     </form>

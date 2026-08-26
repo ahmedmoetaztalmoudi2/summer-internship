@@ -26,6 +26,19 @@ const runs = new Map<string, MockRun>();
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const credentialFields = [
+  { name: "email", label: "Email", type: "email" as const, required: false },
+  { name: "password", label: "Password", type: "password" as const, required: false },
+  {
+    name: "extraCredentials",
+    label: "Extra credentials",
+    type: "textarea" as const,
+    required: false,
+    placeholder: "TOKEN=abc\nUSERNAME=tester",
+    description: "Optional. Add one KEY=value credential per line.",
+  },
+];
+
 export const mockQaApi = {
   async startTest(payload: StartTestRequest): Promise<StartTestResponse> {
     await delay(700);
@@ -47,11 +60,8 @@ export const mockQaApi = {
       runId,
       status: "awaiting_input",
       requiresInput: true,
-      message: "This test requires authentication to access the requested functionality.",
-      fields: [
-        { name: "email", label: "Email", type: "email", required: true },
-        { name: "password", label: "Password", type: "password", required: true },
-      ],
+      message: "Does the application need credentials or other private values for these tests?",
+      fields: credentialFields,
     };
   },
 
@@ -76,11 +86,8 @@ export const mockQaApi = {
         status: "awaiting_input",
         stages: createInitialStages(),
         requiresInput: true,
-        message: "This test requires authentication to access the requested functionality.",
-        fields: [
-          { name: "email", label: "Email", type: "email", required: true },
-          { name: "password", label: "Password", type: "password", required: true },
-        ],
+        message: "Does the application need credentials or other private values for these tests?",
+        fields: credentialFields,
       };
     }
 
@@ -143,7 +150,8 @@ export const mockQaApi = {
           },
           repair: {
             status: "proposed",
-            proposal: "Add a visibility guard and scroll into view before interacting with the element.",
+            proposal:
+              "Add a visibility guard and scroll into view before interacting with the element.",
           },
         },
       ],

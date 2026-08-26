@@ -7,6 +7,7 @@ import { TestSummary } from "@/components/qa/TestSummary";
 import { TestResultCard } from "@/components/qa/TestResultCard";
 import { CodeViewer } from "@/components/qa/CodeViewer";
 import { GherkinViewer } from "@/components/qa/GherkinViewer";
+import { CapgeminiEngineeringLogo } from "@/components/qa/CapgeminiEngineeringLogo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/run/$runId")({
@@ -35,9 +36,9 @@ function RunPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <header className="border-b border-border px-6 py-5">
+      <header className="border-b border-border bg-surface px-6 py-4">
         <div className="mx-auto flex max-w-4xl items-center justify-between gap-4">
-          <span className="text-sm font-semibold tracking-tight">QA Testing Agent</span>
+          <CapgeminiEngineeringLogo compact />
           <Link to="/" className="text-sm text-muted-foreground hover:text-brand">
             New test
           </Link>
