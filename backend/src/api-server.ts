@@ -395,11 +395,14 @@ async function executePipelineCore(runId: string) {
 
   if (generatedFiles.length > 0) {
     const fs = await import('node:fs');
-    const firstFile = generatedFiles[0];
-    const filePath = typeof firstFile === 'string' ? firstFile : firstFile.filePath;
-    if (fs.existsSync(filePath)) {
-      run.playwrightCode = fs.readFileSync(filePath, 'utf-8');
+    const parts: string[] = [];
+    for (const file of generatedFiles) {
+      const filePath = typeof file === 'string' ? file : file.filePath;
+      if (fs.existsSync(filePath)) {
+        parts.push(fs.readFileSync(filePath, 'utf-8'));
+      }
     }
+    run.playwrightCode = parts.join('\n\n');
   }
   updateStage(runId, 'playwright_generation', 'completed', `${generatedFiles.length} test file(s) generated`);
 

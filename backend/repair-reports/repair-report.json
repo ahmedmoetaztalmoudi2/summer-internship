@@ -1,42 +1,8 @@
 {
-  "analyzedAt": "2026-08-26T00:27:01.581Z",
-  "total": 1,
-  "repairable": 1,
+  "analyzedAt": "2026-08-28T09:13:02.194Z",
+  "total": 0,
+  "repairable": 0,
   "manual": 0,
-  "plans": [
-    {
-      "scenario": "Connexion échouée avec un mot de passe incorrect",
-      "failureType": "timeout",
-      "rootCause": "timing_issue",
-      "repairType": "add_wait_strategy",
-      "target": "Wait strategy (line 8)",
-      "currentValue": "input[name=\"email\"]",
-      "confidence": 0.59,
-      "repairable": true,
-      "requiresHumanReview": false,
-      "actions": [
-        {
-          "action": "Precede the action with an explicit expectation: await expect(page.locator(\"input[name=\"email\"]\")).toBeVisible({ timeout: 15000 });",
-          "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
-          "line": 8
-        },
-        {
-          "action": "Prefer response-driven waits (waitForResponse) over bare waits for AJAX content.",
-          "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
-          "line": 8
-        },
-        {
-          "action": "Raise the action timeout from the default instead of relying on the test-level timeout.",
-          "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
-          "line": 8
-        }
-      ],
-      "explanation": [
-        "The wait timed out but the error gives no proof the element is missing.",
-        "The element likely appears later than the default wait allows, so a targeted wait strategy replaces the guesswork."
-      ],
-      "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts"
-    }
-  ],
+  "plans": [],
   "summaryFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-reports\\repair-report.json"
 }

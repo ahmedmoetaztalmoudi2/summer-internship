@@ -1,52 +1,22 @@
-Feature: Authentification utilisateur
+Fonctionnalité: Authentification utilisateur
 
-      Background:
-        Etant donné que l'utilisateur est sur la page de connexion
+     Contexte:
+       Étant donné que l'utilisateur est sur la page de connexion
 
-      Scenario: Connexion réussie avec des identifiants valides
-        Quand l'utilisateur saisit "mellitisaba@gmail.com" dans le champ email
-        Et l'utilisateur saisit "123456789" dans le champ mot de passe
-        Et l'utilisateur clique sur "Se connecter"
-        Alors l'utilisateur doit être redirigé vers la page d'accueil
+     Scénario: Connexion réussie avec des identifiants valides
+       Étant donné que l'utilisateur saisit "mellitisabaa@gmail.com" dans le champ email
+       Et que l'utilisateur saisit "123456789" dans le champ mot de passe
+       Quand l'utilisateur clique sur le bouton Se connecter
+       Alors l'utilisateur est redirigé vers la page d'accueil
 
-      Scenario: Connexion échouée avec un mot de passe incorrect
-        Quand l'utilisateur saisit "mellitisaba@gmail.com" dans le champ email
-        Et l'utilisateur saisit "MotDePasseIncorrect" dans le champ mot de passe
-        Et l'utilisateur clique sur "Se connecter"
-        Alors le message d'erreur "Nom d'utilisateur ou mot de passe erroné !" doit s'afficher
+     Scénario: Connexion échouée avec un mot de passe incorrect
+       Étant donné que l'utilisateur saisit "mellitisabaa@gmail.com" dans le champ email
+       Et que l'utilisateur saisit "MotDePasseIncorrect" dans le champ mot de passe
+       Quand l'utilisateur clique sur le bouton Se connecter
+       Alors le message d'erreur "Nom d'utilisateur ou mot de passe erroné !" doit s'afficher
 
-      Scenario: Connexion échouée avec un email non enregistré
-        Quand l'utilisateur saisit "email.non.existant@example.com" dans le champ email
-        Et l'utilisateur saisit "N'importeQuelMotDePasse" dans le champ mot de passe
-        Et l'utilisateur clique sur "Se connecter"
-        Alors le message d'erreur "Nom d'utilisateur ou mot de passe erroné !" doit s'afficher
-
-    *Check:* Looks good. Matches all rules.
-
-    *Final Polish:* Ensure indentation is standard (2 spaces). Ensure no markdown blocks.
-
-    *Result:*
-    Feature: Authentification utilisateur
-
-      Background:
-        Etant donné que l'utilisateur est sur la page de connexion
-
-      Scenario: Connexion réussie avec des identifiants valides
-        Quand l'utilisateur saisit "mellitisaba@gmail.com" dans le champ email
-        Et l'utilisateur saisit "123456789" dans le champ mot de passe
-        Et l'utilisateur clique sur "Se connecter"
-        Alors l'utilisateur doit être redirigé vers la page d'accueil
-
-      Scenario: Connexion échouée avec un mot de passe incorrect
-        Quand l'utilisateur saisit "mellitisaba@gmail.com" dans le champ email
-        Et l'utilisateur saisit "MotDePasseIncorrect" dans le champ mot de passe
-        Et l'utilisateur clique sur "Se connecter"
-        Alors le message d'erreur "Nom d'utilisateur ou mot de passe erroné !" doit s'afficher
-
-      Scenario: Connexion échouée avec un email non enregistré
-        Quand l'utilisateur saisit "email.non.existant@example.com" dans le champ email
-        Et l'utilisateur saisit "N'importeQuelMotDePasse" dans le champ mot de passe
-        Et l'utilisateur clique sur "Se connecter"
-        Alors le message d'erreur "Nom d'utilisateur ou mot de passe erroné !" doit s'afficher
-
-    *Wait, one detail:* The prompt says "Output raw Gherkin only.
+     Scénario: Connexion échouée avec un email non enregistré
+       Étant donné que l'utilisateur saisit "nonexistant@test.com" dans le champ email
+       Et que l'utilisateur saisit "n'importe_quel_mot_de_passe" dans le champ mot de passe
+       Quand l'utilisateur clique sur le bouton Se connecter
+       Alors le message d'erreur "Nom d'utilisateur ou mot de passe erroné !" doit s'afficher
