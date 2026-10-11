@@ -1,0 +1,60 @@
+{
+  "scenario": "Affichage du prix du billet",
+  "status": "failed",
+  "failureType": "strict_mode_violation",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' })",
+  "reasoning": [
+    "Failure classified as \"strict_mode_violation\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /strict mode violation/i.",
+    "Failing locator: getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' })",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') | Error: expect(locator).toBeVisible() failed | Locator: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') | Expected: visible | Error: strict mode violation: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') resolved to 19 elements: | 1) <span class=\"price\">…</span> aka getByRole('link', { name: 'Carthage yghani I Théâtre' }) | 2) <span class=\"price\">…</span> aka getByRole('link', { name: 'ocheg el mahfel - carthage' }) | 3) <span class=\"price\">…</span> aka getByRole('link', { name: 'YARA I Théâtre Antique de' }) | 4) <span class=\"price\">…</span> aka getByRole('link', { name: 'Young RZ - Sfax I Théatre' }) | 5) <span class=\"price\">…</span> aka getByRole('link', { name: 'El mahfel jerbi - Sousse I TH' }) | 6) <span class=\"price\">…</span> aka getByRole('link', { name: 'Ghanou maana I Amphithéâtre' }) | 7) <span class=\"price\">…</span> aka getByRole('link', { name: 'NORDO - Marsa I Stade' }) | 8) <span class=\"price\">…</span> aka getByRole('link', { name: 'Nordo - Live in game art park' }) | 9) <span class=\"price\">…</span> aka getByRole('link', { name: 'Zdeff live concert I flō' }) | 10) <span class=\"price\">…</span> aka getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' }) | ... | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts:8:87 | Error: expect(locator).toBeVisible() failed | Locator: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') | Expected: visible | Error: strict mode violation: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') resolved to 19 elements: | 1) <span class=\"price\">…</span> aka getByRole('link', { name: 'Carthage yghani I Théâtre' }) | 2) <span class=\"price\">…</span> aka getByRole('link', { name: 'ocheg el mahfel - carthage' }) | 3) <span class=\"price\">…</span> aka getByRole('link', { name: 'YARA I Théâtre Antique de' }) | 4) <span class=\"price\">…</span> aka getByRole('link', { name: 'Young RZ - Sfax I Théatre' }) | 5) <span class=\"price\">…</span> aka getByRole('link', { name: 'El mahfel jerbi - Sousse I TH' }) | 6) <span class=\"price\">…</span> aka getByRole('link', { name: 'Ghanou maana I Amphithéâtre' }) | 7) <span class=\"price\">…</span> aka getByRole('link', { name: 'NORDO - Marsa I Stade' }) | 8) <span class=\"price\">…</span> aka getByRole('link', { name: 'Nordo - Live in game art park' }) | 9) <span class=\"price\">…</span> aka getByRole('link', { name: 'Zdeff live concert I flō' }) | 10) <span class=\"price\">…</span> aka getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' }) | ... | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') | 6 |     // TODO: Navigate to search results page | 7 |     // TODO: Navigate to event details page | >  8 |     await expect(page.locator(\".ticket-price, .price, [data-testid='ticket-price']\")).toBeVisible(); | |                                                                                       ^ | 9 |   }); | 10 | }); | 11 | | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts:8:87",
+    "Recommended action: The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' })"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']')\nExpected: visible\nError: strict mode violation: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') resolved to 19 elements:\n    1) <span class=\"price\">…</span> aka getByRole('link', { name: 'Carthage yghani I Théâtre' })\n    2) <span class=\"price\">…</span> aka getByRole('link', { name: 'ocheg el mahfel - carthage' })\n    3) <span class=\"price\">…</span> aka getByRole('link', { name: 'YARA I Théâtre Antique de' })\n    4) <span class=\"price\">…</span> aka getByRole('link', { name: 'Young RZ - Sfax I Théatre' })\n    5) <span class=\"price\">…</span> aka getByRole('link', { name: 'El mahfel jerbi - Sousse I TH' })\n    6) <span class=\"price\">…</span> aka getByRole('link', { name: 'Ghanou maana I Amphithéâtre' })\n    7) <span class=\"price\">…</span> aka getByRole('link', { name: 'NORDO - Marsa I Stade' })\n    8) <span class=\"price\">…</span> aka getByRole('link', { name: 'Nordo - Live in game art park' })\n    9) <span class=\"price\">…</span> aka getByRole('link', { name: 'Zdeff live concert I flō' })\n    10) <span class=\"price\">…</span> aka getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' })\n    ...\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']')\n\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']')\nExpected: visible\nError: strict mode violation: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']') resolved to 19 elements:\n    1) <span class=\"price\">…</span> aka getByRole('link', { name: 'Carthage yghani I Théâtre' })\n    2) <span class=\"price\">…</span> aka getByRole('link', { name: 'ocheg el mahfel - carthage' })\n    3) <span class=\"price\">…</span> aka getByRole('link', { name: 'YARA I Théâtre Antique de' })\n    4) <span class=\"price\">…</span> aka getByRole('link', { name: 'Young RZ - Sfax I Théatre' })\n    5) <span class=\"price\">…</span> aka getByRole('link', { name: 'El mahfel jerbi - Sousse I TH' })\n    6) <span class=\"price\">…</span> aka getByRole('link', { name: 'Ghanou maana I Amphithéâtre' })\n    7) <span class=\"price\">…</span> aka getByRole('link', { name: 'NORDO - Marsa I Stade' })\n    8) <span class=\"price\">…</span> aka getByRole('link', { name: 'Nordo - Live in game art park' })\n    9) <span class=\"price\">…</span> aka getByRole('link', { name: 'Zdeff li"
+    },
+    {
+      "source": "test_source",
+      "content": "    // TODO: Navigate to search results page\n    // TODO: Navigate to event details page\n    await expect(page.locator(\".ticket-price, .price, [data-testid='ticket-price']\")).toBeVisible();\n  });\n});"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-du-prix-du-bille-37e5e-Affichage-du-prix-du-billet-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts",
+    "column": 87,
+    "line": 8
+  },
+  "diagnostics": {
+    "failingLocator": "getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' })",
+    "locatorLines": [
+      "waiting for locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']')",
+      "Locator: locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']')",
+      "locator('.ticket-price, .price, [data-testid=\\'ticket-price\\']')",
+      "getByRole('link', { name: 'Carthage yghani I Théâtre' })",
+      "getByRole('link', { name: 'ocheg el mahfel - carthage' })",
+      "getByRole('link', { name: 'YARA I Théâtre Antique de' })",
+      "getByRole('link', { name: 'Young RZ - Sfax I Théatre' })",
+      "getByRole('link', { name: 'El mahfel jerbi - Sousse I TH' })",
+      "getByRole('link', { name: 'Ghanou maana I Amphithéâtre' })",
+      "getByRole('link', { name: 'NORDO - Marsa I Stade' })",
+      "getByRole('link', { name: 'Nordo - Live in game art park' })",
+      "getByRole('link', { name: 'Zdeff live concert I flō' })",
+      "getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' })"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-30T23:34:01.942Z"
+}

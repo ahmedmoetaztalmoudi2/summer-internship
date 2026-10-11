@@ -1,0 +1,19 @@
+{
+  "scenario": "Ouverture de la fiche détaillée depuis une carte d'événement",
+  "failureType": "timeout",
+  "repairType": "add_wait_strategy",
+  "before": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Ouverture de la fiche détaillée depuis une carte d'événement\", async ({ page }) => {\n       // Given: l'utilisateur est sur la page de résultats de recherche\n       await page.goto(\"https://teskerti.tn\");\n\n       // When: l'utilisateur clique sur une carte d'événement\n       // TODO: No known selector for event card. Using best-effort locator.\n       await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click();\n\n       // Then: la fiche détaillée de l'événement doit s'ouvrir\n       // TODO: No known selector for event detail page. Using best-effort locator.\n       await expect(page.locator(\".event-detail, #event-details, [data-testid='event-detail']\")).toBeVisible();\n     });\n   });\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Ouverture de la fiche détaillée depuis une carte d'événement\", async ({ page }) => {\n       test.setTimeout(60000);\n       // Given: l'utilisateur est sur la page de résultats de recherche\n       await page.goto(\"https://teskerti.tn\");\n\n       // When: l'utilisateur clique sur une carte d'événement\n       // TODO: No known selector for event card. Using best-effort locator.\n       await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click();\n\n       // Then: la fiche détaillée de l'événement doit s'ouvrir\n       // TODO: No known selector for event detail page. Using best-effort locator.\n       await expect(page.locator(\".event-detail, #event-details, [data-testid='event-detail']\")).toBeVisible();\n     });\n   });\n",
+  "attempt": 2,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts",
+  "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\ouverture-de-la-fiche-detaillee-depuis-une-carte-d-evenement\\original.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts",
+    "column": 91,
+    "line": 10
+  },
+  "appliedAt": "2026-08-30T23:36:05.743Z",
+  "durationMs": 60046,
+  "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+}

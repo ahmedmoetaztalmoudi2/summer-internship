@@ -1,0 +1,53 @@
+{
+  "scenario": "Affichage des détails des événements",
+  "status": "failed",
+  "failureType": "strict_mode_violation",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: a.btn_search:has-text(\"Voir Plus\")",
+  "reasoning": [
+    "Failure classified as \"strict_mode_violation\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /strict mode violation/i.",
+    "Failing locator: a.btn_search:has-text(\"Voir Plus\")",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./.a_voirProgramme] appear in the failing locator.",
+    "Playwright call log: - waiting for locator('a.btn_search:has-text(\"Voir Plus\")') | Error: locator.click: Error: strict mode violation: locator('a.btn_search:has-text(\"Voir Plus\")') resolved to 2 elements: | 1) <a class=\"btn_search\" href=\"https://teskerti.tn/category/carthage-off\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).first() | 2) <a class=\"btn_search\" href=\"https://teskerti.tn/category/spectacle\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).nth(1) | Call log: | - waiting for locator('a.btn_search:has-text(\"Voir Plus\")') | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements.spec.ts:9:67 | Error: locator.click: Error: strict mode violation: locator('a.btn_search:has-text(\"Voir Plus\")') resolved to 2 elements: | 1) <a class=\"btn_search\" href=\"https://teskerti.tn/category/carthage-off\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).first() | 2) <a class=\"btn_search\" href=\"https://teskerti.tn/category/spectacle\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).nth(1) | Call log: | - waiting for locator('a.btn_search:has-text(\"Voir Plus\")') | 7 | | 8 |        // Given: l'utilisateur est sur la page des événements du programme | >  9 |        await page.locator(\"a.btn_search:has-text(\\\"Voir Plus\\\")\").click(); | |                                                                   ^ | 10 | | 11 |        // Then: les événements doivent être affichés avec leur salle, leur prix en TND et leur date | 12 |        await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible(); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements.spec.ts:9:67",
+    "Recommended action: The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: a.btn_search:has-text(\"Voir Plus\")"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: locator.click: Error: strict mode violation: locator('a.btn_search:has-text(\"Voir Plus\")') resolved to 2 elements:\n    1) <a class=\"btn_search\" href=\"https://teskerti.tn/category/carthage-off\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).first()\n    2) <a class=\"btn_search\" href=\"https://teskerti.tn/category/spectacle\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).nth(1)\n\nCall log:\n  - waiting for locator('a.btn_search:has-text(\"Voir Plus\")')\n\nError: locator.click: Error: strict mode violation: locator('a.btn_search:has-text(\"Voir Plus\")') resolved to 2 elements:\n    1) <a class=\"btn_search\" href=\"https://teskerti.tn/category/carthage-off\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).first()\n    2) <a class=\"btn_search\" href=\"https://teskerti.tn/category/spectacle\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).nth(1)\n\nCall log:\n  - waiting for locator('a.btn_search:has-text(\"Voir Plus\")')\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements.spec.ts:9:67\nError: locator.click: Error: strict mode violation: locator('a.btn_search:has-text(\"Voir Plus\")') resolved to 2 elements:\n    1) <a class=\"btn_search\" href=\"https://teskerti.tn/category/carthage-off\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).first()\n    2) <a class=\"btn_search\" href=\"https://teskerti.tn/category/spectacle\">…</a> aka getByRole('link', { name: 'Voir Plus ' }).nth(1)\n\nCall log:\n  - waiting for locator('a.btn_search:has-text(\"Voir Plus\")')\n\n\n   7 |\n   8 |        // Given: l'utilisateur est sur la page des événements du programme\n>  9 |        await page.locator(\"a.btn_search:has-text(\\\"Voir Plus\\\")\").click();\n     |                                                                   ^\n  10 |\n  11 |        // Then: les événements doivent être affichés avec leur salle, leur prix en TND et leur date\n  12 |        await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements.spec.ts:9:67"
+    },
+    {
+      "source": "test_source",
+      "content": "\n       // Given: l'utilisateur est sur la page des événements du programme\n       await page.locator(\"a.btn_search:has-text(\\\"Voir Plus\\\")\").click();\n\n       // Then: les événements doivent être affichés avec leur salle, leur prix en TND et leur date"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-des-d-tails-des--fc685--des-détails-des-événements-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: locator.click: Error: strict mode violation: locator('a.btn_search:has-text(\"Voir Plus\")') resolved to 2 elements:",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements.spec.ts",
+    "column": 67,
+    "line": 9
+  },
+  "diagnostics": {
+    "failingLocator": "a.btn_search:has-text(\"Voir Plus\")",
+    "locatorLines": [
+      "waiting for locator('a.btn_search:has-text(\"Voir Plus\")')",
+      "locator('a.btn_search:has-text(\"Voir Plus\")')",
+      "getByRole('link', { name: 'Voir Plus ' }).first()",
+      "getByRole('link', { name: 'Voir Plus ' }).nth(1)"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./.a_voirProgramme"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-30T21:49:13.968Z"
+}

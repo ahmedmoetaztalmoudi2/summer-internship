@@ -1,0 +1,27 @@
+{
+  "scenario": "Vérification de la présence du bouton dans la section héro",
+  "failureType": "visibility_issue",
+  "rootCause": "bad_selector",
+  "repairType": "add_visibility_guard",
+  "target": "Visibility (line 11)",
+  "currentValue": "getByRole(\"button\", { name: \"Réservez vos billets\" })).toBeVisible()",
+  "confidence": 0.69,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Assert visibility of an actionable container/row instead of the hidden element.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-pr-sence-du-bouton-dans-la-section-h-ro.spec.ts",
+      "line": 11
+    },
+    {
+      "action": "Scroll the element into view (scrollIntoViewIfNeeded) before interacting.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-pr-sence-du-bouton-dans-la-section-h-ro.spec.ts",
+      "line": 11
+    }
+  ],
+  "explanation": [
+    "The element is present but hidden; the assertion/interaction targets a non-actionable element."
+  ],
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-pr-sence-du-bouton-dans-la-section-h-ro.spec.ts"
+}

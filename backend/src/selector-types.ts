@@ -98,6 +98,9 @@ export interface PageElementRecord {
   label?: string;
   options?: SelectOptionRecord[];
   note?: string;
+  /** Element is hidden until scrolled into view (e.g. a scroll-reveal animation).
+   *  Tests must scroll it into view before asserting visibility / interacting. */
+  needsScroll?: boolean;
 }
 
 export type PageSelectorMapEntry = string | PageElementRecord;

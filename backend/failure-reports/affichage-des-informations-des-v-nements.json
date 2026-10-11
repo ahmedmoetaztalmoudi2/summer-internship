@@ -1,0 +1,52 @@
+{
+  "scenario": "Affichage des informations des événements",
+  "status": "failed",
+  "failureType": "application_bug",
+  "confidence": 0.65,
+  "rootCause": "application_behavior",
+  "repairRecommendation": "The action completed but the application did not produce the expected result (content, text, URL or count mismatch on a present element). Validate the flow manually: if a real user gets the expected result, the assertion/test data is wrong; otherwise this is a genuine application defect worth reporting.",
+  "reasoning": [
+    "Failure classified as \"application_bug\" with confidence 0.65.",
+    "Root cause dimension: application_behavior — the application did not produce the expected result after a successful interaction.",
+    "Matched error signature: /expect\\([^\\n]*\\)\\.[a-zA-Z]+\\([^\\n]*\\) failed/i.",
+    "Failing locator: div.owl-item.active div.tour_container",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./.div_eventCard] appear in the failing locator.",
+    "Playwright call log: - Expect \"toContainText\" with timeout 5000ms | - waiting for locator('div.owl-item.active div.tour_container').first() | 9 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \" | Théâtre Antique de Carthage | Haifa Wehbe | 03 Septembre 2026 à 22:00 | \" | 4 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \" | Théâtre Antique de Carthage | ADAM | 04 Septembre 2026 à 22:00 | \" | Error: expect(locator).toContainText(expected) failed | Locator: locator('div.owl-item.active div.tour_container').first() | Timeout: 5000ms | Expected pattern: /TND/ | Received string:  \"········································································································································ | Théâtre Antique de Carthage······························································································································· | ADAM··········································································································· | 04 Septembre 2026 à 22:00·········································································································································· | \" | Call log: | - Expect \"toContainText\" with timeout 5000ms | - waiting for locator('div.owl-item.active div.tour_container').first() | 9 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \" | Théâtre Antique de Carthage | Haifa Wehbe | 03 Septembre 2026 à 22:00 | \" | 4 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \" | Théâtre Antique de Carthage | ADAM | 04 Septembre 2026 à 22:00 | \" | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts:14:24 | Error: expect(locator).toContainText(expected) failed | Locator: locator('div.owl-item.active div.tour_container').first() | Timeout: 5000ms | Expected pattern: /TND/ | Received string:  \"········································································································································ | Théâtre Antique de Carthage······························································································································· | ADAM··········································································································· | 04 Septembre 2026 à 22:00·········································································································································· | \" | Call log: | - Expect \"toContainText\" with timeout 5000ms | - waiting for locator('div.owl-item.active div.tour_container').first() | 9 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \" | Théâtre Antique de Carthage | Haifa Wehbe | 03 Septembre 2026 à 22:00 | \" | 4 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \" | Théâtre Antique de Carthage | ADAM | 04 Septembre 2026 à 22:00 | \" | 12 | | 13 |     await expect(card).toBeVisible(); | > 14 |     await expect(card).toContainText(/TND/); | |                        ^ | 15 |     await expect(card).toContainText(/\\d{1,2} \\w+ \\d{4}/); | 16 |     await expect(card).toContainText(/Salle|Théâtre|Centre/); | 17 |   }); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts:14:24",
+    "Recommended action: The action completed but the application did not produce the expected result (content, text, URL or count mismatch on a present element). Validate the flow manually: if a real user gets the expected result, the assertion/test data is wrong; otherwise this is a genuine application defect worth reporting."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toContainText(expected) failed\n\nLocator: locator('div.owl-item.active div.tour_container').first()\nTimeout: 5000ms\nExpected pattern: /TND/\nReceived string:  \"········································································································································\n                                        Théâtre Antique de Carthage·······························································································································\n                                ADAM···········································································································\n                                                                                    04 Septembre 2026 à 22:00··········································································································································\n                        \"\n\nCall log:\n  - Expect \"toContainText\" with timeout 5000ms\n  - waiting for locator('div.owl-item.active div.tour_container').first()\n    9 × locator resolved to <div class=\"tour_container\">…</div>\n      - unexpected value \"\n                            \n                                \n                                    \n                                    \n                                        Théâtre Antique de Carthage                                    \n                                \n                            \n                            \n                                Haifa Wehbe\n                                \n                                    \n                                    \n                                                                                    03 Septembre 2026 à 22:00                                                                            \n                                \n                            \n                        \"\n    4 × locator resolved to <div class=\"tour_container\">…</div>\n      - unexpected value \"\n                            \n                                \n                                    \n                                    \n                                        Théâtre Antique de Carthage                                    \n                                \n                            \n                            \n                                ADAM\n                                \n                                    \n                                    \n                        "
+    },
+    {
+      "source": "test_source",
+      "content": "\n    await expect(card).toBeVisible();\n    await expect(card).toContainText(/TND/);\n    await expect(card).toContainText(/\\d{1,2} \\w+ \\d{4}/);\n    await expect(card).toContainText(/Salle|Théâtre|Centre/);"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-des-informations-557e8-informations-des-événements-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toContainText(expected) failed",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+    "column": 24,
+    "line": 14
+  },
+  "diagnostics": {
+    "failingLocator": "div.owl-item.active div.tour_container",
+    "locatorLines": [
+      "waiting for locator('div.owl-item.active div.tour_container').first()",
+      "Locator: locator('div.owl-item.active div.tour_container').first()",
+      "locator('div.owl-item.active div.tour_container')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./.div_eventCard"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-31T20:34:40.845Z"
+}

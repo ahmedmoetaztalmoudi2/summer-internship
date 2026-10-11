@@ -708,5 +708,564 @@
     },
     "appliedAt": "2026-08-19T19:31:15.642Z",
     "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Vérification de la liste des catégories et du lien \"La liste de nos guichets\" dans le footer - catégories",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Navigation et contenu du pied de page\", () => {\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - catégories\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       // TODO: selector for category list not provided in knownSelectors\n       await expect(page.locator(\"footer ul, footer .categories\")).toBeVisible();\n     });\n\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - lien guichets\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       await expect(page.getByRole(\"link\", { name: \"La liste de nos guichets\" })).toBeVisible();\n     });\n   });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Navigation et contenu du pied de page\", () => {\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - catégories\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       // TODO: selector for category list not provided in knownSelectors\n       await expect(page.locator(\"footer ul, footer .categories.first()\")).toBeVisible();\n     });\n\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - lien guichets\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       await expect(page.getByRole(\"link\", { name: \"La liste de nos guichets\" })).toBeVisible();\n     });\n   });\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\verification-de-la-liste-des-categories-et-du-lien-la-liste-de-nos-guichets-dans\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts",
+      "column": 68,
+      "line": 9
+    },
+    "appliedAt": "2026-08-30T23:31:21.192Z",
+    "durationMs": 4285,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer ul, footer .categories.first()\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer ul, footer .categories.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer ul, footer .categories.first()\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer ul, footer .categories.first()\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer ul, footer .categories.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer ul, footer .categories.first()\u001b[22m\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts:9:76"
+  },
+  {
+    "scenario": "Vérification de la liste des catégories et du lien \"La liste de nos guichets\" dans le footer - catégories",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Navigation et contenu du pied de page\", () => {\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - catégories\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       // TODO: selector for category list not provided in knownSelectors\n       await expect(page.locator(\"footer ul, footer .categories\")).toBeVisible();\n     });\n\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - lien guichets\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       await expect(page.getByRole(\"link\", { name: \"La liste de nos guichets\" })).toBeVisible();\n     });\n   });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Navigation et contenu du pied de page\", () => {\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - catégories\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       // TODO: selector for category list not provided in knownSelectors\n       await expect(page.locator(\"footer ul, footer .categories.first()\")).toBeVisible();\n     });\n\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - lien guichets\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       await expect(page.getByRole(\"link\", { name: \"La liste de nos guichets\" })).toBeVisible();\n     });\n   });\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\verification-de-la-liste-des-categories-et-du-lien-la-liste-de-nos-guichets-dans\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts",
+      "column": 68,
+      "line": 9
+    },
+    "appliedAt": "2026-08-30T23:31:30.489Z",
+    "durationMs": 3500,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer ul, footer .categories.first()\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer ul, footer .categories.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer ul, footer .categories.first()\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer ul, footer .categories.first()\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer ul, footer .categories.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer ul, footer .categories.first()\u001b[22m\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts:9:76"
+  },
+  {
+    "scenario": "Vérification de la liste des catégories et du lien \"La liste de nos guichets\" dans le footer - catégories",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Navigation et contenu du pied de page\", () => {\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - catégories\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       // TODO: selector for category list not provided in knownSelectors\n       await expect(page.locator(\"footer ul, footer .categories\")).toBeVisible();\n     });\n\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - lien guichets\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       await expect(page.getByRole(\"link\", { name: \"La liste de nos guichets\" })).toBeVisible();\n     });\n   });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Navigation et contenu du pied de page\", () => {\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - catégories\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       // TODO: selector for category list not provided in knownSelectors\n       await expect(page.locator(\"footer ul, footer .categories.first()\")).toBeVisible();\n     });\n\n     test(\"Vérification de la liste des catégories et du lien \\\"La liste de nos guichets\\\" dans le footer - lien guichets\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n       // TODO: l'utilisateur consulte le pied de page\n       await page.locator(\"footer\").scrollIntoViewIfNeeded();\n       await expect(page.getByRole(\"link\", { name: \"La liste de nos guichets\" })).toBeVisible();\n     });\n   });\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\verification-de-la-liste-des-categories-et-du-lien-la-liste-de-nos-guichets-dans\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts",
+      "column": 68,
+      "line": 9
+    },
+    "appliedAt": "2026-08-30T23:31:40.348Z",
+    "durationMs": 3528,
+    "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer ul, footer .categories.first()\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer ul, footer .categories.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer ul, footer .categories.first()\u001b[22m\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: footer ul, footer .categories.first()\nExpected: visible\nError: Unexpected token \"first(\" while parsing css selector \"footer ul, footer .categories.first()\". Did you mean to CSS.escape it?\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for footer ul, footer .categories.first()\u001b[22m\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts:9:76"
+  },
+  {
+    "scenario": "Affichage du bouton d'achat",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Affichage du bouton d'achat\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n\n       // TODO: Navigate to search results page (path not specified)\n       // TODO: Navigate to event detail page (path not specified)\n\n       // TODO: Selector for \"Acheter mon billet\" button not found in knownSelectors\n       await expect(page.getByRole(\"button\", { name: \"Acheter mon billet\" })).toBeVisible();\n     });\n   });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Affichage du bouton d'achat\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n\n       // TODO: Navigate to search results page (path not specified)\n       // TODO: Navigate to event detail page (path not specified)\n\n       // TODO: Selector for \"Acheter mon billet\" button not found in knownSelectors\n       await expect(page.getByRole(\"button\", { name: \"Acheter mon billet\" })).toBeVisible();\n     });\n   });\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-d-achat.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-d-achat.spec.ts",
+      "column": 79,
+      "line": 11
+    },
+    "appliedAt": "2026-08-30T23:34:01.964Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Affichage du prix du billet",
+    "failureType": "strict_mode_violation",
+    "repairType": "disambiguate_selector",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Affichage du prix du billet\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    // TODO: Navigate to search results page\n    // TODO: Navigate to event details page\n    await expect(page.locator(\".ticket-price, .price, [data-testid='ticket-price']\")).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Affichage du prix du billet\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    // TODO: Navigate to search results page\n    // TODO: Navigate to event details page\n    await expect(page.locator(\".ticket-price, .price, [data-testid='ticket-price']\")).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts",
+      "column": 87,
+      "line": 8
+    },
+    "appliedAt": "2026-08-30T23:34:01.979Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Ouverture de la fiche détaillée depuis une carte d'événement",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Ouverture de la fiche détaillée depuis une carte d'événement\", async ({ page }) => {\n       // Given: l'utilisateur est sur la page de résultats de recherche\n       await page.goto(\"https://teskerti.tn\");\n\n       // When: l'utilisateur clique sur une carte d'événement\n       // TODO: No known selector for event card. Using best-effort locator.\n       await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click();\n\n       // Then: la fiche détaillée de l'événement doit s'ouvrir\n       // TODO: No known selector for event detail page. Using best-effort locator.\n       await expect(page.locator(\".event-detail, #event-details, [data-testid='event-detail']\")).toBeVisible();\n     });\n   });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Ouverture de la fiche détaillée depuis une carte d'événement\", async ({ page }) => {\n       test.setTimeout(60000);\n       // Given: l'utilisateur est sur la page de résultats de recherche\n       await page.goto(\"https://teskerti.tn\");\n\n       // When: l'utilisateur clique sur une carte d'événement\n       // TODO: No known selector for event card. Using best-effort locator.\n       await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click();\n\n       // Then: la fiche détaillée de l'événement doit s'ouvrir\n       // TODO: No known selector for event detail page. Using best-effort locator.\n       await expect(page.locator(\".event-detail, #event-details, [data-testid='event-detail']\")).toBeVisible();\n     });\n   });\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\ouverture-de-la-fiche-detaillee-depuis-une-carte-d-evenement\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts",
+      "column": 91,
+      "line": 10
+    },
+    "appliedAt": "2026-08-30T23:35:03.926Z",
+    "durationMs": 60043,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Ouverture de la fiche détaillée depuis une carte d'événement",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Ouverture de la fiche détaillée depuis une carte d'événement\", async ({ page }) => {\n       // Given: l'utilisateur est sur la page de résultats de recherche\n       await page.goto(\"https://teskerti.tn\");\n\n       // When: l'utilisateur clique sur une carte d'événement\n       // TODO: No known selector for event card. Using best-effort locator.\n       await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click();\n\n       // Then: la fiche détaillée de l'événement doit s'ouvrir\n       // TODO: No known selector for event detail page. Using best-effort locator.\n       await expect(page.locator(\".event-detail, #event-details, [data-testid='event-detail']\")).toBeVisible();\n     });\n   });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Ouverture de la fiche détaillée depuis une carte d'événement\", async ({ page }) => {\n       test.setTimeout(60000);\n       // Given: l'utilisateur est sur la page de résultats de recherche\n       await page.goto(\"https://teskerti.tn\");\n\n       // When: l'utilisateur clique sur une carte d'événement\n       // TODO: No known selector for event card. Using best-effort locator.\n       await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click();\n\n       // Then: la fiche détaillée de l'événement doit s'ouvrir\n       // TODO: No known selector for event detail page. Using best-effort locator.\n       await expect(page.locator(\".event-detail, #event-details, [data-testid='event-detail']\")).toBeVisible();\n     });\n   });\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\ouverture-de-la-fiche-detaillee-depuis-une-carte-d-evenement\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts",
+      "column": 91,
+      "line": 10
+    },
+    "appliedAt": "2026-08-30T23:36:05.743Z",
+    "durationMs": 60046,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Affichage des prix des billets par catégorie",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n       test.describe(\"Visualisation des détails d'un événement\", () => {\n         test(\"Affichage des prix des billets par catégorie\", async ({ page }) => {\n           // Given: the user is on the event listing page\n           await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n           // Given: the user is on the detailed event page\n           // Click the first event card to navigate to details\n           await page.locator(\"#dynamic_data .tour_container\").first().click();\n           await page.waitForLoadState(\"networkidle\");\n\n           // Then: the ticket prices by category in TND should be visible\n           // TODO: Selector for ticket prices not provided in knownSelectors\n           await expect(page.locator(\".ticket-price, .price, [class*=\\\"price\\\"]\").first()).toBeVisible();\n         });\n       });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n       test.describe(\"Visualisation des détails d'un événement\", () => {\n         test(\"Affichage des prix des billets par catégorie\", async ({ page }) => {\n           // Given: the user is on the event listing page\n           await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n           // Given: the user is on the detailed event page\n           // Click the first event card to navigate to details\n           const el_10 = page.locator(\"#dynamic_data .tour_container\");\n           if (await el_10.isVisible()) {\n             await el_10.click();\n           }\n           await page.waitForLoadState(\"networkidle\");\n\n           // Then: the ticket prices by category in TND should be visible\n           // TODO: Selector for ticket prices not provided in knownSelectors\n           await expect(page.locator(\".ticket-price, .price, [class*=\\\"price\\\"]\").first()).toBeVisible();\n         });\n       });\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\affichage-des-prix-des-billets-par-categorie\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts",
+      "column": 72,
+      "line": 10
+    },
+    "appliedAt": "2026-08-31T15:29:11.950Z",
+    "durationMs": 2376,
+    "error": "Error: locator.isVisible: Error: strict mode violation: locator('#dynamic_data .tour_container') resolved to 4 elements:\n    1) <div class=\"tour_container\">…</div> aka getByText('Théatre plein air Sidi Mansour 16 TND Young RZ - Sfax 31 Août 2026 à 22:')\n    2) <div class=\"tour_container\">…</div> aka getByText('THÉÂTRE SIDI DHAHER SOUSSE 20 TND El mahfel jerbi - Sousse 31 Août 2026 à 22:')\n    3) <div class=\"tour_container\">…</div> aka getByText('Amphithéâtre plein air Boukornine 18 TND Ghanou maana 03 Septembre 2026 à 22:')\n    4) <div class=\"tour_container\">…</div> aka getByText('Game Art Park 60 TND Nordo -')\n\nCall log:\n\u001b[2m    - checking visibility of locator('#dynamic_data .tour_container')\u001b[22m\n\nError: locator.isVisible: Error: strict mode violation: locator('#dynamic_data .tour_container') resolved to 4 elements:\n    1) <div class=\"tour_container\">…</div> aka getByText('Théatre plein air Sidi Mansour 16 TND Young RZ - Sfax 31 Août 2026 à 22:')\n    2) <div class=\"tour_container\">…</div> aka getByText('THÉÂTRE SIDI DHAHER SOUSSE 20 TND El mahfel jerbi - Sousse 31 Août 2026 à 22:')\n    3) <div class=\"tour_container\">…</div> aka getByText('Amphithéâtre plein air Boukornine 18 TND Ghanou maana 03 Septembre 2026 à 22:')\n    4) <div class=\"tour_container\">…</div> aka getByText('Game Art Park 60 TND Nordo -')\n\nCall log:\n\u001b[2m    - checking visibility of locator('#dynamic_data .tour_container')\u001b[22m\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts:11:28"
+  },
+  {
+    "scenario": "Affichage des prix des billets par catégorie",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n       test.describe(\"Visualisation des détails d'un événement\", () => {\n         test(\"Affichage des prix des billets par catégorie\", async ({ page }) => {\n           // Given: the user is on the event listing page\n           await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n           // Given: the user is on the detailed event page\n           // Click the first event card to navigate to details\n           await page.locator(\"#dynamic_data .tour_container\").first().click();\n           await page.waitForLoadState(\"networkidle\");\n\n           // Then: the ticket prices by category in TND should be visible\n           // TODO: Selector for ticket prices not provided in knownSelectors\n           await expect(page.locator(\".ticket-price, .price, [class*=\\\"price\\\"]\").first()).toBeVisible();\n         });\n       });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n       test.describe(\"Visualisation des détails d'un événement\", () => {\n         test(\"Affichage des prix des billets par catégorie\", async ({ page }) => {\n           // Given: the user is on the event listing page\n           await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n           // Given: the user is on the detailed event page\n           // Click the first event card to navigate to details\n           const el_10 = page.locator(\"#dynamic_data .tour_container\");\n           if (await el_10.isVisible()) {\n             await el_10.click();\n           }\n           await page.waitForLoadState(\"networkidle\");\n\n           // Then: the ticket prices by category in TND should be visible\n           // TODO: Selector for ticket prices not provided in knownSelectors\n           await expect(page.locator(\".ticket-price, .price, [class*=\\\"price\\\"]\").first()).toBeVisible();\n         });\n       });\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\affichage-des-prix-des-billets-par-categorie\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts",
+      "column": 72,
+      "line": 10
+    },
+    "appliedAt": "2026-08-31T15:29:16.234Z",
+    "durationMs": 2328,
+    "error": "Error: locator.isVisible: Error: strict mode violation: locator('#dynamic_data .tour_container') resolved to 4 elements:\n    1) <div class=\"tour_container\">…</div> aka getByText('Théatre plein air Sidi Mansour 16 TND Young RZ - Sfax 31 Août 2026 à 22:')\n    2) <div class=\"tour_container\">…</div> aka getByText('THÉÂTRE SIDI DHAHER SOUSSE 20 TND El mahfel jerbi - Sousse 31 Août 2026 à 22:')\n    3) <div class=\"tour_container\">…</div> aka getByText('Amphithéâtre plein air Boukornine 18 TND Ghanou maana 03 Septembre 2026 à 22:')\n    4) <div class=\"tour_container\">…</div> aka getByText('Game Art Park 60 TND Nordo -')\n\nCall log:\n\u001b[2m    - checking visibility of locator('#dynamic_data .tour_container')\u001b[22m\n\nError: locator.isVisible: Error: strict mode violation: locator('#dynamic_data .tour_container') resolved to 4 elements:\n    1) <div class=\"tour_container\">…</div> aka getByText('Théatre plein air Sidi Mansour 16 TND Young RZ - Sfax 31 Août 2026 à 22:')\n    2) <div class=\"tour_container\">…</div> aka getByText('THÉÂTRE SIDI DHAHER SOUSSE 20 TND El mahfel jerbi - Sousse 31 Août 2026 à 22:')\n    3) <div class=\"tour_container\">…</div> aka getByText('Amphithéâtre plein air Boukornine 18 TND Ghanou maana 03 Septembre 2026 à 22:')\n    4) <div class=\"tour_container\">…</div> aka getByText('Game Art Park 60 TND Nordo -')\n\nCall log:\n\u001b[2m    - checking visibility of locator('#dynamic_data .tour_container')\u001b[22m\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts:11:28"
+  },
+  {
+    "scenario": "Affichage des prix des billets par catégorie",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n       test.describe(\"Visualisation des détails d'un événement\", () => {\n         test(\"Affichage des prix des billets par catégorie\", async ({ page }) => {\n           // Given: the user is on the event listing page\n           await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n           // Given: the user is on the detailed event page\n           // Click the first event card to navigate to details\n           await page.locator(\"#dynamic_data .tour_container\").first().click();\n           await page.waitForLoadState(\"networkidle\");\n\n           // Then: the ticket prices by category in TND should be visible\n           // TODO: Selector for ticket prices not provided in knownSelectors\n           await expect(page.locator(\".ticket-price, .price, [class*=\\\"price\\\"]\").first()).toBeVisible();\n         });\n       });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n       test.describe(\"Visualisation des détails d'un événement\", () => {\n         test(\"Affichage des prix des billets par catégorie\", async ({ page }) => {\n           // Given: the user is on the event listing page\n           await page.goto(\"https://teskerti.tn/category/spectacle\");\n\n           // Given: the user is on the detailed event page\n           // Click the first event card to navigate to details\n           const el_10 = page.locator(\"#dynamic_data .tour_container\");\n           if (await el_10.isVisible()) {\n             await el_10.click();\n           }\n           await page.waitForLoadState(\"networkidle\");\n\n           // Then: the ticket prices by category in TND should be visible\n           // TODO: Selector for ticket prices not provided in knownSelectors\n           await expect(page.locator(\".ticket-price, .price, [class*=\\\"price\\\"]\").first()).toBeVisible();\n         });\n       });\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\affichage-des-prix-des-billets-par-categorie\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts",
+      "column": 72,
+      "line": 10
+    },
+    "appliedAt": "2026-08-31T15:29:20.629Z",
+    "durationMs": 2480,
+    "error": "Error: locator.isVisible: Error: strict mode violation: locator('#dynamic_data .tour_container') resolved to 4 elements:\n    1) <div class=\"tour_container\">…</div> aka getByText('Théatre plein air Sidi Mansour 16 TND Young RZ - Sfax 31 Août 2026 à 22:')\n    2) <div class=\"tour_container\">…</div> aka getByText('THÉÂTRE SIDI DHAHER SOUSSE 20 TND El mahfel jerbi - Sousse 31 Août 2026 à 22:')\n    3) <div class=\"tour_container\">…</div> aka getByText('Amphithéâtre plein air Boukornine 18 TND Ghanou maana 03 Septembre 2026 à 22:')\n    4) <div class=\"tour_container\">…</div> aka getByText('Game Art Park 60 TND Nordo -')\n\nCall log:\n\u001b[2m    - checking visibility of locator('#dynamic_data .tour_container')\u001b[22m\n\nError: locator.isVisible: Error: strict mode violation: locator('#dynamic_data .tour_container') resolved to 4 elements:\n    1) <div class=\"tour_container\">…</div> aka getByText('Théatre plein air Sidi Mansour 16 TND Young RZ - Sfax 31 Août 2026 à 22:')\n    2) <div class=\"tour_container\">…</div> aka getByText('THÉÂTRE SIDI DHAHER SOUSSE 20 TND El mahfel jerbi - Sousse 31 Août 2026 à 22:')\n    3) <div class=\"tour_container\">…</div> aka getByText('Amphithéâtre plein air Boukornine 18 TND Ghanou maana 03 Septembre 2026 à 22:')\n    4) <div class=\"tour_container\">…</div> aka getByText('Game Art Park 60 TND Nordo -')\n\nCall log:\n\u001b[2m    - checking visibility of locator('#dynamic_data .tour_container')\u001b[22m\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-prix-des-billets-par-cat-gorie.spec.ts:11:28"
+  },
+  {
+    "scenario": "Affichage du bouton Ajouter au panier",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n         test.describe(\"Visualisation des détails d'un événement\", () => {\n           test(\"Affichage du bouton Ajouter au panier\", async ({ page }) => {\n             // Given: the user is on the event listing page\n             await page.goto(\"https://teskerti.tn\");\n\n             // Given: the user is on the detailed event page\n             // TODO: Navigate to detailed event page (path not specified in knownSelectors)\n\n             // Then: the \"Ajouter au panier\" button should be prominently displayed\n             await expect(page.locator('button:has-text(\"Ajouter au panier\")')).toBeVisible();\n           });\n         });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n         test.describe(\"Visualisation des détails d'un événement\", () => {\n           test(\"Affichage du bouton Ajouter au panier\", async ({ page }) => {\n             // Given: the user is on the event listing page\n             await page.goto(\"https://teskerti.tn\");\n\n             // Given: the user is on the detailed event page\n             // TODO: Navigate to detailed event page (path not specified in knownSelectors)\n\n             // Then: the \"Ajouter au panier\" button should be prominently displayed\n             await expect(page.locator('button:has-text(\"Ajouter au panier\")')).toBeVisible();\n           });\n         });\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-ajouter-au-panier.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-ajouter-au-panier.spec.ts",
+      "column": 81,
+      "line": 12
+    },
+    "appliedAt": "2026-08-31T15:29:20.637Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Ouverture de la fiche détaillée d'un événement",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from '@playwright/test';\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Ouverture de la fiche détaillée d'un événement\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"button:has-text(\\\"Se connecter\\\")\").first().click();\n    // TODO: assert the expected outcome for this scenario\n    // TODO: \"Given the user is on the event listing page\"\n    // TODO: \"Then the detailed event page should be displayed\"\n  });\n});\n",
+    "after": "import { test, expect } from '@playwright/test';\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Ouverture de la fiche détaillée d'un événement\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"button:has-text(\\\"Se connecter\\\")\").first().click();\n    // TODO: assert the expected outcome for this scenario\n    // TODO: \"Given the user is on the event listing page\"\n    // TODO: \"Then the detailed event page should be displayed\"\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-d-un-v-nement.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\ouverture-de-la-fiche-detaillee-d-un-evenement\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-d-un-v-nement.spec.ts",
+      "column": 69,
+      "line": 6
+    },
+    "appliedAt": "2026-08-31T15:30:23.072Z",
+    "durationMs": 60125,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Ouverture de la fiche détaillée d'un événement",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from '@playwright/test';\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Ouverture de la fiche détaillée d'un événement\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"button:has-text(\\\"Se connecter\\\")\").first().click();\n    // TODO: assert the expected outcome for this scenario\n    // TODO: \"Given the user is on the event listing page\"\n    // TODO: \"Then the detailed event page should be displayed\"\n  });\n});\n",
+    "after": "import { test, expect } from '@playwright/test';\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Ouverture de la fiche détaillée d'un événement\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"button:has-text(\\\"Se connecter\\\")\").first().click();\n    // TODO: assert the expected outcome for this scenario\n    // TODO: \"Given the user is on the event listing page\"\n    // TODO: \"Then the detailed event page should be displayed\"\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-d-un-v-nement.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\ouverture-de-la-fiche-detaillee-d-un-evenement\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-d-un-v-nement.spec.ts",
+      "column": 69,
+      "line": 6
+    },
+    "appliedAt": "2026-08-31T15:31:25.405Z",
+    "durationMs": 60144,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Affichage des informations de base de l'événement",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\n   const baseUrl = \"https://teskerti.tn\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Affichage des informations de base de l'événement\", async ({ page }) => {\n       // Given: l'utilisateur est sur la fiche détaillée d'un événement\n       await page.goto(baseUrl + \"/evenement/cairokee-carthage\");\n\n       // Then: le titre de l'événement est affiché\n       await expect(page.locator(\".col-md-8 h1\").first()).toBeVisible();\n\n       // And: la date et l'heure de l'événement sont affichées\n       await expect(page.locator(\"#main-ticket-form label\").first()).toBeVisible();\n\n       // And: le lieu (salle) de l'événement est affiché\n       // TODO: Selector for venue/location not explicitly provided in knownSelectors\n       await expect(page.locator(\".venue, .lieu, [class*=\\\"salle\\\"]\").first()).toBeVisible();\n     });\n   });\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\n   const baseUrl = \"https://teskerti.tn\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Affichage des informations de base de l'événement\", async ({ page }) => {\n       // Given: l'utilisateur est sur la fiche détaillée d'un événement\n       await page.goto(baseUrl + \"/evenement/cairokee-carthage\");\n\n       // Then: le titre de l'événement est affiché\n       await expect(page.locator(\".col-md-8 h1\").first()).toBeVisible();\n\n       // And: la date et l'heure de l'événement sont affichées\n       await expect(page.locator(\"#main-ticket-form label\").first()).toBeVisible();\n\n       // And: le lieu (salle) de l'événement est affiché\n       // TODO: Selector for venue/location not explicitly provided in knownSelectors\n       await expect(page.locator(\".venue, .lieu, [class*=\\\"salle\\\"]\").first()).toBeVisible();\n     });\n   });\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts",
+      "column": 80,
+      "line": 18
+    },
+    "appliedAt": "2026-08-31T15:37:14.580Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Affichage des informations des événements",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\nconst baseUrl = \"https://teskerti.tn\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Affichage des informations des événements\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil du site\n    await page.goto(baseUrl);\n\n    // Then chaque événement affiché doit inclure sa salle, son prix en TND et sa date\n    // Selector for event cards on the homepage – adjust if necessary\n    const eventCards = page.locator(\".event-card\"); // TODO: verify selector\n\n    // Ensure at least one event card is present\n    await expect(eventCards).toBeVisible();\n\n    const count = await eventCards.count();\n    for (let i = 0; i < count; i++) {\n      const card = eventCards.nth(i);\n\n      // Venue – selector may vary; adjust accordingly\n      const venueLocator = card.locator(\".venue\"); // TODO: verify selector\n      await expect(venueLocator).toBeVisible();\n\n      // Price in TND – look for text containing a number followed by \"TND\"\n      const priceLocator = card.locator(\"text=/\\\\d+\\\\s*TND/\"); // regex for price\n      await expect(priceLocator).toBeVisible();\n\n      // Date – look for a date pattern like DD/MM/YYYY\n      const dateLocator = card.locator(\"text=/\\\\d{2}\\\\/\\\\d{2}\\\\/\\\\d{4}/\");\n      await expect(dateLocator).toBeVisible();\n    }\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\nconst baseUrl = \"https://teskerti.tn\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Affichage des informations des événements\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil du site\n    await page.goto(baseUrl);\n\n    // Then chaque événement affiché doit inclure sa salle, son prix en TND et sa date\n    // Selector for event cards on the homepage – adjust if necessary\n    const eventCards = page.locator(\".event-card\"); // TODO: verify selector\n\n    // Ensure at least one event card is present\n    await expect(eventCards).toBeVisible();\n\n    const count = await eventCards.count();\n    for (let i = 0; i < count; i++) {\n      const card = eventCards.nth(i);\n\n      // Venue – selector may vary; adjust accordingly\n      const venueLocator = card.locator(\".venue\"); // TODO: verify selector\n      await expect(venueLocator).toBeVisible();\n\n      // Price in TND – look for text containing a number followed by \"TND\"\n      const priceLocator = card.locator(\"text=/\\\\d+\\\\s*TND/\"); // regex for price\n      await expect(priceLocator).toBeVisible();\n\n      // Date – look for a date pattern like DD/MM/YYYY\n      const dateLocator = card.locator(\"text=/\\\\d{2}\\\\/\\\\d{2}\\\\/\\\\d{4}/\");\n      await expect(dateLocator).toBeVisible();\n    }\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+      "column": 30,
+      "line": 15
+    },
+    "appliedAt": "2026-08-31T16:02:18.434Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Navigation vers la page des événements d'une catégorie",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Navigation vers la page des événements d'une catégorie\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"a.btn_search[href*=\\\"/category/spectacle\\\"]\").click();\n    await expect(page).toHaveURL(/\\/category\\/spectacle/);\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Navigation vers la page des événements d'une catégorie\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"a.btn_search[href*=\\\"/category/spectacle\\\"]\").click();\n    await expect(page).toHaveURL(/\\/category\\/spectacle/);\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\navigation-vers-la-page-des-evenements-d-une-categorie\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+      "column": 71,
+      "line": 6
+    },
+    "appliedAt": "2026-08-31T16:03:20.665Z",
+    "durationMs": 60048,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Navigation vers la page des événements d'une catégorie",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Navigation vers la page des événements d'une catégorie\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"a.btn_search[href*=\\\"/category/spectacle\\\"]\").click();\n    await expect(page).toHaveURL(/\\/category\\/spectacle/);\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Navigation vers la page des événements d'une catégorie\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"a.btn_search[href*=\\\"/category/spectacle\\\"]\").click();\n    await expect(page).toHaveURL(/\\/category\\/spectacle/);\n  });\n});\n",
+    "attempt": 2,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\navigation-vers-la-page-des-evenements-d-une-categorie\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+      "column": 71,
+      "line": 6
+    },
+    "appliedAt": "2026-08-31T16:04:22.911Z",
+    "durationMs": 60149,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Navigation vers la page des événements d'une catégorie",
+    "failureType": "timeout",
+    "repairType": "add_wait_strategy",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Navigation vers la page des événements d'une catégorie\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"a.btn_search[href*=\\\"/category/spectacle\\\"]\").click();\n    await expect(page).toHaveURL(/\\/category\\/spectacle/);\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Navigation vers la page des événements d'une catégorie\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"a.btn_search[href*=\\\"/category/spectacle\\\"]\").click();\n    await expect(page).toHaveURL(/\\/category\\/spectacle/);\n  });\n});\n",
+    "attempt": 3,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+    "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\navigation-vers-la-page-des-evenements-d-une-categorie\\original.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+      "column": 71,
+      "line": 6
+    },
+    "appliedAt": "2026-08-31T16:05:24.999Z",
+    "durationMs": 60066,
+    "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+  },
+  {
+    "scenario": "Vérification de la présence du bouton dans la section héro",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\nconst baseUrl = \"https://teskerti.tn\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Vérification de la présence du bouton dans la section héro\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil du site\n    await page.goto(baseUrl);\n\n    // Then la section héro affiche un bouton « Réservez vos billets »\n    await expect(page.getByRole(\"button\", { name: \"Réservez vos billets\" })).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\nconst baseUrl = \"https://teskerti.tn\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Vérification de la présence du bouton dans la section héro\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil du site\n    await page.goto(baseUrl);\n\n    // Then la section héro affiche un bouton « Réservez vos billets »\n    await expect(page.getByRole(\"button\", { name: \"Réservez vos billets\" })).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-pr-sence-du-bouton-dans-la-section-h-ro.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-pr-sence-du-bouton-dans-la-section-h-ro.spec.ts",
+      "column": 78,
+      "line": 11
+    },
+    "appliedAt": "2026-08-31T16:05:25.008Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Affichage des informations des événements",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant sur la page d'accueil\", () => {\n  test(\"Affichage des informations des événements\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page).toHaveURL(\"https://teskerti.tn/\");\n\n    // When il consulte les événements affichés dans les sections de catégorie\n    // TODO: locate event cards in category sections\n    const eventCard = page.locator(\".event-card\").first();\n\n    // Then chaque événement doit afficher sa salle, son prix en TND et sa date\n    await expect(eventCard).toBeVisible();\n    // TODO: verify venue, price, and date within eventCard\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant sur la page d'accueil\", () => {\n  test(\"Affichage des informations des événements\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page).toHaveURL(\"https://teskerti.tn/\");\n\n    // When il consulte les événements affichés dans les sections de catégorie\n    // TODO: locate event cards in category sections\n    const eventCard = page.locator(\".event-card\").first();\n\n    // Then chaque événement doit afficher sa salle, son prix en TND et sa date\n    await expect(eventCard).toBeVisible();\n    // TODO: verify venue, price, and date within eventCard\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+      "column": 29,
+      "line": 14
+    },
+    "appliedAt": "2026-08-31T16:18:54.607Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Affichage des informations des événements",
+    "failureType": "assertion_failure",
+    "repairType": "update_expected_value",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+      "column": 29,
+      "line": 13
+    },
+    "appliedAt": "2026-08-31T16:25:37.332Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Navigation vers la fiche d'un événement en vedette",
+    "failureType": "application_bug",
+    "repairType": "no_repair",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-fiche-d-un-v-nement-en-vedette.spec.ts",
+      "column": 24,
+      "line": 12
+    },
+    "appliedAt": "2026-08-31T16:25:37.336Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Affichage des informations des événements",
+    "failureType": "application_bug",
+    "repairType": "no_repair",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+      "column": 24,
+      "line": 14
+    },
+    "appliedAt": "2026-08-31T20:34:40.885Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Affichage des informations obligatoires sur les cartes d'événements - event name",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-obligatoires-sur-les-cartes-d-v-nements.spec.ts",
+      "column": 8,
+      "line": 4
+    },
+    "appliedAt": "2026-08-31T20:43:27.333Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Navigation vers la fiche détaillée d'un événement en vedette",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-fiche-d-taill-e-d-un-v-nement-en-vedette.spec.ts",
+      "column": 16,
+      "line": 8
+    },
+    "appliedAt": "2026-08-31T20:43:27.349Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Navigation vers la page de contact",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-de-contact.spec.ts",
+      "column": 16,
+      "line": 8
+    },
+    "appliedAt": "2026-08-31T20:43:27.365Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Navigation vers la page des événements d'une catégorie",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+      "column": 16,
+      "line": 5
+    },
+    "appliedAt": "2026-08-31T20:43:27.381Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Vérification de l'absence du prix sur les cartes d'événements de la page d'accueil",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-l-absence-du-prix-sur-les-cartes-d-v-nements-de-la-page-d-accueil.spec.ts",
+      "column": 16,
+      "line": 5
+    },
+    "appliedAt": "2026-08-31T20:43:27.401Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Affichage du bouton de réservation dans la section héro",
+    "failureType": "visibility_issue",
+    "repairType": "add_visibility_guard",
+    "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant sur la page d'accueil\", () => {\n  test(\"Affichage du bouton de réservation dans la section héro\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page.locator(\"a.button_intro\").first()).toBeVisible();\n  });\n});\n",
+    "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant sur la page d'accueil\", () => {\n  test(\"Affichage du bouton de réservation dans la section héro\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page.locator(\"a.button_intro\").first()).toBeVisible();\n  });\n});\n",
+    "attempt": 1,
+    "result": "failed",
+    "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-de-r-servation-dans-la-section-h-ro.spec.ts",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-de-r-servation-dans-la-section-h-ro.spec.ts",
+      "column": 58,
+      "line": 6
+    },
+    "appliedAt": "2026-08-31T20:48:51.619Z",
+    "error": "Patch produced no changes (already applied or no-op).",
+    "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+  },
+  {
+    "scenario": "Redirection vers la fiche d'un événement en vedette",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\redirection-vers-la-fiche-d-un-v-nement-en-vedette.spec.ts",
+      "column": 16,
+      "line": 6
+    },
+    "appliedAt": "2026-08-31T20:48:51.640Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Redirection vers la page des événements d'une catégorie",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\redirection-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+      "column": 16,
+      "line": 5
+    },
+    "appliedAt": "2026-08-31T20:48:51.659Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Redirection vers la",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\redirection-vers-la.spec.ts",
+      "column": 16,
+      "line": 7
+    },
+    "appliedAt": "2026-08-31T20:48:51.682Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+  },
+  {
+    "scenario": "Vérification du contenu des cartes d'événements",
+    "failureType": "navigation_failure",
+    "repairType": "manual_review",
+    "attempt": 0,
+    "result": "escalated",
+    "location": {
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-contenu-des-cartes-d-v-nements.spec.ts",
+      "column": 16,
+      "line": 6
+    },
+    "appliedAt": "2026-08-31T20:48:51.698Z",
+    "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
   }
 ]

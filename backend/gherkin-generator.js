@@ -356,24 +356,35 @@ function validateTicket(ticket) {
 function cleanGherkinContent(content) {
   let text = String(content || '').trim();
 
-  text = text.replace(/<think>[\s\S]*?<\/think>\s*/gi, '').trim();
+  // Models may prefix output with a "thinking ... response" reasoning block
+  // that is not Gherkin. Drop everything up to the response marker when present.
+  text = text.replace(/^[\s\S]*?(?:^|\n)\s*(?:<)?thinking(?:>)?\b[\s\S]*?(?:^|\n)\s*(?:<\/?)?response(?:>)?\b/i, '').trim();
 
-  const fencedBlock = text.match(/```(?:gherkin|feature)?\s*([\s\S]*?)```/i);
-  if (fencedBlock) {
-    text = fencedBlock[1].trim();
-  }
+  // Prefer a fenced Gherkin/feature block when the model wrapped its answer.
+  const fencedBlock = text.match(/\`\`\`(?:gherkin|feature)?\s*([\s\S]*?)\`\`\`/i);
+  if (fencedBlock) text = fencedBlock[1].trim();
 
+  // Keep only from the first Feature line onward.
   const featureIndex = text.search(/^\s*(Feature|Fonctionnalite|Fonctionnalité)\s*:/im);
-  if (featureIndex > 0) {
-    text = text.slice(featureIndex).trim();
+  if (featureIndex >= 0) text = text.slice(featureIndex).trim();
+
+  // Drop any trailing contamination (self-correction notes, checks, reasoning,
+  // duplicate scenarios written after the real feature).
+  const garbageIndex = text.search(/^\s*(?:\*|\-|\+|#|>|\(Self-|Réfl|R\u00e9fl|Here's a thinking|Note:)/m);
+  if (garbageIndex > 0) {
+    // Only truncate if the garbage is clearly not part of a scenario/step.
+    const before = text.slice(0, garbageIndex);
+    text = before.trim();
   }
 
+  // Remove stray code-fence markers, then harden the check/self-correction cuts.
   text = text
-    .replace(/^```(?:gherkin|feature)?\s*/i, '')
-    .replace(/```$/i, '')
+    .replace(/^\`\`\`(?:gherkin|feature)?\s*/i, '')
+    .replace(/\`\`\`$/i, '')
     .replace(/\n+\s*(Jira Ticket Key|Summary|Clean Description|Description and acceptance criteria)\s*:[\s\S]*$/i, '')
-    .replace(/\n+\s*\*+Check against rules[\s\S]*$/i, '')
-    .replace(/\n+\s*#{1,3}\s*Check against rules[\s\S]*$/i, '')
+    .replace(/\n+\s*\*+\s*Check(?::| against rules| out|)\.?[\s\S]*$/i, '')
+    .replace(/\n+\s*#+\s*Check(?::| against rules| out|)\.?[\s\S]*$/i, '')
+    .replace(/\n+\s*\(Self-Correction[\s\S]*$/i, '')
     .trim();
 
   text = text.replace(/^\s*(Scénario Outline|Scénario d'exemple)\s*:/gim, 'Scenario Outline:');

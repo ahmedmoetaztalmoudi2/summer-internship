@@ -9,6 +9,8 @@ import { createReport, writeReport } from './reporter.js';
 import { analyzeFailures } from './agents/failure-analysis.js';
 import { generateRepairProposals } from './repair-agent/repair-agent.js';
 import { getDomainFromUrl, loadSelectorMap } from './storage.js';
+import { ensureSelectorMap } from './selector-onboarding.js';
+import { detectFormFields } from './field-detection.js';
 import type { FailureReport } from './failure-analysis/types.js';
 import type { RepairPlan } from './repair-agent/types.js';
 
@@ -62,6 +64,7 @@ interface TestRun {
   requiresInput: boolean;
   credentials?: Record<string, string>;
   jiraOverrides?: { domain?: string; email?: string; apiToken?: string };
+  detectedFields?: Array<{ name: string; label: string; type: string; required?: boolean; placeholder?: string; options?: { label: string; value: string }[] }>;
   gherkin?: string;
   playwrightCode?: string;
   results?: {
@@ -177,6 +180,38 @@ app.post('/api/test/start', async (req, res) => {
     }
 
     const runId = generateRunId();
+
+    // Build Jira overrides from admin settings so we can fetch this ticket.
+    const jiraOverrides =
+      jiraCredentials && (jiraCredentials.domain || jiraCredentials.email || jiraCredentials.apiToken)
+        ? {
+            domain: jiraCredentials.domain?.trim() || undefined,
+            email: jiraCredentials.email?.trim() || undefined,
+            apiToken: jiraCredentials.apiToken?.trim() || undefined,
+          }
+        : undefined;
+
+    // Try to fetch the ticket text to identify which form the test targets.
+    let ticketText = ticket.trim();
+    try {
+      const ticketData = await jiraModule.getTicket(ticket.trim(), jiraOverrides);
+      ticketText = `${ticketData.summary}\n${ticketData.description ?? ''}`;
+    } catch {
+      // Fall back to just the ticket key if Jira is unavailable at start time.
+    }
+
+    // Detect relevant form fields on the target site, guided by the ticket text.
+    let detectedFields: Array<{ name: string; label: string; type: string; required?: boolean; placeholder?: string; options?: { label: string; value: string }[] }> = [];
+    try {
+      detectedFields = await detectFormFields({ baseUrl: websiteUrl.trim(), ticketText });
+    } catch (err) {
+      console.warn(`Field detection error for ${websiteUrl}:`, err);
+    }
+
+    const fields = detectedFields.length > 0
+      ? detectedFields
+      : credentialFields();
+
     const run: TestRun = {
       runId,
       ticket: ticket.trim(),
@@ -184,16 +219,12 @@ app.post('/api/test/start', async (req, res) => {
       status: 'awaiting_input',
       stages: createInitialStages(),
       requiresInput: true,
-      message: 'Does the application need credentials or other private values for these tests?',
+      message: detectedFields.length > 0
+        ? `The test needs these values from the form on ${websiteUrl}.`
+        : 'Does the application need credentials or other private values for these tests?',
+      detectedFields: detectedFields.length > 0 ? detectedFields : undefined,
+      jiraOverrides,
     };
-
-    if (jiraCredentials && (jiraCredentials.domain || jiraCredentials.email || jiraCredentials.apiToken)) {
-      run.jiraOverrides = {
-        domain: jiraCredentials.domain?.trim() || undefined,
-        email: jiraCredentials.email?.trim() || undefined,
-        apiToken: jiraCredentials.apiToken?.trim() || undefined,
-      };
-    }
 
     runs.set(runId, run);
 
@@ -202,7 +233,7 @@ app.post('/api/test/start', async (req, res) => {
       status: 'awaiting_input',
       requiresInput: true,
       message: run.message,
-      fields: credentialFields(),
+      fields,
     });
   } catch (error) {
     console.error('Error starting test:', error);
@@ -278,7 +309,7 @@ app.get('/api/test/:runId/status', (req, res) => {
   };
 
   if (run.requiresInput) {
-    (response as any).fields = credentialFields();
+    (response as any).fields = run.detectedFields ?? credentialFields();
   }
 
   res.json(response);
@@ -363,7 +394,7 @@ async function executePipelineCore(runId: string) {
   // Stage 3: Gherkin Generation
   updateStage(runId, 'gherkin_generation', 'running');
   const baseUrlForSelectors = run.websiteUrl;
-  const selectorMap = baseUrlForSelectors ? loadSelectorMap(getDomainFromUrl(baseUrlForSelectors)) : null;
+  const selectorMap = baseUrlForSelectors ? await ensureSelectorMap(baseUrlForSelectors) : null;
   const businessCapabilities = gherkinModule.extractBusinessCapabilities(selectorMap);
 
   const featureResult = await gherkinModule.generateAndSaveFeature(run.ticket, featuresDir, {
@@ -552,6 +583,16 @@ async function resumePipeline(runId: string) {
 const server = app.listen(PORT, () => {
   console.log(`QA Testing API server running on port ${PORT}`);
   console.log(`Frontend should connect to: http://localhost:${PORT}`);
+  const provider = (process.env.TEST_LLM_PROVIDER ?? 'groq');
+  const geminiModel = process.env.GEMINI_MODEL ?? 'UNSET';
+  const groqKey2 = process.env.GROQ_API_KEY2 ? `set (${String(process.env.GROQ_API_KEY2).slice(0, 8)}...)` : 'UNSET';
+  console.log(
+    `[boot] TEST_LLM_PROVIDER=${provider} | GEMINI_MODEL=${geminiModel} | ` +
+      `GROQ_API_KEY2=${groqKey2}`
+  );
+  console.log(
+    `[boot] ${provider === 'groq' ? 'OK: primary is GROQ (dead Gemini 429 will fall back automatically)' : 'WARNING: primary is GEMINI'}`
+  );
 });
 
 process.on('SIGINT', () => {

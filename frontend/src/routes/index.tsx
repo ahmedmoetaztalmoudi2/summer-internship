@@ -5,6 +5,7 @@ import { CapgeminiEngineeringLogo } from "@/components/qa/CapgeminiEngineeringLo
 import { JiraSettingsModal, loadJiraSettings, saveJiraSettings, type JiraSettings } from "@/components/qa/JiraSettingsModal";
 import { qaApi } from "@/services/qaApi";
 import { messageOf } from "@/hooks/useTestRun";
+import type { RequiredInputField } from "@/types/qa";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,7 +40,7 @@ function StartPage() {
   }, []);
 
   const [pendingRunId, setPendingRunId] = useState<string | null>(null);
-  const [credentialFields, setCredentialFields] = useState<Array<{ name: string; label: string; type: string; required?: boolean; placeholder?: string; description?: string }>>([]);
+  const [credentialFields, setCredentialFields] = useState<RequiredInputField[]>([]);
   const [credentialMessage, setCredentialMessage] = useState<string | undefined>(undefined);
   const [credentialValues, setCredentialValues] = useState<Record<string, string>>({});
   const [credentialError, setCredentialError] = useState<string | null>(null);
@@ -202,7 +203,7 @@ function StartPage() {
                           onChange={(e) => setCredentialField(field.name, e.target.value)}
                           className="w-full rounded-lg bg-secondary px-4 py-2 text-sm ring-1 ring-foreground/5 focus:ring-2 focus:ring-brand/30 focus:outline-none"
                         />
-                      ) : field.type === "select" ? (
+                      ) : field.type === "select" || field.type === "combobox" ? (
                         <select
                           id={`field-${field.name}`}
                           value={credentialValues[field.name] ?? ""}
@@ -210,7 +211,43 @@ function StartPage() {
                           className="w-full rounded-lg bg-secondary px-4 py-2 text-sm ring-1 ring-foreground/5 focus:ring-2 focus:ring-brand/30 focus:outline-none"
                         >
                           <option value="">Select...</option>
+                          {(field.options ?? []).map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
                         </select>
+                      ) : field.type === "checkbox" ? (
+                        <div className="flex items-center gap-3">
+                          <input
+                            id={`field-${field.name}`}
+                            type="checkbox"
+                            checked={Boolean(credentialValues[field.name])}
+                            onChange={(e) => setCredentialField(field.name, e.target.checked ? "true" : "")}
+                            className="size-4 rounded border-border bg-secondary accent-brand"
+                          />
+                          <span className="text-sm text-muted-foreground">
+                            {field.label === "Checkbox" ? "Check this option" : "Yes / No"}
+                          </span>
+                        </div>
+                      ) : field.type === "radio" ? (
+                        <div className="flex flex-wrap items-center gap-4">
+                          {(field.options ?? [{ label: "Yes", value: "true" }, { label: "No", value: "false" }]).map(
+                            (option) => (
+                              <label key={option.value} className="flex cursor-pointer items-center gap-2 text-sm text-foreground">
+                                <input
+                                  type="radio"
+                                  name={field.name}
+                                  value={option.value}
+                                  checked={credentialValues[field.name] === option.value}
+                                  onChange={() => setCredentialField(field.name, option.value)}
+                                  className="size-4 accent-brand"
+                                />
+                                {option.label}
+                              </label>
+                            ),
+                          )}
+                        </div>
                       ) : (
                         <input
                           id={`field-${field.name}`}

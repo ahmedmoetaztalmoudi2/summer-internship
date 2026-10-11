@@ -1,0 +1,42 @@
+{
+  "scenario": "Vérification de l'absence du prix sur les cartes d'événements de la page d'accueil",
+  "status": "failed",
+  "failureType": "navigation_failure",
+  "confidence": 0.97,
+  "rootCause": "environment_issue",
+  "repairRecommendation": "Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect.",
+  "reasoning": [
+    "Failure classified as \"navigation_failure\" with confidence 0.97.",
+    "Root cause dimension: environment_issue — the network, application availability or execution environment caused the failure.",
+    "Matched error signature: /page\\.goto[^\\n]*(failed|timeout|error)/i.",
+    "Playwright call log: - navigating to \"https://teskerti.tn/\", waiting until \"load\" | 3 | test.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => { | 4 |   test(\"Vérification de l'absence du prix sur les cartes d'événements de la page d'accueil\", async ({ page }) => { | > 5 |     await page.goto(\"https://teskerti.tn\"); | |                ^ | 6 |     const eventCard = page.locator(\"div.owl-item.active div.tour_container\"); | 7 |     await expect(eventCard).not.toContainText(/TND/); | 8 |   }); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-l-absence-du-prix-sur-les-cartes-d-v-nements-de-la-page-d-accueil.spec.ts:5:16",
+    "Recommended action: Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n  - navigating to \"https://teskerti.tn/\", waiting until \"load\"\n\n\n  3 | test.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  4 |   test(\"Vérification de l'absence du prix sur les cartes d'événements de la page d'accueil\", async ({ page }) => {\n> 5 |     await page.goto(\"https://teskerti.tn\");\n    |                ^\n  6 |     const eventCard = page.locator(\"div.owl-item.active div.tour_container\");\n  7 |     await expect(eventCard).not.toContainText(/TND/);\n  8 |   });\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-l-absence-du-prix-sur-les-cartes-d-v-nements-de-la-page-d-accueil.spec.ts:5:16"
+    },
+    {
+      "source": "test_source",
+      "content": "test.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Vérification de l'absence du prix sur les cartes d'événements de la page d'accueil\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    const eventCard = page.locator(\"div.owl-item.active div.tour_container\");\n    await expect(eventCard).not.toContainText(/TND/);"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\v-rification-de-l-absence--dc192-ements-de-la-page-d-accueil-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-l-absence-du-prix-sur-les-cartes-d-v-nements-de-la-page-d-accueil.spec.ts",
+    "column": 16,
+    "line": 5
+  },
+  "diagnostics": {
+    "locatorLines": [],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-31T20:43:27.267Z"
+}

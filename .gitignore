@@ -1,0 +1,4 @@
+node_modules/
+
+# Artefacts de compilation du rapport
+rapport/out/

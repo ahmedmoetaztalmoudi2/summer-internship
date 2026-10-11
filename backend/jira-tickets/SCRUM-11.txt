@@ -1,0 +1,7 @@
+Pour les utilisateurs qui ne disposent pas de moyen de paiement en ligne, la plateforme doit fournir la liste à jour des points de vente physiques partenaires à travers la Tunisie (Grand Tunis, Sousse, Sfax, Bizerte, etc.) sur la page « Nos guichets » (https://teskerti.tn/offices).
+
+Critères d'acceptation :
+- La page « Nos guichets » est accessible depuis le lien « La liste de nos guichets » du pied de page
+- La page affiche la liste des points de vente partenaires
+- Chaque point de vente indique : Nom, Adresse complète, Horaires d'ouverture et numéro de téléphone
+- La page permet de filtrer/rechercher les guichets (champ de recherche)

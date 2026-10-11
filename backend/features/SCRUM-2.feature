@@ -1,19 +1,23 @@
 Fonctionnalité: Consultation du programme mis en avant depuis la page d'accueil
 
-  Contexte:
-    Étant donné l'utilisateur est sur la page d'accueil
+     Contexte:
+       Etant donné que l'utilisateur est sur la page d'accueil
 
-  Scénario: La section héro affiche le bouton "Voir programme"
-    Alors la section héro doit afficher un bouton "Voir programme"
+     Scénario: Affichage du bouton Réservez vos billets dans la section héro
+       Alors la section héro affiche un bouton « Réservez vos billets »
 
-  Scénario: Cliquer sur "Voir programme" ouvre la page des événements
-    Quand l'utilisateur clique sur le bouton "Voir programme"
-    Alors l'utilisateur doit être redirigé vers la page des événements du programme
+     Scénario: Navigation vers la fiche détaillée via le bouton Réservez vos billets
+       Quand l'utilisateur clique sur le bouton « Réservez vos billets » dans la section héro
+       Alors l'utilisateur est redirigé vers la fiche détaillée d'un événement en vedette
 
-  Scénario: La page affiche les détails des événements
-    Étant donné l'utilisateur est sur la page des événements du programme
-    Alors chaque événement affiché doit inclure sa salle, son prix en TND et sa date
+     Scénario: Navigation vers la page des événements d'une catégorie via Voir Plus
+       Quand l'utilisateur clique sur le bouton « Voir Plus » dans une section de catégorie
+       Alors l'utilisateur est redirigé vers la page des événements de cette catégorie
 
-  Scénario: Le bouton "Contactez-nous!" affiche les informations de contact
-    Quand l'utilisateur clique sur le bouton "Contactez-nous!"
-    Alors les informations de contact de Teskerti doivent être affichées
+     Scénario: Affichage des informations sur les cartes d'événements et absence du prix
+       Alors chaque carte d'événement affiche le nom de l'événement, la salle et la date
+       Et aucune carte d'événement n'affiche le prix en TND
+
+     Scénario: Navigation vers la page de contact via le bouton Contactez-nous
+       Quand l'utilisateur clique sur le bouton « Contactez-nous! » situé à côté de la section héro
+       Alors l'utilisateur est redirigé vers la page de contact de Teskerti

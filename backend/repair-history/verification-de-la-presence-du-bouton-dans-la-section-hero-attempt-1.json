@@ -1,0 +1,18 @@
+{
+  "scenario": "Vérification de la présence du bouton dans la section héro",
+  "failureType": "visibility_issue",
+  "repairType": "add_visibility_guard",
+  "before": "import { test, expect } from \"@playwright/test\";\n\nconst baseUrl = \"https://teskerti.tn\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Vérification de la présence du bouton dans la section héro\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil du site\n    await page.goto(baseUrl);\n\n    // Then la section héro affiche un bouton « Réservez vos billets »\n    await expect(page.getByRole(\"button\", { name: \"Réservez vos billets\" })).toBeVisible();\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\nconst baseUrl = \"https://teskerti.tn\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Vérification de la présence du bouton dans la section héro\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil du site\n    await page.goto(baseUrl);\n\n    // Then la section héro affiche un bouton « Réservez vos billets »\n    await expect(page.getByRole(\"button\", { name: \"Réservez vos billets\" })).toBeVisible();\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-pr-sence-du-bouton-dans-la-section-h-ro.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-pr-sence-du-bouton-dans-la-section-h-ro.spec.ts",
+    "column": 78,
+    "line": 11
+  },
+  "appliedAt": "2026-08-31T16:05:25.008Z",
+  "error": "Patch produced no changes (already applied or no-op).",
+  "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+}

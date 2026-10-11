@@ -1,0 +1,177 @@
+@startuml
+' Figure 4.1 - Boucle de réparation automatique
+' Chapitre 4 - rapport/05-chapitre-4-realisation.md
+' Source : agents/auto-repair.ts, processScenario (lignes 106-243).
+' Boucle : for (let attempt = 1; attempt <= maxAttempts; attempt++)  (ligne 134)
+' maxAttempts par defaut : MAX_REPAIR_ATTEMPTS = 3 (repair-agent/retry-runner.ts:9)
+
+skinparam monochrome false
+skinparam dpi 200
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam ArrowFontSize 9
+skinparam roundcorner 4
+skinparam ActivityBorderColor #555555
+skinparam ActivityBackgroundColor #FFFFFF
+skinparam ActivityDiamondBorderColor #555555
+skinparam ActivityDiamondBackgroundColor #F0F0F0
+skinparam NoteBorderColor #B08800
+skinparam NoteBackgroundColor #FFF8E1
+skinparam NoteFontColor #222222
+skinparam backgroundColor #FFFFFF
+
+start
+
+:processScenario()\nauto-repair.ts:106;
+
+:buildRepairPlan()\nstrategies.ts;
+
+:validateRepair()\nvalidator.ts:121;
+
+if (Plan auto-sûr ?) then (non)
+  :recordEntry(attempt = 0,\nescalated);
+  :Aucun fichier modifié\n-> retour;
+  stop
+endif
+
+while (Tentative <= maxAttempts ?\nmaxAttempts = 3) is (oui)
+
+  if (Premier passage ?) then (oui)
+    :applyRepair()\nsauvegarde dans\nrepair-backups/;
+    if (Le patch a produit\ndes modifications ?) then (non)
+      :rollbackRepair()\nversion restaurée;
+      :recordEntry(attempt,\nfailed);
+      :Aucun nouvel essai\npossible -> retour;
+      stop
+    endif
+  else (non)
+    :Réappliquer le nouveau plan\nsur le fichier courant;
+  endif
+
+  :runScenario()\nretry-runner.ts;
+
+  if (Le scénario passe ?) then (oui)
+    :recordEntry(attempt,\nsuccess);\n;
+    :saveFixedVersion()\net fin du scénario;
+    stop
+  endif
+
+  :recordEntry(attempt,\nfailed);
+
+  if (Tentative = maxAttempts ?\n3e tentative) then (oui)
+    :rollbackRepair()\nversion d'origine restaurée;
+    :Escalade pour revue humaine\n-> retour;
+    stop
+  endif
+
+  :analyzeNewFailure()\npuis buildRepairPlan();
+
+  :validateRepair()\ndu nouveau plan;
+
+  if (Nouveau plan auto-sûr ?) then (non)
+    :rollbackRepair()\nversion restaurée;
+    :Escalade pour revue humaine\n-> retour;
+    stop
+  endif
+
+  if (Le correctif suivant\napporte des changements ?) then (non)
+    :Garde anti-blocage :\nrelancer le même correctif\n(flakiness guard);
+  else (oui)
+    :Adopter le nouveau plan\net appliquer au tour suivant;
+  endif
+
+endwhile (non)
+
+:Escalade pour revue humaine;
+
+stop
+
+note left
+  **Lecture des fichiers**
+  `repair-history/`
+
+  Les 37 scénarios présents
+  se répartissent en trois
+  groupes disjoints.
+
+  **13 scénarios** n'ont qu'un
+  fichier `attempt-0`, tous avec
+  un résultat `escalated` : le
+  plan initial échoue à la
+  validation et la boucle n'est
+  jamais entrée. Le `repairType`
+  enregistré y vaut
+  `manual_review` (9),
+  `no_repair` (2),
+  `replace_test_data` (1) ou
+  `fix_examples_table` (1).
+
+  **21 scénarios** n'ont que des
+  fichiers `attempt-1` à
+  `attempt-3`, correspondant à
+  des tours de réparation réels.
+
+  **3 scénarios** portent les deux
+  types de fichiers, avec une
+  `failureType` différente dans
+  les trois cas. Un seul appel de
+  `processScenario` ne peut pas
+  produire les deux : la
+  validation initiale fait retour
+  avant la boucle
+  (`auto-repair.ts:124-127`), et
+  la `failureType` y est constante.
+  Ces fichiers relèvent donc de
+  deux appels distincts.
+
+  13 + 21 + 3 = 37 scénarios et
+  60 fichiers d'essai ; le 61e
+  fichier du dossier est
+  `history.json`, qui accumule les
+  écritures. Le volume de fichiers
+  ne doit donc pas être lu comme un
+  nombre de tentatives.
+end note
+
+note right
+  **Condition de boucle vérifiée**
+  `attempt <= maxAttempts`
+  (ligne 134), et non une
+  comparaison stricte. Avec
+  maxAttempts = 3, la boucle
+  s'exécute donc trois fois,
+  pour les indices 1, 2 et 3.
+
+  **validateRepair est appelée
+  deux fois par tour possible** :
+  une fois avant la boucle
+  (ligne 121), une fois après
+  chaque réanalyse
+  (ligne 220).
+
+  **Aucun appel au LLM** :
+  la construction du plan et la
+  réparation sont
+  déterministes.
+end note
+
+note right
+  **Portée du retour arrière**
+  `rollbackRepair()` ne restaure
+  que la version d'origine du
+  script. Il est appelé dans
+  trois cas, tous postérieurs à
+  une application effective :
+  correctif sans effet (155),
+  dernier essai échoué (211),
+  nouveau plan non auto-sûr
+  (223).
+
+  Il n'intervient pas lorsque la
+  validation initiale échoue, car
+  aucun fichier n'a encore été
+  modifié à ce stade.
+end note
+
+@enduml

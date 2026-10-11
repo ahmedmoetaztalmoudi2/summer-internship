@@ -1,0 +1,24 @@
+{
+  "scenario": "Affichage du prix du billet",
+  "failureType": "strict_mode_violation",
+  "rootCause": "bad_selector",
+  "repairType": "disambiguate_selector",
+  "target": "Selector (line 8)",
+  "currentValue": "getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' })",
+  "replacementValue": "getByRole('link', { name: 'EMPIRE I Opium Hammamet 23 TND' }).first()",
+  "confidence": 0.85,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Disambiguate the ambiguous locator with .first() (or add a distinguishing attribute).",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts",
+      "line": 8
+    }
+  ],
+  "explanation": [
+    "The locator resolved to multiple elements (strict mode violation).",
+    "No more specific verified selector exists, so disambiguation with .first() is the safe deterministic fix."
+  ],
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts"
+}

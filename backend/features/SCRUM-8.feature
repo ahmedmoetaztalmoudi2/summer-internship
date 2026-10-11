@@ -1,28 +1,25 @@
-Fonctionnalite: Creation de Compte
+Feature: Création de compte utilisateur
 
-  Background:
-    Given l'utilisateur est sur la page d'inscription
+      Background:
+        Given l'utilisateur est sur la page d'inscription
 
-  Scenario: Creation de compte avec email et mot de passe valides
-    Given l'utilisateur entre un email valide "user@example.com"
-    And l'utilisateur entre un mot de passe valide "Secret123!"
-    When l'utilisateur soumet le formulaire d'inscription
-    Then l'utilisateur devrait être redirigé vers la page de profil
-    And un message de bienvenue devrait être affiché
+      Scenario: Création de compte avec email valide et mot de passe valide
+        When l'utilisateur entre une adresse email valide
+        And l'utilisateur entre un mot de passe de 8 caractères ou plus
+        And l'utilisateur soumet le formulaire d'inscription
+        Then le compte utilisateur est créé avec succès
+        And l'utilisateur est redirigé vers la page de profil
 
-  Scenario: Creation de compte avec email déjà existant
-    Given l'utilisateur entre un email déjà existant "existinguser@example.com"
-    And l'utilisateur entre un mot de passe valide "Secret123!"
-    When l'utilisateur soumet le formulaire d'inscription
-    Then un message d'erreur "Un compte existe déjà avec cet email" devrait être affiché
+      Scenario: Tentative d'inscription avec un email déjà existant
+        When l'utilisateur entre une adresse email déjà utilisée
+        And l'utilisateur entre un mot de passe valide
+        And l'utilisateur soumet le formulaire d'inscription
+        Then le message d'erreur "Un compte existe déjà avec cet email" doit s'afficher
 
-  Scenario Outline: Creation de compte avec mot de passe invalide
-    Given l'utilisateur entre un email valide "user@example.com"
-    And l'utilisateur entre un mot de passe "<password>"
-    When l'utilisateur soumet le formulaire d'inscription
-    Then un message d'erreur "<error_message>" devrait être affiché
+      Scenario: Tentative d'inscription avec un mot de passe trop court
+        When l'utilisateur entre une adresse email valide
+        And l'utilisateur entre un mot de passe de moins de 8 caractères
+        And l'utilisateur soumet le formulaire d'inscription
+        Then le message d'erreur "Le mot de passe doit contenir au moins 8 caractères" doit s'afficher
 
-    Examples:
-      | password | error_message                           |
-      | pass     | Le mot de passe doit contenir au moins 8 caractères |
-      | abcdefg  | Le mot de passe doit contenir au moins 8 caractères |
+6.  **Final Output Generation:** (Proceed to generate raw text).

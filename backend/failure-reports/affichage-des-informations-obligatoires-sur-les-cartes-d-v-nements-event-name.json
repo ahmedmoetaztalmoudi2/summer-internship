@@ -1,0 +1,42 @@
+{
+  "scenario": "Affichage des informations obligatoires sur les cartes d'événements - event name",
+  "status": "failed",
+  "failureType": "navigation_failure",
+  "confidence": 0.97,
+  "rootCause": "environment_issue",
+  "repairRecommendation": "Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect.",
+  "reasoning": [
+    "Failure classified as \"navigation_failure\" with confidence 0.97.",
+    "Root cause dimension: environment_issue — the network, application availability or execution environment caused the failure.",
+    "Matched error signature: /page\\.goto[^\\n]*(failed|timeout|error)/i.",
+    "Playwright call log: - navigating to \"https://teskerti.tn/\", waiting until \"load\" | 3 | test.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => { | 4 |   test.beforeEach(async ({ page }) => { | > 5 |     await page.goto(\"https://teskerti.tn\"); | |                ^ | 6 |   }); | 7 | | 8 |   test(\"Affichage des informations obligatoires sur les cartes d'événements - event name\", async ({ page }) => { | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-obligatoires-sur-les-cartes-d-v-nements.spec.ts:5:16",
+    "Recommended action: Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook.\nTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-obligatoires-sur-les-cartes-d-v-nements.spec.ts:4:8\nTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\n\n  2 |\n  3 | test.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto(\"https://teskerti.tn\");\n  6 |   });\n  7 |\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-obligatoires-sur-les-cartes-d-v-nements.spec.ts:4:8\nError: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n  - navigating to \"https://teskerti.tn/\", waiting until \"load\"\n\n\n  3 | test.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  4 |   test.beforeEach(async ({ page }) => {\n> 5 |     await page.goto(\"https://teskerti.tn\");\n    |                ^\n  6 |   });\n  7 |\n  8 |   test(\"Affichage des informations obligatoires sur les cartes d'événements - event name\", async ({ page }) => {\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-obligatoires-sur-les-cartes-d-v-nements.spec.ts:5:16"
+    },
+    {
+      "source": "test_source",
+      "content": "\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test.beforeEach(async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n  });"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-des-informations-e0057-s-d-événements---event-name-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-obligatoires-sur-les-cartes-d-v-nements.spec.ts",
+    "column": 8,
+    "line": 4
+  },
+  "diagnostics": {
+    "locatorLines": [],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-31T20:43:27.261Z"
+}

@@ -1,24 +1,27 @@
 {
   "scenario": "Connexion réussie avec des identifiants valides",
-  "failureType": "strict_mode_violation",
-  "rootCause": "bad_selector",
-  "repairType": "disambiguate_selector",
-  "target": "Selector (line 8)",
-  "currentValue": "button:has-text(\"Se connecter\"), button[type=\"submit\"]",
-  "replacementValue": "input[name=\"email\"]",
-  "confidence": 0.85,
-  "repairable": true,
-  "requiresHumanReview": false,
+  "failureType": "authentication_failure",
+  "rootCause": "bad_test_data",
+  "repairType": "ensure_credentials",
+  "target": "Credentials",
+  "confidence": 0.47,
+  "repairable": false,
+  "requiresHumanReview": true,
   "actions": [
     {
-      "action": "Use the verified single-element selector \"input[name=\"email\"]\" from the knowledge base.",
-      "file": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
-      "line": 8
+      "action": "Provide valid credentials (e.g. via the --credentials flag / environment) and re-run.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
+      "line": 19
+    },
+    {
+      "action": "Verify the scenario data used for login matches a real user account.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts",
+      "line": 19
     }
   ],
   "explanation": [
-    "The locator resolved to multiple elements (strict mode violation).",
-    "A more specific verified selector exists: input[name=\"email\"]."
+    "Authentication did not succeed (401/403 or still on the login page).",
+    "Credentials cannot be invented deterministically — valid ones must be supplied."
   ],
-  "sourceFile": "C:\\Users\\melli\\QA_Testing\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts"
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-r-ussie-avec-des-identifiants-valides.spec.ts"
 }

@@ -1,0 +1,19 @@
+{
+  "scenario": "Ouverture de la fiche détaillée d'un événement",
+  "failureType": "timeout",
+  "repairType": "add_wait_strategy",
+  "before": "import { test, expect } from '@playwright/test';\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Ouverture de la fiche détaillée d'un événement\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"button:has-text(\\\"Se connecter\\\")\").first().click();\n    // TODO: assert the expected outcome for this scenario\n    // TODO: \"Given the user is on the event listing page\"\n    // TODO: \"Then the detailed event page should be displayed\"\n  });\n});\n",
+  "after": "import { test, expect } from '@playwright/test';\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Ouverture de la fiche détaillée d'un événement\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"button:has-text(\\\"Se connecter\\\")\").first().click();\n    // TODO: assert the expected outcome for this scenario\n    // TODO: \"Given the user is on the event listing page\"\n    // TODO: \"Then the detailed event page should be displayed\"\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-d-un-v-nement.spec.ts",
+  "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\ouverture-de-la-fiche-detaillee-d-un-evenement\\original.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-d-un-v-nement.spec.ts",
+    "column": 69,
+    "line": 6
+  },
+  "appliedAt": "2026-08-31T15:30:23.072Z",
+  "durationMs": 60125,
+  "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+}

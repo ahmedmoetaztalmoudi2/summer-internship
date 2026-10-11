@@ -1,0 +1,7 @@
+Cliquer sur une carte d'événement ouvre sa fiche détaillée. La fiche présente le titre de l'événement, la date, l'heure, le lieu (salle), l'affiche, et le prix en TND par catégorie de billet. Le bouton « Ajouter au panier » est bien mis en évidence.
+
+Critères d'acceptation :
+- Cliquer sur la carte d'un événement ouvre sa fiche détaillée
+- La page affiche le titre de l'événement, la date, l'heure et le lieu (salle)
+- Le prix du billet en TND par catégorie (ex: Gradin 110TND, Chaise 192TND) est visible
+- Un bouton « Ajouter au panier » est bien mis en évidence

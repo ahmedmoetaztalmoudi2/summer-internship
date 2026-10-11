@@ -1,0 +1,51 @@
+{
+  "scenario": "Affichage du bouton de réservation dans la section héro",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: a.button_intro",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: a.button_intro",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./.a_heroCta] appear in the failing locator.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('a.button_intro').first() | - Protocol error (Runtime.callFunctionOn): Internal server error, session closed. | 4 |   test(\"Affichage du bouton de réservation dans la section héro\", async ({ page }) => { | 5 |     await page.goto(\"https://teskerti.tn\"); | > 6 |     await expect(page.locator(\"a.button_intro\").first()).toBeVisible(); | |                                                          ^ | 7 |   }); | 8 | }); | 9 | | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-de-r-servation-dans-la-section-h-ro.spec.ts:6:58",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: a.button_intro"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: expect(locator).toBeVisible() failed\n\nLocator:  locator('a.button_intro').first()\nExpected: visible\nReceived: hidden\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('a.button_intro').first()\n  - Protocol error (Runtime.callFunctionOn): Internal server error, session closed.\n\n\n  4 |   test(\"Affichage du bouton de réservation dans la section héro\", async ({ page }) => {\n  5 |     await page.goto(\"https://teskerti.tn\");\n> 6 |     await expect(page.locator(\"a.button_intro\").first()).toBeVisible();\n    |                                                          ^\n  7 |   });\n  8 | });\n  9 |\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-de-r-servation-dans-la-section-h-ro.spec.ts:6:58"
+    },
+    {
+      "source": "test_source",
+      "content": "  test(\"Affichage du bouton de réservation dans la section héro\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page.locator(\"a.button_intro\").first()).toBeVisible();\n  });\n});"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-du-bouton-de-r-s-2a76b-vation-dans-la-section-héro-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-de-r-servation-dans-la-section-h-ro.spec.ts",
+    "column": 58,
+    "line": 6
+  },
+  "diagnostics": {
+    "failingLocator": "a.button_intro",
+    "locatorLines": [
+      "waiting for locator('a.button_intro').first()",
+      "Locator: locator('a.button_intro').first()",
+      "locator('a.button_intro')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./.a_heroCta"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-31T20:48:51.507Z"
+}

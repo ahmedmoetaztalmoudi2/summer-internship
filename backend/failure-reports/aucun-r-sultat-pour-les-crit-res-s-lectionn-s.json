@@ -1,0 +1,57 @@
+{
+  "scenario": "Aucun résultat pour les critères sélectionnés",
+  "status": "failed",
+  "failureType": "strict_mode_violation",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: a[href*=\"/category/spectacle\"]",
+  "reasoning": [
+    "Failure classified as \"strict_mode_violation\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /strict mode violation/i.",
+    "Failing locator: a[href*=\"/category/spectacle\"]",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./.a_voirProgramme, pages./.a_categorySpectacle] appear in the failing locator.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('a[href*=\"/category/spectacle\"]') | Error: expect(locator).toBeVisible() failed | Locator: locator('a[href*=\"/category/spectacle\"]') | Expected: visible | Error: strict mode violation: locator('a[href*=\"/category/spectacle\"]') resolved to 3 elements: | 1) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka locator('#plain').getByRole('link', { name: 'Spectacle' }) | 2) <a href=\"https://teskerti.tn/category/spectacle\">…</a> aka locator('a').filter({ hasText: 'Spectacle 3 Evènements' }) | 3) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka getByRole('contentinfo').getByRole('link', { name: 'Spectacle' }) | Call log: | - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('a[href*=\"/category/spectacle\"]') | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\aucun-r-sultat-pour-les-crit-res-s-lectionn-s.spec.ts:12:32 | Error: expect(locator).toBeVisible() failed | Locator: locator('a[href*=\"/category/spectacle\"]') | Expected: visible | Error: strict mode violation: locator('a[href*=\"/category/spectacle\"]') resolved to 3 elements: | 1) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka locator('#plain').getByRole('link', { name: 'Spectacle' }) | 2) <a href=\"https://teskerti.tn/category/spectacle\">…</a> aka locator('a').filter({ hasText: 'Spectacle 3 Evènements' }) | 3) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka getByRole('contentinfo').getByRole('link', { name: 'Spectacle' }) | Call log: | - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('a[href*=\"/category/spectacle\"]') | 10 |     // Go to the category page | 11 |     const categoryLink = page.locator(\"a[href*=\\\"/category/spectacle\\\"]\"); | > 12 |     await expect(categoryLink).toBeVisible(); | |                                ^ | 13 |     await categoryLink.click(); | 14 |     // Optionally verify navigation to the category page | 15 |     await expect(page).toHaveURL(/\\/category\\/spectacle/); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\aucun-r-sultat-pour-les-crit-res-s-lectionn-s.spec.ts:12:32",
+    "Recommended action: The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: a[href*=\"/category/spectacle\"]"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('a[href*=\"/category/spectacle\"]')\nExpected: visible\nError: strict mode violation: locator('a[href*=\"/category/spectacle\"]') resolved to 3 elements:\n    1) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka locator('#plain').getByRole('link', { name: 'Spectacle' })\n    2) <a href=\"https://teskerti.tn/category/spectacle\">…</a> aka locator('a').filter({ hasText: 'Spectacle 3 Evènements' })\n    3) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka getByRole('contentinfo').getByRole('link', { name: 'Spectacle' })\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('a[href*=\"/category/spectacle\"]')\n\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('a[href*=\"/category/spectacle\"]')\nExpected: visible\nError: strict mode violation: locator('a[href*=\"/category/spectacle\"]') resolved to 3 elements:\n    1) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka locator('#plain').getByRole('link', { name: 'Spectacle' })\n    2) <a href=\"https://teskerti.tn/category/spectacle\">…</a> aka locator('a').filter({ hasText: 'Spectacle 3 Evènements' })\n    3) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka getByRole('contentinfo').getByRole('link', { name: 'Spectacle' })\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('a[href*=\"/category/spectacle\"]')\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\aucun-r-sultat-pour-les-crit-res-s-lectionn-s.spec.ts:12:32\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('a[href*=\"/category/spectacle\"]')\nExpected: visible\nError: strict mode violation: locator('a[href*=\"/category/spectacle\"]') resolved to 3 elements:\n    1) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka locator('#plain').getByRole('link', { name: 'Spectacle' })\n    2) <a href=\"https://teskerti.tn/category/spectacle\">…</a> aka locator('a').filter({ hasText: 'Spectacle 3 Evènements' })\n    3) <a href=\"https://teskerti.tn/category/spectacle\">Spectacle </a> aka getByRole('contentinfo').getByRole('link', { name: 'Spectacle' })\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('a[href*=\"/category/spectacle\"]')\n\n\n  10 |     // Go to the category page\n  11 |     const categoryLink = page.locator(\"a[href*=\\\"/category/spectacle\\\"]\");\n> 12 |     await expect(categoryLink"
+    },
+    {
+      "source": "test_source",
+      "content": "    // Go to the category page\n    const categoryLink = page.locator(\"a[href*=\\\"/category/spectacle\\\"]\");\n    await expect(categoryLink).toBeVisible();\n    await categoryLink.click();\n    // Optionally verify navigation to the category page"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\aucun-r-sultat-pour-les-cr-3d129-r-les-critères-sélectionnés-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\aucun-r-sultat-pour-les-crit-res-s-lectionn-s.spec.ts",
+    "column": 32,
+    "line": 12
+  },
+  "diagnostics": {
+    "failingLocator": "a[href*=\"/category/spectacle\"]",
+    "locatorLines": [
+      "waiting for locator('a[href*=\"/category/spectacle\"]')",
+      "Locator: locator('a[href*=\"/category/spectacle\"]')",
+      "locator('a[href*=\"/category/spectacle\"]')",
+      "locator('#plain')",
+      "locator('a')",
+      "getByRole('link', { name: 'Spectacle' })",
+      "getByRole('contentinfo').getByRole('link', { name: 'Spectacle' })"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./.a_voirProgramme",
+      "pages./.a_categorySpectacle"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-09-01T20:32:38.355Z"
+}

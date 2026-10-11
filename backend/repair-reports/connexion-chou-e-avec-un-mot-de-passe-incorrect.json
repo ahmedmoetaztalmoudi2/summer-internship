@@ -3,7 +3,7 @@
   "failureType": "timeout",
   "rootCause": "timing_issue",
   "repairType": "add_wait_strategy",
-  "target": "Wait strategy (line 8)",
+  "target": "Wait strategy (line 10)",
   "currentValue": "input[name=\"email\"]",
   "confidence": 0.59,
   "repairable": true,
@@ -11,23 +11,23 @@
   "actions": [
     {
       "action": "Precede the action with an explicit expectation: await expect(page.locator(\"input[name=\"email\"]\")).toBeVisible({ timeout: 15000 });",
-      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
-      "line": 8
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect.spec.ts",
+      "line": 10
     },
     {
       "action": "Prefer response-driven waits (waitForResponse) over bare waits for AJAX content.",
-      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
-      "line": 8
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect.spec.ts",
+      "line": 10
     },
     {
       "action": "Raise the action timeout from the default instead of relying on the test-level timeout.",
-      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts",
-      "line": 8
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect.spec.ts",
+      "line": 10
     }
   ],
   "explanation": [
     "The wait timed out but the error gives no proof the element is missing.",
     "The element likely appears later than the default wait allows, so a targeted wait strategy replaces the guesswork."
   ],
-  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect-2.spec.ts"
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\connexion-chou-e-avec-un-mot-de-passe-incorrect.spec.ts"
 }

@@ -1,0 +1,49 @@
+{
+  "scenario": "Affichage du bouton Ajouter au panier",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.95,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: button:has-text(\"Ajouter au panier\")",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.95.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: button:has-text(\"Ajouter au panier\")",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('button:has-text(\"Ajouter au panier\")') | Error: expect(locator).toBeVisible() failed | Locator: locator('button:has-text(\"Ajouter au panier\")') | Expected: visible | Timeout: 5000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('button:has-text(\"Ajouter au panier\")') | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-ajouter-au-panier.spec.ts:12:81 | Error: expect(locator).toBeVisible() failed | Locator: locator('button:has-text(\"Ajouter au panier\")') | Expected: visible | Timeout: 5000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('button:has-text(\"Ajouter au panier\")') | 10 | | 11 |              // Then: the \"Ajouter au panier\" button should be prominently displayed | > 12 |              await expect(page.locator('button:has-text(\"Ajouter au panier\")')).toBeVisible(); | |                                                                                 ^ | 13 |            }); | 14 |          }); | 15 | | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-ajouter-au-panier.spec.ts:12:81",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: button:has-text(\"Ajouter au panier\")"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('button:has-text(\"Ajouter au panier\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('button:has-text(\"Ajouter au panier\")')\n\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('button:has-text(\"Ajouter au panier\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('button:has-text(\"Ajouter au panier\")')\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-ajouter-au-panier.spec.ts:12:81\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('button:has-text(\"Ajouter au panier\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('button:has-text(\"Ajouter au panier\")')\n\n\n  10 |\n  11 |              // Then: the \"Ajouter au panier\" button should be prominently displayed\n> 12 |              await expect(page.locator('button:has-text(\"Ajouter au panier\")')).toBeVisible();\n     |                                                                                 ^\n  13 |            });\n  14 |          });\n  15 |\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-ajouter-au-panier.spec.ts:12:81"
+    },
+    {
+      "source": "test_source",
+      "content": "\n             // Then: the \"Ajouter au panier\" button should be prominently displayed\n             await expect(page.locator('button:has-text(\"Ajouter au panier\")')).toBeVisible();\n           });\n         });"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-du-bouton-ajoute-c94d5-du-bouton-Ajouter-au-panier-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-ajouter-au-panier.spec.ts",
+    "column": 81,
+    "line": 12
+  },
+  "diagnostics": {
+    "failingLocator": "button:has-text(\"Ajouter au panier\")",
+    "locatorLines": [
+      "waiting for locator('button:has-text(\"Ajouter au panier\")')",
+      "Locator: locator('button:has-text(\"Ajouter au panier\")')",
+      "locator('button:has-text(\"Ajouter au panier\")')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-31T15:29:07.473Z"
+}

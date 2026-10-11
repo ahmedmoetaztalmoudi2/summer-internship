@@ -1,0 +1,140 @@
+@startuml
+' Figure 3.1 - Architecture globale du pipeline
+' Chapitre 3 - rapport/04-chapitre-3-architecture.md
+' Deux modes d'execution distincts :
+'   CLI  : full-pipeline.ts -> analyse, propositions, application, relance
+'   API  : api-server.ts   -> analyse et propositions seulement
+
+skinparam monochrome false
+skinparam dpi 200
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam roundcorner 4
+skinparam ArrowFontSize 9
+skinparam packageStyle rectangle
+skinparam componentStyle rectangle
+skinparam backgroundColor #FFFFFF
+skinparam package {
+  BackgroundColor #F5F5F5
+  BorderColor #555555
+  FontColor #222222
+}
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #555555
+  FontColor #222222
+}
+skinparam database {
+  BackgroundColor #EFEFEF
+  BorderColor #555555
+  FontColor #222222
+}
+skinparam note {
+  BackgroundColor #FFF8E1
+  BorderColor #B08800
+  FontColor #222222
+}
+
+package "Entrées" {
+  component "User story Jira" as USR
+  component "URL du site cible" as URL
+  component "Identifiants de connexion" as CRED
+}
+
+package "Étapes 1 à 6, communes aux deux modes" {
+  component "1. Extraction Jira\njira-fetcher.js" as S1
+  component "2. Conversion ADF\nadf-to-text.js" as S2
+  component "3. Génération Gherkin\ngherkin-generator.js" as S3 #FFE6CC
+  component "4. Compréhension du site\nagents/website-understanding.ts" as S4
+  component "5. Génération Playwright\nsrc/generator.ts" as S5 #FFE6CC
+  component "6. Exécution\nsrc/runner.ts" as S6
+}
+
+package "Mode CLI — full-pipeline.ts" {
+  component "7. Analyse\nfailure-analysis/rules.ts" as C7
+  component "8. Propositions\nrepair-agent/repair-agent.ts" as C8
+  component "Validation\nrepair-agent/validator.ts" as CVAL #E6F3FF
+  component "Sauvegarde\nrepair-backups/" as CBACK
+  component "Application\nrepair-agent/patcher.ts" as CPATCH
+  component "Relance\nrepair-agent/retry-runner.ts" as CRETRY
+  component "Abandon après 3 réparations" as CESC #FFE6E6
+}
+
+package "Mode API — api-server.ts" {
+  component "7. Analyse\nanalyzeFailures()" as A7
+  component "8. Propositions\ngenerateRepairProposals()" as A8
+  component "Aucune application\ndes correctifs" as ANONE #FFE6E6
+}
+
+database "Base de sélecteurs\nselectors/teskerti.tn.json" as KB
+database "failure-reports/\nrepair-reports/\nrepair-history/" as OUT
+
+USR --> S1 : API REST v3
+S1 --> S2 : JSON ADF
+S2 --> S3 : texte des critères
+S3 --> S4 : fichier .feature
+URL --> S4
+S4 --> KB : sélecteurs uniques
+CRED --> S6
+S3 --> S5 : scénarios + KB
+KB --> S5 : sélecteurs filtrés
+S5 --> S6 : fichiers .spec.ts
+S6 --> OUT : rapport JSON
+S6 --> C7 : rapport JSON\n(mode CLI)
+S6 --> A7 : rapport JSON\n(mode API)
+
+note right of S3
+  Appel au LLM (Groq)
+  Modèle par défaut
+  qwen/qwen3.6-27b
+  5 tentatives
+end note
+
+note right of S5
+  Appel au LLM (Groq)
+  Modèle par défaut
+  openai/gpt-oss-20b
+  Repli prévu :
+  gemini-1.5-flash
+end note
+
+note top of C7
+  Seul mode qui applique
+  les correctifs.
+  detail : Figure 4.1
+end note
+
+' --- Mode CLI ---
+C7 --> C8 : FailureReport
+C8 --> CVAL
+CVAL --> CBACK : si validé
+CBACK --> CPATCH
+CPATCH --> CRETRY : jusqu'à 3 réparations
+CRETRY --> C7 : si échec
+CRETRY --> CESC : abandon
+C8 --> OUT
+
+' --- Mode API ---
+A7 --> A8 : FailureReport
+A8 --> ANONE
+A8 --> OUT
+
+note bottom of A7
+  L'API s'arrête à la proposition.
+  Elle ne valide pas, ne
+  sauvegarde pas et n'applique
+  aucun correctif.
+end note
+
+legend right
+  |= Couleur |= Signification |
+  | <#FFE6CC> | Étape appelant un LLM |
+  | <#E6F3FF> | Contrôle de sécurité |
+  | <#FFE6E6> | Arrêt ou limite du mode |
+  Les six premières étapes sont
+  déterministes, à l'exception
+  des étapes 3 et 5.
+endlegend
+
+@enduml

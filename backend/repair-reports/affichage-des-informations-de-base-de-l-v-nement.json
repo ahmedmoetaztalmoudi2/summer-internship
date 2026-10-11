@@ -1,0 +1,27 @@
+{
+  "scenario": "Affichage des informations de base de l'événement",
+  "failureType": "visibility_issue",
+  "rootCause": "bad_selector",
+  "repairType": "add_visibility_guard",
+  "target": "Visibility (line 16)",
+  "currentValue": ".event-date",
+  "confidence": 0.69,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Assert visibility of an actionable container/row instead of the hidden element.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts",
+      "line": 16
+    },
+    {
+      "action": "Scroll the element into view (scrollIntoViewIfNeeded) before interacting.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts",
+      "line": 16
+    }
+  ],
+  "explanation": [
+    "The element is present but hidden; the assertion/interaction targets a non-actionable element."
+  ],
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts"
+}

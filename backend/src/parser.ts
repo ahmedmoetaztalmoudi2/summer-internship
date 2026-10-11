@@ -22,7 +22,46 @@ export interface ParsedFeature {
 const featurePattern = /^\s*(?:Feature|Fonctionnalité|Fonctionnalite)\s*:\s*(.+)$/i;
 const scenarioPattern = /^\s*(?:Scenario Outline|Scenario Template|Scenario|Scénario|Plan du scenario|Plan du scénario)\s*:\s*(.+)$/i;
 const backgroundPattern = /^\s*(?:Background|Contexte)\s*:\s*$/i;
-const stepPattern = /^(Given|When|Then|And|But)\s+(.+)$/i;
+// English + French step keywords. French keywords are mapped to their English
+// StepType equivalents (e.g. "Étant donné que" -> Given, "Quand" -> When,
+// "Alors" -> Then, "Et que"/"Et" -> And, "Mais" -> But).
+const STEP_KEYWORD_TO_TYPE: Record<string, StepType> = {
+  given: 'Given',
+  when: 'When',
+  then: 'Then',
+  and: 'And',
+  but: 'But',
+  'étant donné que': 'Given',
+  'étant donné': 'Given',
+  'etant donné que': 'Given',
+  'etant donné': 'Given',
+  soit: 'Given',
+  quand: 'When',
+  lorsque: 'When',
+  alors: 'Then',
+  donc: 'Then',
+  'et que': 'And',
+  et: 'And',
+  mais: 'But',
+};
+
+// Ordered longest-first so multi-word French keywords ("Étant donné que",
+// "Et que") match before their single-word prefixes ("Étant", "Et").
+const KEYWORDS = Object.keys(STEP_KEYWORD_TO_TYPE).sort((a, b) => b.length - a.length);
+
+// Matches a known English or French step keyword, then captures the step text.
+// Case-insensitive; keyword boundaries avoid matching inside longer words.
+const stepPattern = new RegExp(
+  '^(' +
+    KEYWORDS.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') +
+    ')\\s+(.+)$',
+  'i'
+);
+
+function stepTypeFromKeyword(keyword: string): StepType | null {
+  const lower = keyword.toLowerCase();
+  return STEP_KEYWORD_TO_TYPE[lower] ?? null;
+}
 
 export async function parseFeatureFile(filePath: string): Promise<ParsedFeature> {
   const content = await readFile(filePath, 'utf8');
@@ -95,10 +134,16 @@ export async function parseFeatureFile(filePath: string): Promise<ParsedFeature>
 
     const stepMatch = line.match(stepPattern);
     if (stepMatch) {
-      const step: ParsedStep = {
-        type: stepMatch[1].charAt(0).toUpperCase() + stepMatch[1].slice(1).toLowerCase() as StepType,
-        text: stepMatch[2].trim()
-      };
+      const type = stepTypeFromKeyword(stepMatch[1]);
+      if (!type) {
+        continue;
+      }
+      let text = stepMatch[2].trim();
+      // For "Étant donné que ..." / "Et que ..." the connective "que" becomes
+      // part of the step text; strip a leading "que" so it reads naturally.
+      text = text.replace(/^que\s+/i, '').trim();
+
+      const step: ParsedStep = { type, text };
 
       if (backgroundSeen && !currentScenario) {
         backgroundSteps.push(step);

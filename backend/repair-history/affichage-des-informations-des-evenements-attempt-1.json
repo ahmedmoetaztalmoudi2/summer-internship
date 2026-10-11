@@ -1,0 +1,18 @@
+{
+  "scenario": "Affichage des informations des événements",
+  "failureType": "visibility_issue",
+  "repairType": "add_visibility_guard",
+  "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant sur la page d'accueil\", () => {\n  test(\"Affichage des informations des événements\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page).toHaveURL(\"https://teskerti.tn/\");\n\n    // When il consulte les événements affichés dans les sections de catégorie\n    // TODO: locate event cards in category sections\n    const eventCard = page.locator(\".event-card\").first();\n\n    // Then chaque événement doit afficher sa salle, son prix en TND et sa date\n    await expect(eventCard).toBeVisible();\n    // TODO: verify venue, price, and date within eventCard\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant sur la page d'accueil\", () => {\n  test(\"Affichage des informations des événements\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page).toHaveURL(\"https://teskerti.tn/\");\n\n    // When il consulte les événements affichés dans les sections de catégorie\n    // TODO: locate event cards in category sections\n    const eventCard = page.locator(\".event-card\").first();\n\n    // Then chaque événement doit afficher sa salle, son prix en TND et sa date\n    await expect(eventCard).toBeVisible();\n    // TODO: verify venue, price, and date within eventCard\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-des-v-nements.spec.ts",
+    "column": 29,
+    "line": 14
+  },
+  "appliedAt": "2026-08-31T16:18:54.607Z",
+  "error": "Patch produced no changes (already applied or no-op).",
+  "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+}

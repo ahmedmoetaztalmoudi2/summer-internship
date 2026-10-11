@@ -1,0 +1,19 @@
+{
+  "scenario": "Navigation vers la page des événements d'une catégorie",
+  "failureType": "timeout",
+  "repairType": "add_wait_strategy",
+  "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Navigation vers la page des événements d'une catégorie\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"a.btn_search[href*=\\\"/category/spectacle\\\"]\").click();\n    await expect(page).toHaveURL(/\\/category\\/spectacle/);\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant depuis la page d'accueil\", () => {\n  test(\"Navigation vers la page des événements d'une catégorie\", async ({ page }) => {\n    test.setTimeout(60000);\n    await page.goto(\"https://teskerti.tn\");\n    await page.locator(\"a.btn_search[href*=\\\"/category/spectacle\\\"]\").click();\n    await expect(page).toHaveURL(/\\/category\\/spectacle/);\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+  "backupFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\repair-backups\\navigation-vers-la-page-des-evenements-d-une-categorie\\original.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-des-v-nements-d-une-cat-gorie.spec.ts",
+    "column": 71,
+    "line": 6
+  },
+  "appliedAt": "2026-08-31T16:03:20.665Z",
+  "durationMs": 60048,
+  "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+}

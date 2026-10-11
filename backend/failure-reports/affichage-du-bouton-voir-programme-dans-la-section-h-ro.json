@@ -1,0 +1,48 @@
+{
+  "scenario": "Affichage du bouton \"Voir programme\" dans la section héro",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.95,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: getByRole(\"button\", { name: \"Voir programme\" })).toBeVisible()",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.95.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: getByRole(\"button\", { name: \"Voir programme\" })).toBeVisible()",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for getByRole('button', { name: 'Voir programme' }) | Error: expect(locator).toBeVisible() failed | Locator: getByRole('button', { name: 'Voir programme' }) | Expected: visible | Timeout: 5000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for getByRole('button', { name: 'Voir programme' }) | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-voir-programme-dans-la-section-h-ro.spec.ts:10:75 | Error: expect(locator).toBeVisible() failed | Locator: getByRole('button', { name: 'Voir programme' }) | Expected: visible | Timeout: 5000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for getByRole('button', { name: 'Voir programme' }) | 8 |        // Then: la section héro affiche le bouton \"Voir programme\" | 9 |        // TODO: Selector not found in knownSelectors. Using best-effort getByRole. | > 10 |        await expect(page.getByRole(\"button\", { name: \"Voir programme\" })).toBeVisible(); | |                                                                           ^ | 11 |      }); | 12 |    }); | 13 | | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-voir-programme-dans-la-section-h-ro.spec.ts:10:75",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: getByRole(\"button\", { name: \"Voir programme\" })).toBeVisible()"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: 'Voir programme' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for getByRole('button', { name: 'Voir programme' })\n\nError: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: 'Voir programme' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for getByRole('button', { name: 'Voir programme' })\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-voir-programme-dans-la-section-h-ro.spec.ts:10:75\nError: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: 'Voir programme' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for getByRole('button', { name: 'Voir programme' })\n\n\n   8 |        // Then: la section héro affiche le bouton \"Voir programme\"\n   9 |        // TODO: Selector not found in knownSelectors. Using best-effort getByRole.\n> 10 |        await expect(page.getByRole(\"button\", { name: \"Voir programme\" })).toBeVisible();\n     |                                                                           ^\n  11 |      });\n  12 |    });\n  13 |\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-voir-programme-dans-la-section-h-ro.spec.ts:10:75"
+    },
+    {
+      "source": "test_source",
+      "content": "       // Then: la section héro affiche le bouton \"Voir programme\"\n       // TODO: Selector not found in knownSelectors. Using best-effort getByRole.\n       await expect(page.getByRole(\"button\", { name: \"Voir programme\" })).toBeVisible();\n     });\n   });"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-du-bouton-voir-p-d9d7d-gramme-dans-la-section-héro-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-voir-programme-dans-la-section-h-ro.spec.ts",
+    "column": 75,
+    "line": 10
+  },
+  "diagnostics": {
+    "failingLocator": "getByRole(\"button\", { name: \"Voir programme\" })).toBeVisible()",
+    "locatorLines": [
+      "getByRole('button', { name: 'Voir programme' })",
+      "getByRole(\"button\", { name: \"Voir programme\" })).toBeVisible()"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-30T21:41:35.937Z"
+}

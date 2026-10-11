@@ -228,9 +228,24 @@ export async function analyzeFailures(
   return { result, files };
 }
 
-function formatReport(report: FailureReport): string {
+export function formatReport(report: FailureReport): string {
   const confidence = `${(report.confidence * 100).toFixed(0)}%`;
   return `${report.scenario}\n  ${report.failureType} (confidence: ${confidence})\n  root cause: ${report.rootCause}\n  recommendation: ${report.repairRecommendation}`;
+}
+
+/**
+ * Converts a structured failure report into a concise, human-readable paragraph
+ * that explains the problem and the fix without exposing internal field names.
+ * Used to surface a plain-language "what went wrong / how to fix it" note next
+ * to each failed scenario in the final report.
+ */
+export function formatFailureParagraph(report: FailureReport): string {
+  const confidence = `${(report.confidence * 100).toFixed(0)}%`;
+  const lines = [`FAILED SCENARIO: ${report.scenario}`];
+  lines.push(`  What happened: ${report.rootCause}`);
+  lines.push(`  Likely because: ${report.failureType} (confidence ${confidence})`);
+  lines.push(`  Suggested fix: ${report.repairRecommendation}`);
+  return lines.join('\n');
 }
 
 async function main(): Promise<void> {

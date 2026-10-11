@@ -1,0 +1,24 @@
+{
+  "scenario": "Vérification de la liste des catégories et du lien \"La liste de nos guichets\" dans le footer - catégories",
+  "failureType": "strict_mode_violation",
+  "rootCause": "bad_selector",
+  "repairType": "disambiguate_selector",
+  "target": "Selector (line 9)",
+  "currentValue": "footer ul, footer .categories",
+  "replacementValue": "footer ul, footer .categories.first()",
+  "confidence": 0.85,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Disambiguate the ambiguous locator with .first() (or add a distinguishing attribute).",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts",
+      "line": 9
+    }
+  ],
+  "explanation": [
+    "The locator resolved to multiple elements (strict mode violation).",
+    "No more specific verified selector exists, so disambiguation with .first() is the safe deterministic fix."
+  ],
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-la-liste-des-cat-gories-et-du-lien-la-liste-de-nos-guichets-dans-le-footer.spec.ts"
+}

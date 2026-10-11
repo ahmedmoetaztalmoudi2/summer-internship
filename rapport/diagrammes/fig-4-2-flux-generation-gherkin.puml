@@ -1,0 +1,110 @@
+@startuml
+' Figure 4.2 - Flux de génération Gherkin
+' Chapitre 4 - rapport/05-chapitre-4-realisation.md
+' Source : gherkin-generator.js, generateGherkinWithGroq (lignes 199-287).
+
+skinparam monochrome false
+skinparam dpi 200
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam ArrowFontSize 9
+skinparam roundcorner 4
+skinparam ActivityBorderColor #555555
+skinparam ActivityBackgroundColor #FFFFFF
+skinparam ActivityDiamondBorderColor #555555
+skinparam ActivityDiamondBackgroundColor #F0F0F0
+skinparam NoteBorderColor #B08800
+skinparam NoteBackgroundColor #FFF8E1
+skinparam NoteFontColor #222222
+skinparam backgroundColor #FFFFFF
+
+start
+
+:generateGherkin(ticket)\nvalidateTicket();
+
+if (Fournisseur = mock ?) then (oui)
+  :generateMockGherkin()\npuis validateGherkinContent();
+  :Retourner le squelette minimal;
+  stop
+else (non)
+endif
+
+:generateGherkinWithGroq()\nbuildGherkinMessages()\nSYSTEM_PROMPT + FEW_SHOT;
+
+while (Tentative <= maxAttempts ?\nmaxAttempts = 5) is (oui)
+
+  :Appel Groq\nqwen/qwen3.6-27b;
+
+  if (Réponse obtenue ?) then (non)
+
+    if (Code 429, 500, 502 ou 503 ?\net tentative < maxAttempts) then (oui)
+      :Backoff exponentiel\n5 s x 2 puissance tentative-1\nplafonné à 30 s;
+    else (non)
+      :Lever l'erreur\nthrow lastError;
+      stop
+    endif
+
+  else (oui)
+    :Nettoyer la réponse\ncleanGherkinContent();
+
+    if (Contamination détectée ?\ndetectContamination) then (oui)
+      :Rejeter la réponse;
+      :Renforcer l'invite de couverture\nbuildCoverageBoosterMessage()\npuis attendre 5 s;
+    else (non)
+      :Valider la structure\nvalidateGherkinContent();
+
+      if (Structure valide ?) then (non)
+        :Rejeter la réponse;\nattendre 5 s;
+      else (oui)
+        :Compter les scénarios\ncountScenarios();
+        if (Couverture suffisante ?\nscénarios >= critères Jira) then (non)
+          :Renforcer l'invite de couverture\nbuildCoverageBoosterMessage()\npuis attendre 3 s;
+        else (oui)
+          :generateAndSaveFeature()\nécrit le fichier .feature;
+          :Retourner le Gherkin valide;
+          stop
+        endif
+      endif
+    endif
+  endif
+
+endwhile (non)
+
+:Épuisement des 5 tentatives\nthrow lastError;
+
+stop
+
+note right
+  Deux chemins distincts après
+  l'appel Groq.
+
+  Échec de l'appel
+  Codes 429, 500, 502, 503
+  Backoff exponentiel plafonné
+  à 30 s.
+
+  Rejet du contenu
+  Contamination ou structure
+  invalide : l'invite est
+  renforcée, sans attente liée
+  au service.
+
+  Ces valeurs sont déclarées dans
+  gherkin-generator.js lignes
+  236, 237 et 238.
+end note
+
+note right
+  L'issue après épuisement des
+  tentatives est la levée d'une
+  erreur (lignes 282 et 286).
+
+  generateMockGherkin() n'est pas
+  un repli de cette boucle : il
+  n'est appelé que si le
+  fournisseur vaut explicitement
+  mock (ligne 186).
+end note
+
+@enduml

@@ -1,23 +1,27 @@
-Fonctionnalité: Filtrage des événements par salle et par date
+Fonctionnalité: Filtrage des événements par salle et par date sur une page de catégorie
 
-  Contexte:
-    Etant donné que l'utilisateur est sur la page de catégorie "Spectacle"
+     Background:
+       Given l'utilisateur est sur la page de catégorie "Spectacle"
 
-  Scénario: Affichage du menu déroulant des salles
-    Quand l'utilisateur ouvre le menu déroulant "Sélectionner une salle"
-    Alors le menu liste les salles disponibles comme "Théâtre de plein air de Hammamet" et "Amphithéâtre plein air Boukornine"
+     Scenario: Affichage du menu déroulant des salles disponibles
+       Then le menu déroulant "Sélectionner une salle" doit être visible
+       And il doit lister les salles disponibles telles que "El Borj GOLDEN CARTHAGE TUNIS" et "Amphithéâtre plein air Boukornine"
 
-  Scénario: Affichage du menu déroulant des dates
-    Quand l'utilisateur ouvre le menu déroulant "Sélectionner une Date"
-    Alors le menu liste les dates des événements disponibles comme "15 Août 2026"
+     Scenario: Affichage du menu déroulant des dates disponibles
+       Then le menu déroulant "Sélectionner une Date" doit être visible
+       And il doit lister les dates des événements disponibles telles que "30 Août 2026"
 
-  Scénario: Filtrage des événements par salle et date
-    Quand l'utilisateur sélectionne une salle dans le menu déroulant
-    Et l'utilisateur sélectionne une date dans le menu déroulant
-    Et l'utilisateur clique sur le bouton "Recherche"
-    Alors seuls les événements correspondant à la salle et à la date sélectionnées sont affichés
+     Scenario: Filtrage des événements selon la salle et la date sélectionnées
+       When l'utilisateur sélectionne une salle dans le menu déroulant
+       And l'utilisateur sélectionne une date dans le menu déroulant
+       And l'utilisateur clique sur le bouton "Recherche"
+       Then seuls les événements correspondant à la salle et à la date sélectionnées doivent s'afficher
 
-  Scénario: Aucun événement ne correspond aux critères
-    Quand l'utilisateur sélectionne une salle et une date sans événements associés
-    Et l'utilisateur clique sur le bouton "Recherche"
-    Alors aucun résultat ne s'affiche
+     Scenario: Affichage de la liste vide lorsque aucun événement ne correspond aux critères
+       When l'utilisateur sélectionne une salle dans le menu déroulant
+       And l'utilisateur sélectionne une date dans le menu déroulant
+       And l'utilisateur clique sur le bouton "Recherche"
+       And aucun événement ne correspond aux critères sélectionnés
+       Then aucun résultat ne doit s'afficher
+
+4.  **Self-Correction/Verification against Rules:**

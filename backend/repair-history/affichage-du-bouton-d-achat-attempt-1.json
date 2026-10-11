@@ -1,0 +1,18 @@
+{
+  "scenario": "Affichage du bouton d'achat",
+  "failureType": "visibility_issue",
+  "repairType": "add_visibility_guard",
+  "before": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Affichage du bouton d'achat\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n\n       // TODO: Navigate to search results page (path not specified)\n       // TODO: Navigate to event detail page (path not specified)\n\n       // TODO: Selector for \"Acheter mon billet\" button not found in knownSelectors\n       await expect(page.getByRole(\"button\", { name: \"Acheter mon billet\" })).toBeVisible();\n     });\n   });\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Affichage du bouton d'achat\", async ({ page }) => {\n       await page.goto(\"https://teskerti.tn\");\n\n       // TODO: Navigate to search results page (path not specified)\n       // TODO: Navigate to event detail page (path not specified)\n\n       // TODO: Selector for \"Acheter mon billet\" button not found in knownSelectors\n       await expect(page.getByRole(\"button\", { name: \"Acheter mon billet\" })).toBeVisible();\n     });\n   });\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-d-achat.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-d-achat.spec.ts",
+    "column": 79,
+    "line": 11
+  },
+  "appliedAt": "2026-08-30T23:34:01.964Z",
+  "error": "Patch produced no changes (already applied or no-op).",
+  "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+}

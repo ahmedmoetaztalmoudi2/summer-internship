@@ -37,8 +37,14 @@ export type InputFieldType =
   | "password"
   | "url"
   | "number"
+  | "tel"
+  | "date"
+  | "search"
   | "textarea"
-  | "select";
+  | "select"
+  | "combobox"
+  | "checkbox"
+  | "radio";
 
 export interface RequiredInputField {
   name: string;

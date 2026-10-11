@@ -1,0 +1,24 @@
+{
+  "scenario": "Échec de connexion avec un mot de passe incorrect",
+  "failureType": "strict_mode_violation",
+  "rootCause": "bad_selector",
+  "repairType": "disambiguate_selector",
+  "target": "Selector (line 15)",
+  "currentValue": "button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+  "replacementValue": "button:has-text(\"Se connecter\"), button[type=\"submit\"].first()",
+  "confidence": 0.85,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Disambiguate the ambiguous locator with .first() (or add a distinguishing attribute).",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\chec-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+      "line": 15
+    }
+  ],
+  "explanation": [
+    "The locator resolved to multiple elements (strict mode violation).",
+    "No more specific verified selector exists, so disambiguation with .first() is the safe deterministic fix."
+  ],
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\chec-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts"
+}

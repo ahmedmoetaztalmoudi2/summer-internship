@@ -1,0 +1,55 @@
+{
+  "scenario": "Échec de connexion avec un mot de passe incorrect",
+  "status": "failed",
+  "failureType": "strict_mode_violation",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+  "reasoning": [
+    "Failure classified as \"strict_mode_violation\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /strict mode violation/i.",
+    "Failing locator: button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [login.submit, forms.form-1.submit, pages./user/login.button_submit] appear in the failing locator.",
+    "Playwright call log: - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') | Error: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements: | 1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' }) | 2) <button type=\"submit\">…</button> aka locator('#searchform button') | Call log: | - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\chec-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts:15:85 | Error: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements: | 1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' }) | 2) <button type=\"submit\">…</button> aka locator('#searchform button') | Call log: | - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') | 13 | | 14 |        // And: l'utilisateur clique sur le bouton \"Se connecter\" | > 15 |        await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click(); | |                                                                                     ^ | 16 | | 17 |        // Then: le message d'erreur \"Nom d'utilisateur ou mot de passe erroné !\" doit s'afficher | 18 |        await expect(page.locator(\".alert, .error, [role=\\\"alert\\\"], .flash, .message\").first()).toBeVisible(); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\chec-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts:15:85",
+    "Recommended action: The failing locator resolved to multiple elements at once. Tighten the selector (add a distinguishing attribute such as name/id/data-testid) or disambiguate with .first()/.nth(). Failing locator: button:has-text(\"Se connecter\"), button[type=\"submit\"]"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements:\n    1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' })\n    2) <button type=\"submit\">…</button> aka locator('#searchform button')\n\nCall log:\n  - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')\n\nError: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements:\n    1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' })\n    2) <button type=\"submit\">…</button> aka locator('#searchform button')\n\nCall log:\n  - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\chec-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts:15:85\nError: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements:\n    1) <button type=\"submit\" class=\"btn_full\">Se connecter</button> aka getByRole('button', { name: 'Se connecter' })\n    2) <button type=\"submit\">…</button> aka locator('#searchform button')\n\nCall log:\n  - waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')\n\n\n  13 |\n  14 |        // And: l'utilisateur clique sur le bouton \"Se connecter\"\n> 15 |        await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n     |                                                                                     ^\n  16 |\n  17 |        // Then: le message d'erreur \"Nom d'utilisateur ou mot de passe erroné !\" doit s'afficher\n  18 |        await expect(page.locator(\".alert, .error, [role=\\\"alert\\\"], .flash, .message\").first()).toBeVisible();\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\chec-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts:15:85"
+    },
+    {
+      "source": "test_source",
+      "content": "\n       // And: l'utilisateur clique sur le bouton \"Se connecter\"\n       await page.locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]').click();\n\n       // Then: le message d'erreur \"Nom d'utilisateur ou mot de passe erroné !\" doit s'afficher"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\chec-de-connexion-avec-un--ee498-c-un-mot-de-passe-incorrect-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: locator.click: Error: strict mode violation: locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]') resolved to 2 elements:",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\chec-de-connexion-avec-un-mot-de-passe-incorrect.spec.ts",
+    "column": 85,
+    "line": 15
+  },
+  "diagnostics": {
+    "failingLocator": "button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+    "locatorLines": [
+      "waiting for locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')",
+      "locator('button:has-text(\"Se connecter\"), button[type=\"submit\"]')",
+      "locator('#searchform button')",
+      "getByRole('button', { name: 'Se connecter' })"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "login.submit",
+      "forms.form-1.submit",
+      "pages./user/login.button_submit"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-29T00:56:57.228Z"
+}

@@ -1,0 +1,47 @@
+{
+  "scenario": "Navigation vers la fiche détaillée d'un événement en vedette",
+  "status": "failed",
+  "failureType": "navigation_failure",
+  "confidence": 0.97,
+  "rootCause": "environment_issue",
+  "repairRecommendation": "Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect.",
+  "reasoning": [
+    "Failure classified as \"navigation_failure\" with confidence 0.97.",
+    "Root cause dimension: environment_issue — the network, application availability or execution environment caused the failure.",
+    "Matched error signature: /page\\.goto[^\\n]*(failed|timeout|error)/i.",
+    "Failing locator: getByRole(\"link\", { name: \"Réservez vos billets\" }).first().click()",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - navigating to \"https://teskerti.tn/\", waiting until \"load\" | 6 |   test(\"Navigation vers la fiche détaillée d'un événement en vedette\", async ({ page }) => { | 7 |     // Given l'utilisateur est sur la page d'accueil | >  8 |     await page.goto(baseUrl); | |                ^ | 9 | | 10 |     // When l'utilisateur clique sur le bouton \"Réservez vos billets\" | 11 |     await page.getByRole(\"link\", { name: \"Réservez vos billets\" }).first().click(); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-fiche-d-taill-e-d-un-v-nement-en-vedette.spec.ts:8:16",
+    "Recommended action: Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n  - navigating to \"https://teskerti.tn/\", waiting until \"load\"\n\n\n   6 |   test(\"Navigation vers la fiche détaillée d'un événement en vedette\", async ({ page }) => {\n   7 |     // Given l'utilisateur est sur la page d'accueil\n>  8 |     await page.goto(baseUrl);\n     |                ^\n   9 |\n  10 |     // When l'utilisateur clique sur le bouton \"Réservez vos billets\"\n  11 |     await page.getByRole(\"link\", { name: \"Réservez vos billets\" }).first().click();\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-fiche-d-taill-e-d-un-v-nement-en-vedette.spec.ts:8:16"
+    },
+    {
+      "source": "test_source",
+      "content": "  test(\"Navigation vers la fiche détaillée d'un événement en vedette\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil\n    await page.goto(baseUrl);\n\n    // When l'utilisateur clique sur le bouton \"Réservez vos billets\""
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\navigation-vers-la-fiche-d-e3346-e-d-un-événement-en-vedette-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-fiche-d-taill-e-d-un-v-nement-en-vedette.spec.ts",
+    "column": 16,
+    "line": 8
+  },
+  "diagnostics": {
+    "failingLocator": "getByRole(\"link\", { name: \"Réservez vos billets\" }).first().click()",
+    "locatorLines": [
+      "getByRole(\"link\", { name: \"Réservez vos billets\" }).first().click()"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-31T20:43:27.263Z"
+}

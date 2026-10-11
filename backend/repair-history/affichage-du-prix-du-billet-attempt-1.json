@@ -1,0 +1,18 @@
+{
+  "scenario": "Affichage du prix du billet",
+  "failureType": "strict_mode_violation",
+  "repairType": "disambiguate_selector",
+  "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Affichage du prix du billet\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    // TODO: Navigate to search results page\n    // TODO: Navigate to event details page\n    await expect(page.locator(\".ticket-price, .price, [data-testid='ticket-price']\")).toBeVisible();\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Visualisation des détails d'un événement\", () => {\n  test(\"Affichage du prix du billet\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    // TODO: Navigate to search results page\n    // TODO: Navigate to event details page\n    await expect(page.locator(\".ticket-price, .price, [data-testid='ticket-price']\")).toBeVisible();\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-prix-du-billet.spec.ts",
+    "column": 87,
+    "line": 8
+  },
+  "appliedAt": "2026-08-30T23:34:01.979Z",
+  "error": "Patch produced no changes (already applied or no-op).",
+  "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+}

@@ -1,0 +1,135 @@
+@startuml
+' Figure 3.4 - Séquence d'une exécution complète
+' Chapitre 3 - rapport/04-chapitre-3-architecture.md
+' L'API exécute elle-même l'analyse et la proposition de réparation
+' (api-server.ts : analyzeFailures, generateRepairProposals).
+
+skinparam monochrome false
+skinparam dpi 200
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam ArrowFontSize 9
+skinparam LifeLineBorderColor #555555
+skinparam LifeLineBackgroundColor #FAFAFA
+skinparam ParticipantBorderColor #555555
+skinparam ParticipantBackgroundColor #FFFFFF
+skinparam ParticipantFontColor #222222
+skinparam ActorBorderColor #555555
+skinparam ActorBackgroundColor #F5F5F5
+skinparam ActorFontColor #222222
+skinparam DatabaseBorderColor #555555
+skinparam DatabaseBackgroundColor #EFEFEF
+skinparam DatabaseFontColor #222222
+skinparam backgroundColor #FFFFFF
+skinparam NoteBorderColor #B08800
+skinparam NoteBackgroundColor #FFF8E1
+skinparam NoteFontColor #222222
+
+actor "Utilisateur" as USER
+participant "Interface web" as UI
+participant "API Express\napi-server.ts" as API
+participant "Détection des champs\nfield-detection.ts" as DETECT
+participant "Noyau du pipeline\nexecutePipelineCore()\napi-server.ts" as PIPE
+participant "Analyse des échecs\nfailure-analysis/analyzer.ts" as ANA
+participant "Réparation\nrepair-agent/repair-agent.ts" as REP
+database "selectors/\nteskerti.tn.json" as KB
+
+USER -> UI : Saisit le ticket Jira et l'URL du site
+activate UI
+
+UI -> API : POST /api/test/start\n(ticketId, websiteUrl)
+activate API
+
+API -> API : createInitialStages()\n8 étapes en attente
+
+API -> DETECT : detectFormFields(baseUrl, ticketText)
+activate DETECT
+DETECT -> KB : Charge la base de sélecteurs
+activate KB
+KB --> DETECT : PageInfo et champs du formulaire
+deactivate KB
+DETECT --> API : Liste des champs détectés
+deactivate DETECT
+
+API --> UI : runId et champs à renseigner
+deactivate API
+
+UI --> USER : Affiche le formulaire de saisie
+deactivate UI
+activate USER
+
+USER -> UI : Renseigne les identifiants
+deactivate USER
+activate UI
+
+UI -> API : POST /api/test/:runId/input
+activate API
+API -> PIPE : resumePipeline() puis executePipelineCore()
+activate PIPE
+
+loop Interrogation toutes les 1 500 ms
+  UI -> API : GET /api/test/:runId/status
+  API --> UI : État des 8 étapes
+end
+
+PIPE -> KB : Enregistre les sélecteurs collectés
+activate KB
+KB --> PIPE : Base mise à jour
+deactivate KB
+
+PIPE --> API : Rapport d'exécution
+deactivate PIPE
+
+API -> API : updateStage(failure_analysis, running)
+API -> ANA : analyzeFailures(report, sélecteurs)
+activate ANA
+ANA -> KB : Consulte les sélecteurs de référence
+activate KB
+KB --> ANA : Sélecteurs du domaine
+deactivate KB
+ANA --> API : FailureReport[]
+deactivate ANA
+
+API -> REP : generateRepairProposals(failureReports)
+activate REP
+REP --> API : RepairPlan[]
+deactivate REP
+
+API -> API : updateStage(repair, completed)
+API --> UI : GET /api/test/:runId/results
+deactivate API
+
+UI --> USER : Affiche le résumé et les détails par scénario
+deactivate UI
+
+note over USER,API
+  L'exécution est suspendue après la détection des
+  champs : les identifiants sont demandés avant
+  l'appel à executePipelineCore().
+end note
+
+note over API,PIPE
+  Aucun canal persistant : l'interface interroge
+  l'API périodiquement.
+
+  analyzeFailures est déclarée dans
+  src/agents/failure-analysis.ts et s'appuie
+  sur le moteur à règles de
+  failure-analysis/rules.ts.
+
+  generateRepairProposals est déclarée dans
+  repair-agent/repair-agent.ts.
+
+  Ces deux appels sont faits par l'API elle-même.
+  L'interface ne déclenche pas l'application
+  des correctifs : voir Figure 3.1.
+
+  Le mode API n'utilise pas full-pipeline.ts :
+  les étapes 1 à 6 sont exécutées par
+  executePipelineCore() (api-server.ts:369),
+  qui appelle directement les mêmes modules
+  que le pipeline en ligne de commande.
+end note
+
+@enduml

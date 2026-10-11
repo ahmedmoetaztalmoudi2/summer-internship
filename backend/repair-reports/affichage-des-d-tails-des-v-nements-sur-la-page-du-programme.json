@@ -1,0 +1,27 @@
+{
+  "scenario": "Affichage des détails des événements sur la page du programme",
+  "failureType": "visibility_issue",
+  "rootCause": "bad_selector",
+  "repairType": "add_visibility_guard",
+  "target": "Visibility (line 13)",
+  "currentValue": "#dynamic_data .tour_container",
+  "confidence": 0.7,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Assert visibility of an actionable container/row instead of the hidden element.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements-sur-la-page-du-programme.spec.ts",
+      "line": 13
+    },
+    {
+      "action": "Scroll the element into view (scrollIntoViewIfNeeded) before interacting.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements-sur-la-page-du-programme.spec.ts",
+      "line": 13
+    }
+  ],
+  "explanation": [
+    "The element is present but hidden; the assertion/interaction targets a non-actionable element."
+  ],
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements-sur-la-page-du-programme.spec.ts"
+}

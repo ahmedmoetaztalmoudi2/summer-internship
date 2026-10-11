@@ -1,0 +1,18 @@
+{
+  "scenario": "Affichage du bouton de réservation dans la section héro",
+  "failureType": "visibility_issue",
+  "repairType": "add_visibility_guard",
+  "before": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant sur la page d'accueil\", () => {\n  test(\"Affichage du bouton de réservation dans la section héro\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page.locator(\"a.button_intro\").first()).toBeVisible();\n  });\n});\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\ntest.describe(\"Consultation du programme mis en avant sur la page d'accueil\", () => {\n  test(\"Affichage du bouton de réservation dans la section héro\", async ({ page }) => {\n    await page.goto(\"https://teskerti.tn\");\n    await expect(page.locator(\"a.button_intro\").first()).toBeVisible();\n  });\n});\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-de-r-servation-dans-la-section-h-ro.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-bouton-de-r-servation-dans-la-section-h-ro.spec.ts",
+    "column": 58,
+    "line": 6
+  },
+  "appliedAt": "2026-08-31T20:48:51.619Z",
+  "error": "Patch produced no changes (already applied or no-op).",
+  "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+}

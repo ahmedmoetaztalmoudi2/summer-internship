@@ -1,0 +1,29 @@
+{
+  "scenario": "Vérification du menu déroulant des salles",
+  "failureType": "visibility_issue",
+  "rootCause": "bad_selector",
+  "repairType": "use_choices_wrapper",
+  "target": "Choices dropdown interaction (line 9)",
+  "currentValue": "#selectedSalle",
+  "replacementValue": "#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner",
+  "confidence": 0.93,
+  "repairable": true,
+  "requiresHumanReview": false,
+  "actions": [
+    {
+      "action": "Open the dropdown by clicking the verified wrapper: #selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__inner.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-menu-d-roulant-des-salles.spec.ts",
+      "line": 9
+    },
+    {
+      "action": "Select the option inside the verified dropdown list: #selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1] >> css=.choices__list--dropdown.",
+      "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-menu-d-roulant-des-salles.spec.ts",
+      "line": 9
+    }
+  ],
+  "explanation": [
+    "The native <select> is hidden by Choices.js, so direct visibility assertions / selectOption fail.",
+    "The knowledge base verified wrapper \"pages./category/spectacle.select_selectedSalle_choicesInner\" is the actionable element."
+  ],
+  "sourceFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-menu-d-roulant-des-salles.spec.ts"
+}

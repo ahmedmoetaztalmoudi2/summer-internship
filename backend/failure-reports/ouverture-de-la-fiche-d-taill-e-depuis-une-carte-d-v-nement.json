@@ -1,0 +1,48 @@
+{
+  "scenario": "Ouverture de la fiche détaillée depuis une carte d'événement",
+  "status": "failed",
+  "failureType": "timeout",
+  "confidence": 0.75,
+  "rootCause": "timing_issue",
+  "repairRecommendation": "A wait timed out while the failure gives no proof the element is missing — the element likely appears later than the default wait allows. Increase the wait/action timeout or replace a bare click with expect(locator).toBeVisible() first; also consider response-driven waits (waitForResponse) for AJAX content. Failing locator: locator('.event-card, .card-event, [data-testid=\\'event-card\\']')",
+  "reasoning": [
+    "Failure classified as \"timeout\" with confidence 0.75.",
+    "Root cause dimension: timing_issue — the element or application state appears later than the wait strategy allows.",
+    "Matched error signature: /test timeout of \\d+ms exceeded/i.",
+    "Failing locator: locator('.event-card, .card-event, [data-testid=\\'event-card\\']')",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - waiting for locator('.event-card, .card-event, [data-testid=\\'event-card\\']').first() | 8 |        // When: l'utilisateur clique sur une carte d'événement | 9 |        // TODO: No known selector for event card. Using best-effort locator. | > 10 |        await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click(); | |                                                                                           ^ | 11 | | 12 |        // Then: la fiche détaillée de l'événement doit s'ouvrir | 13 |        // TODO: No known selector for event detail page. Using best-effort locator. | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts:10:91",
+    "Recommended action: A wait timed out while the failure gives no proof the element is missing — the element likely appears later than the default wait allows. Increase the wait/action timeout or replace a bare click with expect(locator).toBeVisible() first; also consider response-driven waits (waitForResponse) for AJAX content. Failing locator: locator('.event-card, .card-event, [data-testid=\\'event-card\\']')"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n  - waiting for locator('.event-card, .card-event, [data-testid=\\'event-card\\']').first()\n\n\n   8 |        // When: l'utilisateur clique sur une carte d'événement\n   9 |        // TODO: No known selector for event card. Using best-effort locator.\n> 10 |        await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click();\n     |                                                                                           ^\n  11 |\n  12 |        // Then: la fiche détaillée de l'événement doit s'ouvrir\n  13 |        // TODO: No known selector for event detail page. Using best-effort locator.\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts:10:91"
+    },
+    {
+      "source": "test_source",
+      "content": "       // When: l'utilisateur clique sur une carte d'événement\n       // TODO: No known selector for event card. Using best-effort locator.\n       await page.locator(\".event-card, .card-event, [data-testid='event-card']\").first().click();\n\n       // Then: la fiche détaillée de l'événement doit s'ouvrir"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\ouverture-de-la-fiche-d-ta-13ad4-epuis-une-carte-d-événement-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\ouverture-de-la-fiche-d-taill-e-depuis-une-carte-d-v-nement.spec.ts",
+    "column": 91,
+    "line": 10
+  },
+  "diagnostics": {
+    "failingLocator": "locator('.event-card, .card-event, [data-testid=\\'event-card\\']')",
+    "locatorLines": [
+      "waiting for locator('.event-card, .card-event, [data-testid=\\'event-card\\']').first()",
+      "locator('.event-card, .card-event, [data-testid=\\'event-card\\']')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-30T23:34:01.943Z"
+}

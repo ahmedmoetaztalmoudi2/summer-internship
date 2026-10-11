@@ -1,0 +1,51 @@
+{
+  "scenario": "Vérification du menu déroulant des dates",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #selectedDate",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: #selectedDate",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./category/spectacle.select_selectedDate] appear in the failing locator.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' }) | Error: expect(locator).toBeVisible() failed | Locator: locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' }) | Expected: visible | Timeout: 10000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' }) | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-menu-d-roulant-des-dates.spec.ts:20:30 | Error: expect(locator).toBeVisible() failed | Locator: locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' }) | Expected: visible | Timeout: 10000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' }) | 18 |       { hasText: \"30 Août 2026\" } | 19 |     ); | > 20 |     await expect(dateOption).toBeVisible(); | |                              ^ | 21 |   }); | 22 | }); | 23 | | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-menu-d-roulant-des-dates.spec.ts:20:30",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #selectedDate"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' })\n\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' })\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-menu-d-roulant-des-dates.spec.ts:20:30\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' })\n\n\n  18 |       { hasText: \"30 Août 2026\" }\n  19 |     );\n> 20 |     await expect(dateOption).toBeVisible();\n     |                              ^\n  21 |   });\n  22 | });\n  23 |\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-menu-d-roulant-des-dates.spec.ts:20:30"
+    },
+    {
+      "source": "test_source",
+      "content": "      { hasText: \"30 Août 2026\" }\n    );\n    await expect(dateOption).toBeVisible();\n  });\n});"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\v-rification-du-menu-d-rou-13fc7-du-menu-déroulant-des-dates-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-du-menu-d-roulant-des-dates.spec.ts",
+    "column": 30,
+    "line": 20
+  },
+  "diagnostics": {
+    "failingLocator": "#selectedDate",
+    "locatorLines": [
+      "waiting for locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' })",
+      "Locator: locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item').filter({ hasText: '30 Août 2026' })",
+      "locator('#selectedDate').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"),\" choices \")][1]').locator('.choices__list--dropdown .choices__item')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./category/spectacle.select_selectedDate"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-09-01T20:16:00.659Z"
+}

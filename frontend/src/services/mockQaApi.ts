@@ -60,8 +60,27 @@ export const mockQaApi = {
       runId,
       status: "awaiting_input",
       requiresInput: true,
-      message: "Does the application need credentials or other private values for these tests?",
-      fields: credentialFields,
+      message:
+        "The test needs these values from the form on " +
+        payload.websiteUrl.trim() +
+        ".",
+      fields: [
+        { name: "nom", label: "Nom", type: "text", required: true, placeholder: "Votre nom" },
+        { name: "prenom", label: "Prénom", type: "text", required: true, placeholder: "Votre prénom" },
+        { name: "email", label: "Email", type: "email", required: true, placeholder: "you@example.com" },
+        { name: "telephone", label: "Téléphone", type: "tel", required: false, placeholder: "06 12 34 56 78" },
+        { name: "genre", label: "Genre", type: "select", required: true, options: [
+          { value: "homme", label: "Homme" },
+          { value: "femme", label: "Femme" },
+          { value: "autre", label: "Autre" },
+        ] },
+        { name: "pays", label: "Pays", type: "combobox", required: false, options: [
+          { value: "tn", label: "Tunisie" },
+          { value: "fr", label: "France" },
+          { value: "dz", label: "Algérie" },
+        ] },
+        { name: "newsletter", label: "Recevoir la newsletter", type: "checkbox", required: false },
+      ],
     };
   },
 
@@ -86,8 +105,25 @@ export const mockQaApi = {
         status: "awaiting_input",
         stages: createInitialStages(),
         requiresInput: true,
-        message: "Does the application need credentials or other private values for these tests?",
-        fields: credentialFields,
+        message:
+          "The test needs these values from the form on " + run.websiteUrl + ".",
+        fields: [
+          { name: "nom", label: "Nom", type: "text", required: true, placeholder: "Votre nom" },
+          { name: "prenom", label: "Prénom", type: "text", required: true, placeholder: "Votre prénom" },
+          { name: "email", label: "Email", type: "email", required: true, placeholder: "you@example.com" },
+          { name: "telephone", label: "Téléphone", type: "tel", required: false, placeholder: "06 12 34 56 78" },
+          { name: "genre", label: "Genre", type: "select", required: true, options: [
+            { value: "homme", label: "Homme" },
+            { value: "femme", label: "Femme" },
+            { value: "autre", label: "Autre" },
+          ] },
+          { name: "pays", label: "Pays", type: "combobox", required: false, options: [
+            { value: "tn", label: "Tunisie" },
+            { value: "fr", label: "France" },
+            { value: "dz", label: "Algérie" },
+          ] },
+          { name: "newsletter", label: "Recevoir la newsletter", type: "checkbox", required: false },
+        ],
       };
     }
 

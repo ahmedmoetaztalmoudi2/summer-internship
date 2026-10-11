@@ -1,0 +1,49 @@
+{
+  "scenario": "Affichage des informations de base de l'événement",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.95,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: .event-date",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.95.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: .event-date",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('.event-date').first() | Error: expect(locator).toBeVisible() failed | Locator: locator('.event-date').first() | Expected: visible | Timeout: 10000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('.event-date').first() | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts:16:55 | Error: expect(locator).toBeVisible() failed | Locator: locator('.event-date').first() | Expected: visible | Timeout: 10000ms | Error: element(s) not found | Call log: | - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('.event-date').first() | 14 | | 15 |     // And la date de l'événement est affichée | > 16 |     await expect(page.locator(\".event-date\").first()).toBeVisible(); | |                                                       ^ | 17 | | 18 |     // And l'heure de l'événement est affichée | 19 |     await expect(page.locator(\".event-time\").first()).toBeVisible(); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts:16:55",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: .event-date"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('.event-date').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('.event-date').first()\n\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('.event-date').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('.event-date').first()\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts:16:55\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('.event-date').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('.event-date').first()\n\n\n  14 |\n  15 |     // And la date de l'événement est affichée\n> 16 |     await expect(page.locator(\".event-date\").first()).toBeVisible();\n     |                                                       ^\n  17 |\n  18 |     // And l'heure de l'événement est affichée\n  19 |     await expect(page.locator(\".event-time\").first()).toBeVisible();\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts:16:55"
+    },
+    {
+      "source": "test_source",
+      "content": "\n    // And la date de l'événement est affichée\n    await expect(page.locator(\".event-date\").first()).toBeVisible();\n\n    // And l'heure de l'événement est affichée"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-des-informations-91376-ions-de-base-de-l-événement-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts",
+    "column": 55,
+    "line": 16
+  },
+  "diagnostics": {
+    "failingLocator": ".event-date",
+    "locatorLines": [
+      "waiting for locator('.event-date').first()",
+      "Locator: locator('.event-date').first()",
+      "locator('.event-date')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-09-02T09:40:59.094Z"
+}

@@ -1,0 +1,18 @@
+{
+  "scenario": "Affichage des informations de base de l'événement",
+  "failureType": "visibility_issue",
+  "repairType": "add_visibility_guard",
+  "before": "import { test, expect } from \"@playwright/test\";\n\n   const baseUrl = \"https://teskerti.tn\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Affichage des informations de base de l'événement\", async ({ page }) => {\n       // Given: l'utilisateur est sur la fiche détaillée d'un événement\n       await page.goto(baseUrl + \"/evenement/cairokee-carthage\");\n\n       // Then: le titre de l'événement est affiché\n       await expect(page.locator(\".col-md-8 h1\").first()).toBeVisible();\n\n       // And: la date et l'heure de l'événement sont affichées\n       await expect(page.locator(\"#main-ticket-form label\").first()).toBeVisible();\n\n       // And: le lieu (salle) de l'événement est affiché\n       // TODO: Selector for venue/location not explicitly provided in knownSelectors\n       await expect(page.locator(\".venue, .lieu, [class*=\\\"salle\\\"]\").first()).toBeVisible();\n     });\n   });\n",
+  "after": "import { test, expect } from \"@playwright/test\";\n\n   const baseUrl = \"https://teskerti.tn\";\n\n   test.describe(\"Visualisation des détails d'un événement\", () => {\n     test(\"Affichage des informations de base de l'événement\", async ({ page }) => {\n       // Given: l'utilisateur est sur la fiche détaillée d'un événement\n       await page.goto(baseUrl + \"/evenement/cairokee-carthage\");\n\n       // Then: le titre de l'événement est affiché\n       await expect(page.locator(\".col-md-8 h1\").first()).toBeVisible();\n\n       // And: la date et l'heure de l'événement sont affichées\n       await expect(page.locator(\"#main-ticket-form label\").first()).toBeVisible();\n\n       // And: le lieu (salle) de l'événement est affiché\n       // TODO: Selector for venue/location not explicitly provided in knownSelectors\n       await expect(page.locator(\".venue, .lieu, [class*=\\\"salle\\\"]\").first()).toBeVisible();\n     });\n   });\n",
+  "attempt": 1,
+  "result": "failed",
+  "repairedFile": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-informations-de-base-de-l-v-nement.spec.ts",
+    "column": 80,
+    "line": 18
+  },
+  "appliedAt": "2026-08-31T15:37:14.580Z",
+  "error": "Patch produced no changes (already applied or no-op).",
+  "reason": "Patch not applied: Patch produced no changes (already applied or no-op).. Original version restored and escalated."
+}

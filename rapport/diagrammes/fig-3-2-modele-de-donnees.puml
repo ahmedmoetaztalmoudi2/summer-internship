@@ -1,0 +1,119 @@
+@startuml
+' Figure 3.3 - Modèle de données du pipeline
+' Chapitre 3 - rapport/04-chapitre-3-architecture.md
+
+skinparam monochrome false
+skinparam dpi 200
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam roundcorner 0
+skinparam ArrowFontSize 9
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #555555
+  FontColor #222222
+  AttributeFontColor #333333
+}
+skinparam backgroundColor #FFFFFF
+skinparam stereotypeCBackgroundColor #F0F0F0
+skinparam note {
+  BackgroundColor #FFF8E1
+  BorderColor #B08800
+  FontColor #222222
+}
+
+class SelectorMap {
+  + string domain
+  + string analyzedAt
+  + Record pages
+  + LoginSelectors login
+  + Record forms
+  + {static} getDomainFromUrl(url) : string
+  + mergeSelectorMap(existant, maj) : SelectorMap
+}
+
+class PageInfo {
+  + string url
+  + Record selectors
+  + WidgetInfo[] widgets
+}
+
+class SelectorInfo {
+  + string selector
+  + string locatorType
+  + number occurrences
+  + string strategy
+}
+
+class LoginSelectors {
+  + SelectorInfo email
+  + SelectorInfo password
+  + SelectorInfo submit
+}
+
+class ParsedFeature {
+  + string featureName
+  + ParsedScenario[] scenarios
+}
+
+class ParsedScenario {
+  + string scenario
+  + Step[] steps
+  + Table[] examples
+}
+
+class JsonReport {
+  + TestResult[] suites
+}
+
+class FailureReport {
+  + string scenario
+  + string status
+  + FailureCategory failureType
+  + RootCause rootCause
+  + number confidence
+  + string reasoning
+  + string[] evidence
+}
+
+class RepairPlan {
+  + string scenario
+  + RepairAction[] actions
+  + string strategy
+  + boolean applied
+}
+
+SelectorMap "1" o-- "n" PageInfo
+PageInfo "1" o-- "n" SelectorInfo
+SelectorMap "1" *-- "0..1" LoginSelectors
+ParsedFeature "1" *-- "n" ParsedScenario
+
+ParsedFeature --> SelectorMap : "filtre par scénario\nfilterSelectorsForScenario"
+SelectorMap --> FailureReport : "ancrage de l'analyse\nsélecteurs de référence"
+JsonReport --> FailureReport : "un rapport par échec"
+FailureReport --> RepairPlan : "buildRepairPlan"
+RepairPlan --> JsonReport : "relance\npuis nouveau résultat"
+
+note right of SelectorMap
+  Indexée par domaine.
+  Un seul fichier construit :
+  selectors/teskerti.tn.json
+end note
+
+note right of ParsedFeature
+  Une feature contient
+  plusieurs scénarios.
+  L'élément est le scénario.
+end note
+
+note bottom of SelectorMap
+  La base de sélecteurs n'alimente
+  pas directement l'analyse :
+  elle fournit les sélecteurs de
+  référence qui servent à
+  qualifier un échec.
+end note
+
+@enduml

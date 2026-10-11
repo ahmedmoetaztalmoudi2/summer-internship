@@ -1,0 +1,53 @@
+{
+  "scenario": "Affichage des détails des événements sur la page du programme",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.99,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #dynamic_data .tour_container",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.99.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: #dynamic_data .tour_container",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./category/spectacle.eventList, pages./category/spectacle.eventCard] appear in the failing locator.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('#dynamic_data .tour_container').first() | 12 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \"hidden\" | Error: expect(locator).toBeVisible() failed | Locator:  locator('#dynamic_data .tour_container').first() | Expected: visible | Received: hidden | Timeout:  5000ms | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('#dynamic_data .tour_container').first() | 12 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \"hidden\" | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements-sur-la-page-du-programme.spec.ts:13:76 | Error: expect(locator).toBeVisible() failed | Locator:  locator('#dynamic_data .tour_container').first() | Expected: visible | Received: hidden | Timeout:  5000ms | Call log: | - Expect \"toBeVisible\" with timeout 5000ms | - waiting for locator('#dynamic_data .tour_container').first() | 12 × locator resolved to <div class=\"tour_container\">…</div> | - unexpected value \"hidden\" | 11 |        // Then: les événements doivent être affichés avec leur salle, leur prix en TND et leur date | 12 |        // TODO: Assert specific details (salle, prix en TND, date) as exact selectors are not provided. | > 13 |        await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible(); | |                                                                            ^ | 14 |      }); | 15 |    }); | 16 | | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements-sur-la-page-du-programme.spec.ts:13:76",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: #dynamic_data .tour_container"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Error: expect(locator).toBeVisible() failed\n\nLocator:  locator('#dynamic_data .tour_container').first()\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('#dynamic_data .tour_container').first()\n    12 × locator resolved to <div class=\"tour_container\">…</div>\n       - unexpected value \"hidden\"\n\nError: expect(locator).toBeVisible() failed\n\nLocator:  locator('#dynamic_data .tour_container').first()\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('#dynamic_data .tour_container').first()\n    12 × locator resolved to <div class=\"tour_container\">…</div>\n       - unexpected value \"hidden\"\n\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements-sur-la-page-du-programme.spec.ts:13:76\nError: expect(locator).toBeVisible() failed\n\nLocator:  locator('#dynamic_data .tour_container').first()\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 5000ms\n  - waiting for locator('#dynamic_data .tour_container').first()\n    12 × locator resolved to <div class=\"tour_container\">…</div>\n       - unexpected value \"hidden\"\n\n\n  11 |        // Then: les événements doivent être affichés avec leur salle, leur prix en TND et leur date\n  12 |        // TODO: Assert specific details (salle, prix en TND, date) as exact selectors are not provided.\n> 13 |        await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n     |                                                                            ^\n  14 |      });\n  15 |    });\n  16 |\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements-sur-la-page-du-programme.spec.ts:13:76"
+    },
+    {
+      "source": "test_source",
+      "content": "       // Then: les événements doivent être affichés avec leur salle, leur prix en TND et leur date\n       // TODO: Assert specific details (salle, prix en TND, date) as exact selectors are not provided.\n       await expect(page.locator(\"#dynamic_data .tour_container\").first()).toBeVisible();\n     });\n   });"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-des-d-tails-des--bb367-ts-sur-la-page-du-programme-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Error: expect(locator).toBeVisible() failed",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-des-d-tails-des-v-nements-sur-la-page-du-programme.spec.ts",
+    "column": 76,
+    "line": 13
+  },
+  "diagnostics": {
+    "failingLocator": "#dynamic_data .tour_container",
+    "locatorLines": [
+      "waiting for locator('#dynamic_data .tour_container').first()",
+      "Locator: locator('#dynamic_data .tour_container').first()",
+      "locator('#dynamic_data .tour_container')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./category/spectacle.eventList",
+      "pages./category/spectacle.eventCard"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-30T21:54:53.320Z"
+}

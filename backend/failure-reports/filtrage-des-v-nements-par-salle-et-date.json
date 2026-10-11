@@ -1,0 +1,52 @@
+{
+  "scenario": "Filtrage des événements par salle et date",
+  "status": "failed",
+  "failureType": "timeout",
+  "confidence": 0.75,
+  "rootCause": "timing_issue",
+  "repairRecommendation": "A wait timed out while the failure gives no proof the element is missing — the element likely appears later than the default wait allows. Increase the wait/action timeout or replace a bare click with expect(locator).toBeVisible() first; also consider response-driven waits (waitForResponse) for AJAX content. Failing locator: #selectedSalle",
+  "reasoning": [
+    "Failure classified as \"timeout\" with confidence 0.75.",
+    "Root cause dimension: timing_issue — the element or application state appears later than the wait strategy allows.",
+    "Matched error signature: /test timeout of \\d+ms exceeded/i.",
+    "Failing locator: #selectedSalle",
+    "Cross-referenced with the knowledge base: verified selector(s) [pages./category/spectacle.select_selectedSalle] appear in the failing locator.",
+    "Playwright call log: - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1]').locator('.choices__inner') | 3 | test.describe(\"Filtrage des événements par salle et par date\", () => { | 4 |   test(\"Filtrage des événements par salle et date\", async ({ page }) => { | > 5 |     await page.locator('#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1] >> css=.choices__inner').click(); | |                                                                                                                                                           ^ | 6 |          await page.locator('#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1] >> css=.choices__list--dropdown').locator('li:has-text(\"Amphithéâtre plein air Boukornine\")').click(); | 7 |   }); | 8 | }); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\filtrage-des-v-nements-par-salle-et-date.spec.ts:5:155",
+    "Recommended action: A wait timed out while the failure gives no proof the element is missing — the element likely appears later than the default wait allows. Increase the wait/action timeout or replace a bare click with expect(locator).toBeVisible() first; also consider response-driven waits (waitForResponse) for AJAX content. Failing locator: #selectedSalle"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n  - waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1]').locator('.choices__inner')\n\n\n  3 | test.describe(\"Filtrage des événements par salle et par date\", () => {\n  4 |   test(\"Filtrage des événements par salle et date\", async ({ page }) => {\n> 5 |     await page.locator('#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1] >> css=.choices__inner').click();\n    |                                                                                                                                                           ^\n  6 |          await page.locator('#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1] >> css=.choices__list--dropdown').locator('li:has-text(\"Amphithéâtre plein air Boukornine\")').click();\n  7 |   });\n  8 | });\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\filtrage-des-v-nements-par-salle-et-date.spec.ts:5:155"
+    },
+    {
+      "source": "test_source",
+      "content": "test.describe(\"Filtrage des événements par salle et par date\", () => {\n  test(\"Filtrage des événements par salle et date\", async ({ page }) => {\n    await page.locator('#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1] >> css=.choices__inner').click();\n         await page.locator('#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1] >> css=.choices__list--dropdown').locator('li:has-text(\"Amphithéâtre plein air Boukornine\")').click();\n  });"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\filtrage-des-v-nements-par-3eb5c-vénements-par-salle-et-date-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\filtrage-des-v-nements-par-salle-et-date.spec.ts",
+    "column": 155,
+    "line": 5
+  },
+  "diagnostics": {
+    "failingLocator": "#selectedSalle",
+    "locatorLines": [
+      "waiting for locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1]').locator('.choices__inner')",
+      "locator('#selectedSalle').locator('xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1]').locator('.choices__inner')",
+      "locator('#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1] >> css=.choices__inner')",
+      "locator('#selectedSalle >> xpath=ancestor::div[contains(concat(\" \",normalize-space(@class),\" \"), \" choices \")][1] >> css=.choices__list--dropdown').locator('li:has-text(\"Amphithéâtre plein air Boukornine\")')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [
+      "pages./category/spectacle.select_selectedSalle"
+    ],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-30T22:46:38.626Z"
+}

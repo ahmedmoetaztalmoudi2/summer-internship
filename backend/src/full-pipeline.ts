@@ -5,11 +5,12 @@ import type { ParsedFeature } from './parser.js';
 import { generatePlaywrightTestsForFeatures } from './generator.js';
 import { runGeneratedTests } from './runner.js';
 import { createReport, writeReport } from './reporter.js';
-import { analyzeFailures } from './agents/failure-analysis.js';
+import { analyzeFailures, formatFailureParagraph } from './agents/failure-analysis.js';
 import { autoRepairAndRetry } from './agents/auto-repair.js';
 import { generateRepairProposals } from './repair-agent/repair-agent.js';
 import { askForCredentials, parseCredentialsArg } from './prompts.js';
 import { getDomainFromUrl, loadSelectorMap } from './storage.js';
+import { ensureSelectorMap } from './selector-onboarding.js';
 import type { SelectorMap } from './selector-types.js';
 
 interface Ticket {
@@ -67,6 +68,13 @@ function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
+// Gentle pause between site-hitting phases so teskerti.tn stops throttling the
+// automated traffic. Throttled pages load very slowly (which looks like flaky
+// timeouts), so settling lets each phase run fast and reliably.
+function settle(ms: number = 3000): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function main(): Promise<void> {
   console.log('');
   console.log('   ____                                 _       _ ');
@@ -108,7 +116,7 @@ async function main(): Promise<void> {
   // Selectors are ONLY used for: Playwright generation, failure analysis, repair.
   // Gherkin generation receives business-level capabilities extracted from selectors.
   const baseUrlForSelectors = process.env.BASE_URL ?? '';
-  const selectorMap = baseUrlForSelectors ? loadSelectorMap(getDomainFromUrl(baseUrlForSelectors)) : null;
+  const selectorMap = baseUrlForSelectors ? await ensureSelectorMap(baseUrlForSelectors) : null;
   const businessCapabilities = gherkinModule.extractBusinessCapabilities(selectorMap);
 
   console.log(`Gherkin provider: ${provider ?? 'groq'}`);
@@ -155,8 +163,8 @@ async function main(): Promise<void> {
   }
 
   // Step 4: Gherkin -> Playwright tests
-  console.log('\n[Step 4] Waiting for Groq rate limit cooldown...');
-  await new Promise((resolve) => setTimeout(resolve, 12000));
+  console.log('\n[Step 4] Settling briefly before generation...');
+  await settle(3000);
   console.log('[Step 4] Parsing generated Gherkin feature files...');
   const parsedFeatures: ParsedFeature[] = [];
   for (const result of featureResults) {
@@ -190,6 +198,8 @@ async function main(): Promise<void> {
   console.log(`\n[Step 5] Report saved to: ${reportPath}`);
 
   // Step 6: Failure Analysis (diagnosis only — no repair yet)
+  console.log('\n[Step 6] Settling before failure analysis (avoid site throttling)...');
+  await settle();
   console.log('\n[Step 6] Analyzing failures...');
   const failureAnalysis = await analyzeFailures(report, {
     testDir: testsDir,
@@ -199,7 +209,25 @@ async function main(): Promise<void> {
   console.log(`[Step 6] ${failureAnalysis.result.reports.length} failed scenario(s) analyzed.`);
   console.log(`[Step 6] Structured failure report saved to: ${failureAnalysis.files.summaryFile}`);
 
+  // Enrich report.json with a human-readable paragraph per failure and re-save,
+  // so the final report explains each problem in plain language (not just stack
+  // traces). Falls back gracefully if analysis produced no reports.
+  const failureParagraphs = failureAnalysis.result.reports.map(formatFailureParagraph);
+  (report as any).failureSummary = failureParagraphs;
+  await writeReport(report, reportPath);
+  if (failureParagraphs.length > 0) {
+    console.log('\n========================================================');
+    console.log('   FAILURE SUMMARY (what went wrong & how to fix)');
+    console.log('========================================================');
+    for (const paragraph of failureParagraphs) {
+      console.log(`\n${paragraph}`);
+    }
+    console.log('\n========================================================');
+  }
+
   // Step 7: Repair Planning (proposal mode only — no file changes)
+  console.log('\n[Step 7] Settling before repair planning...');
+  await settle();
   console.log('\n[Step 7] Generating repair proposals (no file changes)...');
   const repairResult = await generateRepairProposals(failureAnalysis.result.reports, {
     testDir: testsDir,
@@ -212,6 +240,8 @@ async function main(): Promise<void> {
   console.log(`[Step 7] Repair plans saved to: ${repairResult.files.summaryFile}`);
 
   // Step 8: Auto-Repair & Retry (apply safe repairs, re-run, save fixes or escalate)
+  console.log('\n[Step 8] Settling before auto-repair & retry...');
+  await settle();
   console.log('\n[Step 8] Auto-repairing safe failures and re-running affected scenarios...');
   const autoRepair = await autoRepairAndRetry(failureAnalysis.result.reports, {
     testDir: testsDir,

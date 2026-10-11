@@ -1,0 +1,8 @@
+La section héro de la page d'accueil affiche un bouton « Réservez vos billets » qui mène vers la fiche d'un événement en vedette. Chaque section de catégorie (ex: Spectacle, Carthage Off) affiche ses événements avec un bouton « Voir Plus » qui ouvre la page des événements de la catégorie.
+
+Critères d'acceptation:
+- La section héro de la page d'accueil affiche un bouton « Réservez vos billets »
+- Cliquer sur « Réservez vos billets » ouvre la fiche détaillée d'un événement en vedette
+- Les sections de catégories affichent un bouton « Voir Plus » qui ouvre la page des événements de la catégorie
+- Les cartes d'événements (div.owl-item div.tour_container) de la page d'accueil affichent la salle, le nom de l'événement et la date. NOTE: le prix en TND n'apparaît PAS sur la carte d'accueil, seulement sur la fiche détaillée de l'événement.
+- Le bouton « Contactez-nous! » à côté de la héro mène à la page de contact de Teskerti

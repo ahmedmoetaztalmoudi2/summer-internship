@@ -1,0 +1,42 @@
+{
+  "scenario": "Navigation vers la page de contact",
+  "status": "failed",
+  "failureType": "navigation_failure",
+  "confidence": 0.97,
+  "rootCause": "environment_issue",
+  "repairRecommendation": "Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect.",
+  "reasoning": [
+    "Failure classified as \"navigation_failure\" with confidence 0.97.",
+    "Root cause dimension: environment_issue — the network, application availability or execution environment caused the failure.",
+    "Matched error signature: /page\\.goto[^\\n]*(failed|timeout|error)/i.",
+    "Playwright call log: - navigating to \"https://teskerti.tn/\", waiting until \"load\" | 6 |   test(\"Navigation vers la page de contact\", async ({ page }) => { | 7 |     // Given l'utilisateur est sur la page d'accueil | >  8 |     await page.goto(baseUrl); | |                ^ | 9 | | 10 |     // When l'utilisateur clique sur le bouton \"Contactez-nous!\" | 11 |     await page.locator(\"a:has-text(\\\"Contactez nous\\\")\").click(); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-de-contact.spec.ts:8:16",
+    "Recommended action: Navigation to the page failed (network / DNS / TLS / environment error). Confirm the starting URL and any appended path are reachable from this machine, then re-run. Not a selector or application-logic defect."
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 30000ms exceeded.\nTest timeout of 30000ms exceeded.\nError: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n  - navigating to \"https://teskerti.tn/\", waiting until \"load\"\n\n\n   6 |   test(\"Navigation vers la page de contact\", async ({ page }) => {\n   7 |     // Given l'utilisateur est sur la page d'accueil\n>  8 |     await page.goto(baseUrl);\n     |                ^\n   9 |\n  10 |     // When l'utilisateur clique sur le bouton \"Contactez-nous!\"\n  11 |     await page.locator(\"a:has-text(\\\"Contactez nous\\\")\").click();\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-de-contact.spec.ts:8:16"
+    },
+    {
+      "source": "test_source",
+      "content": "  test(\"Navigation vers la page de contact\", async ({ page }) => {\n    // Given l'utilisateur est sur la page d'accueil\n    await page.goto(baseUrl);\n\n    // When l'utilisateur clique sur le bouton \"Contactez-nous!\""
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\navigation-vers-la-page-de-4ea44-ion-vers-la-page-de-contact-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 30000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-de-contact.spec.ts",
+    "column": 16,
+    "line": 8
+  },
+  "diagnostics": {
+    "locatorLines": [],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-08-31T20:43:27.265Z"
+}

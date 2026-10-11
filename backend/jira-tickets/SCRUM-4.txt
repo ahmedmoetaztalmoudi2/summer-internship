@@ -1,0 +1,8 @@
+Depuis la fiche d'un événement, le client doit pouvoir sélectionner le nombre de billets désiré (champ quantité par catégorie de ticket) puis les ajouter au panier en cliquant sur « Ajouter au panier ». Le compteur du panier dans l'en-tête doit refléter le nombre de billets ajoutés et le total en TND doit s'ajuster en fonction de la quantité choisie. Un message « Panier mis à jour ! » s'affiche après l'ajout.
+
+Critères d'acceptation:
+- Depuis la fiche événement, l'utilisateur peut sélectionner le nombre de billets souhaité (champ quantité)
+- Cliquer sur le bouton « Ajouter au panier » ajoute les billets au panier
+- Le compteur du panier dans l'en-tête s'incrémente du nombre de billets ajoutés
+- Le total en TND s'ajuste selon la quantité choisie
+- Un message « Panier mis à jour ! » s'affiche après l'ajout

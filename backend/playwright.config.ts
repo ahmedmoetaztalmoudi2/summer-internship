@@ -6,7 +6,10 @@ export default defineConfig({
   testDir: './tests/generated',
   testMatch: ['**/*.spec.ts'],
   fullyParallel: false,
+  workers: 1,
   retries: 0,
+  timeout: 15_000,
+  expect: { timeout: 10_000 },
   reporter: [['list'], ['json', { outputFile: 'playwright-report.json' }]],
   use: {
     baseURL,

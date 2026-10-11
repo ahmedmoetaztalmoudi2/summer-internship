@@ -1,7 +1,7 @@
 {
-  "url": "https://teskerti.tn/category/spectacle",
+  "url": "https://teskerti.tn/contact",
   "domain": "teskerti.tn",
-  "analyzedAt": "2026-08-15T12:08:52.257Z",
+  "analyzedAt": "2026-08-30T23:26:06.604Z",
   "login": {
     "email": "input[name=\"email\"]",
     "password": "input[name=\"password\"]",
@@ -39,7 +39,7 @@
         "note": "Toggle password visibility"
       },
       "button_submit": {
-        "selector": "button:has-text(\"Se connecter\"), button[type=\"submit\"]",
+        "selector": "button:has-text(\"Se connecter\")",
         "widgetType": "button",
         "interaction": "click",
         "label": "Se connecter"
@@ -56,6 +56,10 @@
         "interaction": "click",
         "label": "Mot de passe oublié"
       }
+    },
+    "/client/home": {
+      "note": "Post-login landing page (authenticated user home)",
+      "authHome": true
     },
     "/category/spectacle": {
       "input_q": {
@@ -112,36 +116,20 @@
             "label": "Amphithéâtre plein air Boukornine"
           },
           {
-            "value": "217",
-            "label": "Borj el Kebir: Ottoman Fort"
+            "value": "486",
+            "label": "El Borj GOLDEN CARTHAGE TUNIS"
           },
           {
             "value": "369",
             "label": "Game Art Park"
           },
           {
-            "value": "49",
-            "label": "Ribat monastir"
+            "value": "487",
+            "label": "Stade Abdelaziz Chtioui"
           },
           {
-            "value": "16",
-            "label": "Théâtre Antique de Carthage"
-          },
-          {
-            "value": "50",
-            "label": "Théâtre de plein air de Hammamet"
-          },
-          {
-            "value": "480",
-            "label": "Théâtre de Plein Air nabeul"
-          },
-          {
-            "value": "33",
-            "label": "théâtre de plein air sidi dhaher"
-          },
-          {
-            "value": "483",
-            "label": "Théâtre Plein air Mohamed Ben Ali"
+            "value": "27",
+            "label": "Théatre plein air Sidi Mansour"
           },
           {
             "value": "20",
@@ -175,48 +163,24 @@
             "label": "- Sélectionner une Date -"
           },
           {
-            "value": "2026-09-06",
-            "label": "06 Septembre 2026"
+            "value": "2026-09-03",
+            "label": "03 Septembre 2026"
           },
           {
-            "value": "2026-08-15",
-            "label": "15 Août 2026"
+            "value": "2026-09-07",
+            "label": "07 Septembre 2026"
           },
           {
-            "value": "2026-08-20",
-            "label": "20 Août 2026"
-          },
-          {
-            "value": "2026-08-22",
-            "label": "22 Août 2026"
-          },
-          {
-            "value": "2026-08-23",
-            "label": "23 Août 2026"
-          },
-          {
-            "value": "2026-08-24",
-            "label": "24 Août 2026"
-          },
-          {
-            "value": "2026-08-25",
-            "label": "25 Août 2026"
-          },
-          {
-            "value": "2026-08-26",
-            "label": "26 Août 2026"
-          },
-          {
-            "value": "2026-08-28",
-            "label": "28 Août 2026"
-          },
-          {
-            "value": "2026-08-29",
-            "label": "29 Août 2026"
+            "value": "2026-09-19",
+            "label": "19 Septembre 2026"
           },
           {
             "value": "2026-08-30",
             "label": "30 Août 2026"
+          },
+          {
+            "value": "2026-08-31",
+            "label": "31 Août 2026"
           }
         ],
         "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
@@ -261,13 +225,512 @@
         "selector": "#dynamic_data",
         "widgetType": "container",
         "interaction": "assert",
-        "label": "Dynamic results list"
+        "label": "Dynamic results list",
+        "needsScroll": true,
+        "note": "Cards inside are revealed on scroll (WOW.js zoomIn). Scroll into view before asserting visibility."
       },
       "eventCard": {
         "selector": "#dynamic_data .tour_container",
         "widgetType": "container",
         "interaction": "assert",
-        "label": "Results card"
+        "label": "Results card",
+        "needsScroll": true,
+        "note": "Hidden until scrolled into view (WOW.js zoomIn reveal). Scroll into view before toBeVisible()."
+      }
+    },
+    "/": {
+      "input_q": {
+        "selector": "input[name=\"q\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Recherche..."
+      },
+      "input_honeypot": {
+        "selector": "input[name=\"honeypot\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "honeypot",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "a_closeIn": {
+        "selector": "#close_in",
+        "widgetType": "link",
+        "interaction": "click",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=#"
+      },
+      "a_phone": {
+        "selector": "a:has-text(\"+216 26 505 485\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "+216 26 505 485",
+        "note": "href=tel:+216 26 505 485"
+      },
+      "a_emailFooter": {
+        "selector": "#email_footer",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "contact@teskerti.tn",
+        "note": "href=mailto:contact@teskerti.tn"
+      },
+ "a_voirProgramme": {
+  "selector": "a[href*=\"/category/spectacle\"]",
+  "widgetType": "link",
+  "interaction": "click",
+  "label": "Voir Plus",
+  "note": "Homepage CTA to the events/spectacle page. Ticket calls it \"Voir programme\"; site text is \"Voir Plus\". Category links are CLASS-LESS anchors (no .btn_search): use a[href*=\"/category/spectacle\"] and .first() because nav + footer both link here (strict-mode multi-match)."
+ },
+ "a_heroCta": {
+  "selector": "a.button_intro",
+  "widgetType": "link",
+  "interaction": "click",
+  "label": "Réservez vos billets",
+  "note": "Hero CTA is an <a> anchor (role=link), NOT a <button>, so getByRole(\"button\",...) fails (element not found). Target it as a LINK: getByRole(\"link\", { name: \"Réservez vos billets\" }).first() or page.locator(\"a.button_intro\").first(). There are several carousel slides, each carrying one .button_intro (multi-match -> use .first())."
+ },
+ "a_categorySpectacle": {
+  "selector": "a[href*=\"/category/spectacle\"]",
+  "widgetType": "link",
+  "interaction": "click",
+  "label": "Spectacle",
+  "note": "Nav/footer link to the Spectacle category page. Classless anchor; matches nav + footer (3 total) -> use .first() to avoid strict-mode. Tickets often call it \"Voir programme\" / navigate to the spectacle events list."
+ },
+ "div_eventCard": {
+  "selector": "div.owl-item.active div.tour_container",
+  "widgetType": "container",
+  "interaction": "assert",
+  "label": "Event card",
+  "note": "Homepage/listing event card is a div.tour_container (NOT .event-card) inside .owl-item. Use div.owl-item.active div.tour_container to target only cards in the visible carousel slide (already visible -> no scroll needed). Each card shows: venue + event name + date/time (e.g. \"Théâtre Antique de Carthage Mai farouk 01 Septembre 2026 à 22:00\"). IMPORTANT: the card does NOT display a price/TND - the price only appears on the event DETAIL page. So do NOT assert /TND/ on a homepage card. Use .first() to avoid strict-mode."
+ },
+      "a_contactezNous": {
+        "selector": "a:has-text(\"Contactez nous\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "Contactez nous",
+        "note": "Contact link (footer/nav), an <a> not a <button>, to https://teskerti.tn/contact. Do NOT use the hero a.button_intro \"Contactez-nous!\" (off-canvas/hidden at load)."
+      },
+      "ul_footerCategories": {
+        "selector": "footer ul a[href*=\"/category/\"]",
+        "widgetType": "container",
+        "interaction": "assert",
+        "label": "Footer categories list",
+        "note": "The footer lists all categories as links to /category/* (9 items). Use this instead of guessing 'footer .categories'."
+      },
+      "a_footerAPropos": {
+        "selector": "footer a[href*=\"/page/a-propos\"]",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "A propos"
+      },
+      "a_footerTerms": {
+        "selector": "footer a[href*=\"/page/termes-et-conditions\"]",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "Termes et conditions"
+      },
+      "a_footerGuichets": {
+        "selector": "footer a[href*=\"/offices\"]",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "La liste de nos guichets"
+      }
+    },
+    "/evenement/cairokee-carthage": {
+      "input_csrfToken": {
+        "selector": "input[name=\"csrf_token\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "csrf_token",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "input_productId": {
+        "selector": "input[name=\"product_id\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "product_id",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "input_quantite12279": {
+        "selector": "input[name=\"quantite_12279\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "quantite_12279"
+      },
+      "input_quantite12280": {
+        "selector": "input[name=\"quantite_12280\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "quantite_12280"
+      },
+      "a_eventTitle": {
+        "selector": ".col-md-8 h1",
+        "widgetType": "container",
+        "interaction": "assert",
+        "label": "Event title",
+        "note": "The event title heading on the detail page (e.g. 'Cairokee - Carthage'). Use .col-md-8 h1 because bare h1 also matches the site header 'Teskerti'."
+      },
+      "container_venue": {
+        "selector": ".col-md-8 span",
+        "widgetType": "container",
+        "interaction": "assert",
+        "label": "Event venue (lieu/salle)",
+        "note": "The venue text directly under the event title, e.g. 'Théâtre Antique de Carthage : site archéologique de Carthage'. Assert it is visible and contains the expected venue name."
+      },
+      "container_dateTime": {
+        "selector": "#main-ticket-form label",
+        "widgetType": "container",
+        "interaction": "assert",
+        "label": "Event date/time labels",
+        "note": "The first labels show the event date (e.g. 15/09/2026) and time (e.g. 22:00). Assert these are visible and contain the date text."
+      },
+      "container_categoryPrices": {
+        "selector": "#main-ticket-form .border1",
+        "widgetType": "container",
+        "interaction": "assert",
+        "label": "Ticket categories with prices (TND)",
+        "note": "One row per ticket category with its price, e.g. 'Gradin 110TND', 'Chaise 192TND'. Assert count > 0 or that a category/price text is visible."
+      },
+      "input_quantity": {
+        "selector": "input.qty2",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Ticket quantity input",
+        "role": "spinbutton"
+      },
+      "button_ticketFormSubmit": {
+        "selector": "#ticket_form_submit",
+        "widgetType": "button",
+        "interaction": "click",
+        "label": "Ajouter au panier",
+        "role": "submit"
+      },
+      "input_honeypot": {
+        "selector": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(5) > form:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "honeypot",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "input_q": {
+        "selector": "input[name=\"q\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Recherche..."
+      },
+      "a_closeIn": {
+        "selector": "#close_in",
+        "widgetType": "link",
+        "interaction": "click",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=#"
+      },
+      "a_ticketFormValidateCommand": {
+        "selector": "#ticket_form_validate_command",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "Valider ma commande",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=https://teskerti.tn/booking/checkout"
+      },
+      "a_phone": {
+        "selector": "a:has-text(\"+216 26 505 485\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "+216 26 505 485",
+        "note": "href=tel:+216 26 505 485"
+      },
+      "a_emailFooter": {
+        "selector": "#email_footer",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "contact@teskerti.tn",
+        "note": "href=mailto:contact@teskerti.tn"
+      }
+    },
+    "/user/register": {
+      "input_csrfToken": {
+        "selector": "input[name=\"csrf_token\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "csrf_token",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "input_lastname": {
+        "selector": "#lastname",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Nom"
+      },
+      "input_firstname": {
+        "selector": "#firstname",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Prénom"
+      },
+      "input_email": {
+        "selector": "#email",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Email",
+        "role": "email"
+      },
+      "input_password": {
+        "selector": "#password",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Mot de passe",
+        "role": "password"
+      },
+      "input_confirmPassword": {
+        "selector": "input[name=\"confirm_password\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Confirmez votre mot de passe",
+        "role": "password"
+      },
+      "input_codeCaptcha": {
+        "selector": "#code_captcha",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Saisir le code"
+      },
+      "button_captchaRefresh": {
+        "selector": "#captcha_refresh",
+        "widgetType": "button",
+        "interaction": "click",
+        "role": "submit"
+      },
+      "input_checkboxSignup": {
+        "selector": "#checkbox-signup",
+        "widgetType": "checkbox",
+        "interaction": "check",
+        "label": "terms"
+      },
+      "input_honeypot": {
+        "selector": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(4) > form:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "honeypot",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "input_q": {
+        "selector": "input[name=\"q\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Recherche..."
+      },
+      "a_closeIn": {
+        "selector": "#close_in",
+        "widgetType": "link",
+        "interaction": "click",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=#"
+      },
+      "a_phone": {
+        "selector": "a:has-text(\"+216 26 505 485\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "+216 26 505 485",
+        "note": "href=tel:+216 26 505 485"
+      },
+      "a_emailFooter": {
+        "selector": "#email_footer",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "contact@teskerti.tn",
+        "note": "href=mailto:contact@teskerti.tn"
+      }
+    },
+    "/offices": {
+      "input_q": {
+        "selector": "input[name=\"q\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Recherche..."
+      },
+      "input_honeypot": {
+        "selector": "input[name=\"honeypot\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "honeypot",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "a_closeIn": {
+        "selector": "#close_in",
+        "widgetType": "link",
+        "interaction": "click",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=#"
+      },
+      "a_phone": {
+        "selector": "a:has-text(\"+216 26 505 485\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "+216 26 505 485",
+        "note": "href=tel:+216 26 505 485"
+      },
+      "a_emailFooter": {
+        "selector": "#email_footer",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "contact@teskerti.tn",
+        "note": "href=mailto:contact@teskerti.tn"
+      }
+    },
+    "/page/a-propos": {
+      "input_q": {
+        "selector": "input[name=\"q\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Recherche..."
+      },
+      "input_honeypot": {
+        "selector": "input[name=\"honeypot\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "honeypot",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "a_closeIn": {
+        "selector": "#close_in",
+        "widgetType": "link",
+        "interaction": "click",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=#"
+      },
+      "a_phone": {
+        "selector": "a:has-text(\"+216 26 505 485\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "+216 26 505 485",
+        "note": "href=tel:+216 26 505 485"
+      },
+      "a_emailFooter": {
+        "selector": "#email_footer",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "contact@teskerti.tn",
+        "note": "href=mailto:contact@teskerti.tn"
+      }
+    },
+    "/page/termes-et-conditions": {
+      "input_q": {
+        "selector": "input[name=\"q\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Recherche..."
+      },
+      "input_honeypot": {
+        "selector": "input[name=\"honeypot\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "honeypot",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "a_closeIn": {
+        "selector": "#close_in",
+        "widgetType": "link",
+        "interaction": "click",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=#"
+      },
+      "a_phone": {
+        "selector": "a:has-text(\"+216 26 505 485\")",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "+216 26 505 485",
+        "note": "href=tel:+216 26 505 485"
+      },
+      "a_emailFooter": {
+        "selector": "#email_footer",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "contact@teskerti.tn",
+        "note": "href=mailto:contact@teskerti.tn"
+      }
+    },
+    "/contact": {
+      "input_csrfToken": {
+        "selector": "input[name=\"csrf_token\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "csrf_token",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "input_firstName": {
+        "selector": "#first-name",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Nom & Prénom"
+      },
+      "input_email": {
+        "selector": "#email",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Email",
+        "role": "email"
+      },
+      "input_phone": {
+        "selector": "input[name=\"phone\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Téléphone"
+      },
+      "input_country": {
+        "selector": "#country",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Pays"
+      },
+      "input_codeCaptcha": {
+        "selector": "#code_captcha",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Saisir le code"
+      },
+      "button_captchaRefresh": {
+        "selector": "#captcha_refresh",
+        "widgetType": "button",
+        "interaction": "click",
+        "role": "submit"
+      },
+      "textarea_message": {
+        "selector": "textarea[name=\"message\"]",
+        "widgetType": "textarea",
+        "interaction": "fill",
+        "label": "Message"
+      },
+      "button_formSubmit": {
+        "selector": "#form_submit",
+        "widgetType": "button",
+        "interaction": "click",
+        "label": "Envoyer le message",
+        "role": "submit"
+      },
+      "input_honeypot": {
+        "selector": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(5) > form:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "honeypot",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element)."
+      },
+      "input_q": {
+        "selector": "input[name=\"q\"]",
+        "widgetType": "input",
+        "interaction": "fill",
+        "label": "Recherche..."
+      },
+      "a_closeIn": {
+        "selector": "#close_in",
+        "widgetType": "link",
+        "interaction": "click",
+        "note": "Hidden in DOM at analysis time (enhanced widget, utility field or lazy-loaded element). href=#"
+      },
+      "a_phone": {
+        "selector": "html:nth-of-type(1) > body:nth-of-type(1) > footer:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > a:nth-of-type(4)",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "+216 26 505 485",
+        "note": "href=tel:+216 26 505 485"
+      },
+      "a_emailFooter": {
+        "selector": "#email_footer",
+        "widgetType": "link",
+        "interaction": "click",
+        "label": "contact@teskerti.tn",
+        "note": "href=mailto:contact@teskerti.tn"
       }
     }
   }

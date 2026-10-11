@@ -1,0 +1,14 @@
+{
+  "scenario": "Vérification de l'absence du prix sur les cartes d'événements de la page d'accueil",
+  "failureType": "navigation_failure",
+  "repairType": "manual_review",
+  "attempt": 0,
+  "result": "escalated",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\v-rification-de-l-absence-du-prix-sur-les-cartes-d-v-nements-de-la-page-d-accueil.spec.ts",
+    "column": 16,
+    "line": 5
+  },
+  "appliedAt": "2026-08-31T20:43:27.401Z",
+  "reason": "Not auto-repairable: Plan is not repairable (diagnostic only)."
+}

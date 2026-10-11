@@ -1,0 +1,6 @@
+Lors de la réservation sur la fiche d'un événement (ex: Cairokee - Carthage), le client doit pouvoir sélectionner le type de billet désiré selon les catégories/zones disponibles (ex: Gradin, Chaise). Chaque catégorie affiche son prix en TND. Le nombre de billets par catégorie est saisi dans un champ quantité.
+
+Critères d'acceptation :
+- La fiche événement affiche clairement la liste des catégories/zones disponibles et leurs prix respectifs en TND (ex: Gradin 110TND, Chaise 192TND)
+- Les zones en rupture de stock sont indiquées comme « Épuisé » et ne peuvent pas être sélectionnées
+- Le total du panier s'ajuste dynamiquement en fonction de la zone/catégorie et du nombre de billets sélectionnés

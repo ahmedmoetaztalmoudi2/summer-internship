@@ -1,0 +1,50 @@
+{
+  "scenario": "Affichage du menu déroulant des dates",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.95,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: label:has-text(\"Sélectionner une Date\")",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.95.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /tobevisible\\(\\)?[^\\n]*failed/i.",
+    "Failing locator: label:has-text(\"Sélectionner une Date\")",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - Expect \"toBeVisible\" with timeout 10000ms | - waiting for locator('label:has-text(\"Sélectionner une Date\")').first() | - Test timeout of 15000ms exceeded. | 12 |     // Then le menu déroulant \"Sélectionner une Date\" doit être affiché | 13 |     const dateDropdownLabel = page.locator('label:has-text(\"Sélectionner une Date\")').first(); | > 14 |     await expect(dateDropdownLabel).toBeVisible(); | |                                     ^ | 15 | | 16 |     // And le menu doit lister les dates des événements disponibles | 17 |     const dateOptions = page.locator('select option'); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-menu-d-roulant-des-dates.spec.ts:14:37",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: label:has-text(\"Sélectionner une Date\")"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 15000ms exceeded.\nTest timeout of 15000ms exceeded.\nError: expect(locator).toBeVisible() failed\n\nLocator: locator('label:has-text(\"Sélectionner une Date\")').first()\nExpected: visible\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('label:has-text(\"Sélectionner une Date\")').first()\n  - Test timeout of 15000ms exceeded.\n\n\n  12 |     // Then le menu déroulant \"Sélectionner une Date\" doit être affiché\n  13 |     const dateDropdownLabel = page.locator('label:has-text(\"Sélectionner une Date\")').first();\n> 14 |     await expect(dateDropdownLabel).toBeVisible();\n     |                                     ^\n  15 |\n  16 |     // And le menu doit lister les dates des événements disponibles\n  17 |     const dateOptions = page.locator('select option');\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-menu-d-roulant-des-dates.spec.ts:14:37"
+    },
+    {
+      "source": "test_source",
+      "content": "    // Then le menu déroulant \"Sélectionner une Date\" doit être affiché\n    const dateDropdownLabel = page.locator('label:has-text(\"Sélectionner une Date\")').first();\n    await expect(dateDropdownLabel).toBeVisible();\n\n    // And le menu doit lister les dates des événements disponibles"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\affichage-du-menu-d-roulan-3ff0b-du-menu-déroulant-des-dates-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 15000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\affichage-du-menu-d-roulant-des-dates.spec.ts",
+    "column": 37,
+    "line": 14
+  },
+  "diagnostics": {
+    "failingLocator": "label:has-text(\"Sélectionner une Date\")",
+    "locatorLines": [
+      "waiting for locator('label:has-text(\"Sélectionner une Date\")').first()",
+      "Locator: locator('label:has-text(\"Sélectionner une Date\")').first()",
+      "locator('label:has-text(\"Sélectionner une Date\")')",
+      "locator('select option')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-09-01T20:32:38.353Z"
+}

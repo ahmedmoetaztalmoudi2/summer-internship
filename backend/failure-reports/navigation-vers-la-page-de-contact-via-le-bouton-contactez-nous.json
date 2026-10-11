@@ -1,0 +1,49 @@
+{
+  "scenario": "Navigation vers la page de contact via le bouton Contactez-nous",
+  "status": "failed",
+  "failureType": "visibility_issue",
+  "confidence": 0.95,
+  "rootCause": "bad_selector",
+  "repairRecommendation": "The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: text=Contactez-nous!",
+  "reasoning": [
+    "Failure classified as \"visibility_issue\" with confidence 0.95.",
+    "Root cause dimension: bad_selector — the test targeted the wrong element, a guessed/stale selector, or a non-actionable element.",
+    "Matched error signature: /element is not visible/i.",
+    "Failing locator: text=Contactez-nous!",
+    "The failing locator resolved to an element in the DOM (so it is not a missing-element/selector issue).",
+    "Cross-referenced with the knowledge base: no verified selector appears in the failing locator — it may have been guessed by test generation.",
+    "Playwright call log: - waiting for locator('text=Contactez-nous!').first() | - locator resolved to <a class=\"button_intro\" href=\"https://teskerti.tn/contact\">Contactez-nous!</a> | - attempting click action | 2 × waiting for element to be visible, enabled and stable | - element is not visible | - retrying click action | - waiting 20ms | 2 × waiting for element to be visible, enabled and stable | - element is not visible | - retrying click action | - waiting 100ms | 15 × waiting for element to be visible, enabled and stable | - element is not visible | - retrying click action | - waiting 500ms | - waiting for element to be visible, enabled and stable | - element is not stable | 5 × retrying click action | - waiting 500ms | - waiting for element to be visible, enabled and stable | - element is not visible | - retrying click action | - waiting 500ms | - waiting for element to be visible, enabled and stable | 10 |     // When l'utilisateur clique sur le bouton « Contactez-nous! » situé à côté de la section héro | 11 |     // TODO: | > 12 |     await page.locator(\"text=Contactez-nous!\").first().click(); | |                                                        ^ | 13 | | 14 |     // Then l'utilisateur est redirigé vers la page de contact de Teskerti | 15 |     await expect(page).toHaveURL(/\\/contact/); | at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-de-contact-via-le-bouton-contactez-nous.spec.ts:12:56",
+    "Recommended action: The element exists but is hidden (or the assertion demanded visibility on a hidden element). Assert visibility of an actionable container/row, or scroll the element into view before interacting. Failing locator: text=Contactez-nous!"
+  ],
+  "evidence": [
+    {
+      "source": "playwright_error",
+      "content": "Test timeout of 15000ms exceeded.\nTest timeout of 15000ms exceeded.\nError: locator.click: Test timeout of 15000ms exceeded.\nCall log:\n  - waiting for locator('text=Contactez-nous!').first()\n    - locator resolved to <a class=\"button_intro\" href=\"https://teskerti.tn/contact\">Contactez-nous!</a>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    15 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n    - element is not stable\n  5 × retrying click action\n      - waiting 500ms\n      - waiting for element to be visible, enabled and stable\n      - element is not visible\n  - retrying click action\n    - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n\n\n  10 |     // When l'utilisateur clique sur le bouton « Contactez-nous! » situé à côté de la section héro\n  11 |     // TODO:\n> 12 |     await page.locator(\"text=Contactez-nous!\").first().click();\n     |                                                        ^\n  13 |\n  14 |     // Then l'utilisateur est redirigé vers la page de contact de Teskerti\n  15 |     await expect(page).toHaveURL(/\\/contact/);\n    at C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-de-contact-via-le-bouton-contactez-nous.spec.ts:12:56"
+    },
+    {
+      "source": "test_source",
+      "content": "    // When l'utilisateur clique sur le bouton « Contactez-nous! » situé à côté de la section héro\n    // TODO:\n    await page.locator(\"text=Contactez-nous!\").first().click();\n\n    // Then l'utilisateur est redirigé vers la page de contact de Teskerti"
+    },
+    {
+      "source": "attachment",
+      "content": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\test-results\\navigation-vers-la-page-de-d6244-ia-le-bouton-Contactez-nous-chromium\\error-context.md"
+    }
+  ],
+  "errorSummary": "Test timeout of 15000ms exceeded.",
+  "location": {
+    "file": "C:\\Users\\ahmed\\OneDrive\\Desktop\\summer-internship---Capgemini-engineering\\backend\\tests\\generated\\navigation-vers-la-page-de-contact-via-le-bouton-contactez-nous.spec.ts",
+    "column": 56,
+    "line": 12
+  },
+  "diagnostics": {
+    "failingLocator": "text=Contactez-nous!",
+    "locatorLines": [
+      "waiting for locator('text=Contactez-nous!').first()",
+      "locator('text=Contactez-nous!')"
+    ],
+    "placeholders": [],
+    "knownSelectorKeys": [],
+    "unknownOptionTexts": []
+  },
+  "analyzedAt": "2026-09-02T09:22:29.631Z"
+}

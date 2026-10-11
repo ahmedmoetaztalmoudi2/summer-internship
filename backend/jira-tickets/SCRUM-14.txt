@@ -1,0 +1,7 @@
+Une page de contact pour envoyer une demande d'aide au support Teskerti.
+
+Critères d'acceptation :
+- Le formulaire contient les champs : Nom & Prénom, Email, Téléphone, Pays, Message
+- Tous les champs sont obligatoires
+- Un code de sécurité (captcha) doit être saisi avant l'envoi
+- Après l'envoi, un message de confirmation indique que le message a été envoyé
